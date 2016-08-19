@@ -21,19 +21,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="182" column="35" selection-start-line="182" selection-start-column="35" selection-end-line="182" selection-end-column="35" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="30" />
               <folding>
                 <element signature="e#6#62#0#PHP" expanded="true" />
-                <element signature="e#2658#3711#0#PHP" expanded="false" />
-                <marker date="1471607097000" expanded="true" signature="1504:1552" ph="SELECT * FRO... client" />
-                <marker date="1471607097000" expanded="true" signature="2179:2414" ph="INSERT INTO monetar... " />
-                <marker date="1471607097000" expanded="true" signature="4688:4830" ph="INSERT INTO client... " />
-                <marker date="1471607097000" expanded="true" signature="5626:5686" ph="SELECT * FRO... client" />
-                <marker date="1471607097000" expanded="true" signature="6072:6169" ph="SELECT id,na... products" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sql.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/public/db/sql.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inventory.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/public/routes/inventory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="e#6#88#0#PHP" expanded="true" />
+                <element signature="e#89#145#0#PHP" expanded="true" />
+                <marker date="1471611939000" expanded="true" signature="452:549" ph="SELECT id,na... products" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="finance.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/public/routes/finance.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="e#6#88#0#PHP" expanded="true" />
+                <element signature="e#89#145#0#PHP" expanded="true" />
+                <element signature="e#1025#1926#0#PHP" expanded="false" />
+                <marker date="1471611966000" expanded="true" signature="543:778" ph="INSERT INTO monetar... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clients.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/public/routes/clients.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+              <folding>
+                <element signature="e#6#62#0#PHP" expanded="true" />
+                <marker date="1471611966000" expanded="true" signature="347:395" ph="SELECT * FRO... client" />
+                <marker date="1471611966000" expanded="true" signature="1011:1153" ph="INSERT INTO client... " />
+                <marker date="1471611966000" expanded="true" signature="1949:2009" ph="SELECT * FRO... client" />
               </folding>
             </state>
           </provider>
@@ -44,7 +92,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/public/db/sql.php" />
         <option value="$PROJECT_DIR$/src/public/index.php" />
+        <option value="$PROJECT_DIR$/src/public/routes/inventory.php" />
+        <option value="$PROJECT_DIR$/src/public/routes/clients.php" />
+        <option value="$PROJECT_DIR$/src/public/routes/finance.php" />
       </list>
     </option>
   </component>
@@ -128,6 +180,28 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="slim" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="slim" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -194,12 +268,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471348769968</updated>
-      <workItem from="1471348772161" duration="16801000" />
+      <workItem from="1471348772161" duration="17607000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16801000" />
+    <option name="totallyTimeSpent" value="17607000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="729" extended-state="6" />
@@ -261,18 +335,58 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/public/db/sql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="182" column="35" selection-start-line="182" selection-start-column="35" selection-end-line="182" selection-end-column="35" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="30" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#2658#3711#0#PHP" expanded="false" />
-            <marker date="1471607097000" expanded="true" signature="1504:1552" ph="SELECT * FRO... client" />
-            <marker date="1471607097000" expanded="true" signature="2179:2414" ph="INSERT INTO monetar... " />
-            <marker date="1471607097000" expanded="true" signature="4688:4830" ph="INSERT INTO client... " />
-            <marker date="1471607097000" expanded="true" signature="5626:5686" ph="SELECT * FRO... client" />
-            <marker date="1471607097000" expanded="true" signature="6072:6169" ph="SELECT id,na... products" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/routes/clients.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+            <marker date="1471611966000" expanded="true" signature="347:395" ph="SELECT * FRO... client" />
+            <marker date="1471611966000" expanded="true" signature="1011:1153" ph="INSERT INTO client... " />
+            <marker date="1471611966000" expanded="true" signature="1949:2009" ph="SELECT * FRO... client" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/routes/inventory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#6#88#0#PHP" expanded="true" />
+            <element signature="e#89#145#0#PHP" expanded="true" />
+            <marker date="1471611939000" expanded="true" signature="452:549" ph="SELECT id,na... products" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/routes/finance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#6#88#0#PHP" expanded="true" />
+            <element signature="e#89#145#0#PHP" expanded="true" />
+            <element signature="e#1025#1926#0#PHP" expanded="false" />
+            <marker date="1471611966000" expanded="true" signature="543:778" ph="INSERT INTO monetar... " />
           </folding>
         </state>
       </provider>
