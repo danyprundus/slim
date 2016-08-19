@@ -1,0 +1,9 @@
+{
+    "require": {
+        "slim/slim": "^3.5",
+        "palanik/corsslim": "dev-slim3",
+        "doctrine/orm": "^2.5",
+        "slim/pdo": "^1.9"
+    }
+
+}
