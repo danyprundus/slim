@@ -116,9 +116,9 @@ class Response extends Message implements ResponseInterface
     /**
      * Create new HTTP response.
      *
-     * @param int                   $status  The response status code.
+     * @param int $status The response status code.
      * @param HeadersInterface|null $headers The response headers.
-     * @param StreamInterface|null  $body    The response body.
+     * @param StreamInterface|null $body The response body.
      */
     public function __construct($status = 200, HeadersInterface $headers = null, StreamInterface $body = null)
     {
@@ -207,7 +207,7 @@ class Response extends Message implements ResponseInterface
      */
     protected function filterStatus($status)
     {
-        if (!is_integer($status) || $status<100 || $status>599) {
+        if (!is_integer($status) || $status < 100 || $status > 599) {
             throw new InvalidArgumentException('Invalid HTTP status code');
         }
 
@@ -271,8 +271,8 @@ class Response extends Message implements ResponseInterface
      * This method prepares the response object to return an HTTP Redirect
      * response to the client.
      *
-     * @param  string|UriInterface $url    The redirect destination.
-     * @param  int|null            $status The redirect HTTP status code.
+     * @param  string|UriInterface $url The redirect destination.
+     * @param  int|null $status The redirect HTTP status code.
      * @return self
      */
     public function withRedirect($url, $status = null)
@@ -298,9 +298,9 @@ class Response extends Message implements ResponseInterface
      * This method prepares the response object to return an HTTP Json
      * response to the client.
      *
-     * @param  mixed  $data   The data
-     * @param  int    $status The HTTP status code.
-     * @param  int    $encodingOptions Json encoding options
+     * @param  mixed $data The data
+     * @param  int $status The HTTP status code.
+     * @param  int $encodingOptions Json encoding options
      * @throws \RuntimeException
      * @return self
      */

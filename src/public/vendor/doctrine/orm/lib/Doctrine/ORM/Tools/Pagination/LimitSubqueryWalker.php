@@ -65,8 +65,8 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
     {
         $queryComponents = $this->_getQueryComponents();
         // Get the root entity and alias from the AST fromClause
-        $from      = $AST->fromClause->identificationVariableDeclarations;
-        $fromRoot  = reset($from);
+        $from = $AST->fromClause->identificationVariableDeclarations;
+        $fromRoot = reset($from);
         $rootAlias = $fromRoot->rangeVariableDeclaration->aliasIdentificationVariable;
         $rootClass = $queryComponents[$rootAlias]['metadata'];
         $selectExpressions = array();
@@ -80,9 +80,9 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
                 continue;
             }
         }
-        
+
         $identifier = $rootClass->getSingleIdentifierFieldName();
-        
+
         if (isset($rootClass->associationMappings[$identifier])) {
             throw new \RuntimeException("Paginating an entity with foreign key as identifier only works when using the Output Walkers. Call Paginator#setUseOutputWalkers(true) before iterating the paginator.");
         }
@@ -104,10 +104,10 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
 
         if (isset($AST->orderByClause)) {
             foreach ($AST->orderByClause->orderByItems as $item) {
-                if ( ! $item->expression instanceof PathExpression) {
+                if (!$item->expression instanceof PathExpression) {
                     continue;
                 }
-                
+
                 $AST->selectClause->selectExpressions[] = new SelectExpression(
                     $this->createSelectExpressionItem($item->expression),
                     '_dctrn_ord' . $this->_aliasCounter++
@@ -129,47 +129,50 @@ class LimitSubqueryWalker extends TreeWalkerAdapter
         // a limit, a fetched to-many join, and an order by condition that
         // references a column from the fetch joined table.
         $queryComponents = $this->getQueryComponents();
-        $query           = $this->_getQuery();
-        $from            = $AST->fromClause->identificationVariableDeclarations;
-        $fromRoot        = reset($from);
+        $query = $this->_getQuery();
+        $from = $AST->fromClause->identificationVariableDeclarations;
+        $fromRoot = reset($from);
 
         if ($query instanceof Query
             && $query->getMaxResults()
             && $AST->orderByClause
-            && count($fromRoot->joins)) {
+            && count($fromRoot->joins)
+        ) {
             // Check each orderby item.
             // TODO: check complex orderby items too...
             foreach ($AST->orderByClause->orderByItems as $orderByItem) {
                 $expression = $orderByItem->expression;
                 if ($orderByItem->expression instanceof PathExpression
-                    && isset($queryComponents[$expression->identificationVariable])) {
+                    && isset($queryComponents[$expression->identificationVariable])
+                ) {
                     $queryComponent = $queryComponents[$expression->identificationVariable];
                     if (isset($queryComponent['parent'])
-                        && $queryComponent['relation']['type'] & ClassMetadataInfo::TO_MANY) {
+                        && $queryComponent['relation']['type'] & ClassMetadataInfo::TO_MANY
+                    ) {
                         throw new \RuntimeException("Cannot select distinct identifiers from query with LIMIT and ORDER BY on a column from a fetch joined to-many association. Use output walkers.");
                     }
                 }
             }
         }
     }
-    
+
     /**
      * Retrieve either an IdentityFunction (IDENTITY(u.assoc)) or a state field (u.name).
-     * 
+     *
      * @param \Doctrine\ORM\Query\AST\PathExpression $pathExpression
-     * 
+     *
      * @return \Doctrine\ORM\Query\AST\Functions\IdentityFunction
      */
     private function createSelectExpressionItem(PathExpression $pathExpression)
     {
         if ($pathExpression->type === PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION) {
             $identity = new IdentityFunction('identity');
-            
+
             $identity->pathExpression = clone $pathExpression;
-            
+
             return $identity;
         }
-        
+
         return clone $pathExpression;
     }
 }

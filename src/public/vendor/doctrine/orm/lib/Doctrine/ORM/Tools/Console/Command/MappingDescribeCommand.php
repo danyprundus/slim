@@ -73,9 +73,9 @@ EOT
     /**
      * Display all the mapping information for a single Entity.
      *
-     * @param string                 $entityName    Full or partial entity class name
+     * @param string $entityName Full or partial entity class name
      * @param EntityManagerInterface $entityManager
-     * @param OutputInterface        $output
+     * @param OutputInterface $output
      */
     private function displayEntity($entityName, EntityManagerInterface $entityManager, OutputInterface $output)
     {
@@ -143,9 +143,9 @@ EOT
             ->getMetadataDriverImpl()
             ->getAllClassNames();
 
-        if ( ! $entityClassNames) {
+        if (!$entityClassNames) {
             throw new \InvalidArgumentException(
-                'You do not have any mapped Doctrine ORM entities according to the current configuration. '.
+                'You do not have any mapped Doctrine ORM entities according to the current configuration. ' .
                 'If you have entities or mapping files you should check your mapping configuration for errors.'
             );
         }
@@ -157,7 +157,7 @@ EOT
      * Return the class metadata for the given entity
      * name
      *
-     * @param string                 $entityName    Full or partial entity name
+     * @param string $entityName Full or partial entity name
      * @param EntityManagerInterface $entityManager
      *
      * @return \Doctrine\ORM\Mapping\ClassMetadata
@@ -176,7 +176,7 @@ EOT
             }
         );
 
-        if ( ! $matches) {
+        if (!$matches) {
             throw new \InvalidArgumentException(sprintf(
                 'Could not find any mapped Entity classes matching "%s"',
                 $entityName
@@ -241,7 +241,7 @@ EOT
      * Add the given label and value to the two column table output
      *
      * @param string $label Label for the value
-     * @param mixed  $value A Value to show
+     * @param mixed $value A Value to show
      *
      * @return array
      */

@@ -37,10 +37,10 @@ use Doctrine\ORM\Tools\SchemaTool;
 abstract class AbstractCommand extends Command
 {
     /**
-     * @param InputInterface  $input
+     * @param InputInterface $input
      * @param OutputInterface $output
-     * @param SchemaTool      $schemaTool
-     * @param array           $metadatas
+     * @param SchemaTool $schemaTool
+     * @param array $metadatas
      *
      * @return null|int Null or 0 if everything went fine, or an error code.
      */
@@ -58,7 +58,7 @@ abstract class AbstractCommand extends Command
 
         $metadatas = $em->getMetadataFactory()->getAllMetadata();
 
-        if ( ! empty($metadatas)) {
+        if (!empty($metadatas)) {
             // Create SchemaTool
             $tool = new SchemaTool($em);
 

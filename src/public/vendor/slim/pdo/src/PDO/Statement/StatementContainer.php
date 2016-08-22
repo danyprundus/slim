@@ -74,8 +74,8 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param null   $operator
-     * @param null   $value
+     * @param null $operator
+     * @param null $value
      * @param string $chainType
      *
      * @return $this
@@ -107,7 +107,7 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param array  $values
+     * @param array $values
      * @param string $chainType
      *
      * @return $this
@@ -138,7 +138,7 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param array  $values
+     * @param array $values
      * @param string $chainType
      *
      * @return $this
@@ -169,7 +169,7 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param array  $values
+     * @param array $values
      * @param string $chainType
      *
      * @return $this
@@ -204,7 +204,7 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param array  $values
+     * @param array $values
      * @param string $chainType
      *
      * @return $this
@@ -239,7 +239,7 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param null   $value
+     * @param null $value
      * @param string $chainType
      *
      * @return $this
@@ -270,7 +270,7 @@ abstract class StatementContainer
 
     /**
      * @param $column
-     * @param null   $value
+     * @param null $value
      * @param string $chainType
      *
      * @return $this
@@ -351,7 +351,7 @@ abstract class StatementContainer
 
     /**
      * @param $columns
-     * @param null   $operator
+     * @param null $operator
      * @param string $chainType
      *
      * @return $this
@@ -459,7 +459,7 @@ abstract class StatementContainer
 
         reset($this->placeholders);
 
-        return '( '.implode(' , ', $placeholders).' )';
+        return '( ' . implode(' , ', $placeholders) . ' )';
     }
 
     /**
@@ -494,7 +494,7 @@ abstract class StatementContainer
 
     /**
      * @param $text
-     * @param int    $count
+     * @param int $count
      * @param string $separator
      *
      * @return string

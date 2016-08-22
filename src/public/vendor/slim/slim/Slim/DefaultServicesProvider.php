@@ -91,7 +91,7 @@ class DefaultServicesProvider
                 if (isset($container->get('settings')['routerCacheFile'])) {
                     $routerCacheFile = $container->get('settings')['routerCacheFile'];
                 }
-                
+
                 return (new Router)->setCacheFile($routerCacheFile);
             };
         }

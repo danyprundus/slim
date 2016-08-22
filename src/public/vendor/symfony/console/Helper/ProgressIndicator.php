@@ -36,9 +36,9 @@ class ProgressIndicator
 
     /**
      * @param OutputInterface $output
-     * @param string|null     $format                  Indicator format
-     * @param int             $indicatorChangeInterval Change interval in milliseconds
-     * @param array|null      $indicatorValues         Animated indicator characters
+     * @param string|null $format Indicator format
+     * @param int $indicatorChangeInterval Change interval in milliseconds
+     * @param array|null $indicatorValues Animated indicator characters
      */
     public function __construct(OutputInterface $output, $format = null, $indicatorChangeInterval = 100, $indicatorValues = null)
     {
@@ -160,7 +160,7 @@ class ProgressIndicator
      *
      * This method also allow you to override an existing placeholder.
      *
-     * @param string   $name     The placeholder name (including the delimiter char like %)
+     * @param string $name The placeholder name (including the delimiter char like %)
      * @param callable $callable A PHP callable
      */
     public static function setPlaceholderFormatterDefinition($name, $callable)

@@ -31,7 +31,7 @@ class Connection extends PDOConnection implements \Doctrine\DBAL\Driver\Connecti
     /**
      * @override
      */
-    public function quote($value, $type=\PDO::PARAM_STR)
+    public function quote($value, $type = \PDO::PARAM_STR)
     {
         $val = parent::quote($value, $type);
 

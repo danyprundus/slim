@@ -129,7 +129,7 @@ abstract class AbstractAsset
     public function getFullQualifiedName($defaultNamespaceName)
     {
         $name = $this->getName();
-        if ( ! $this->_namespace) {
+        if (!$this->_namespace) {
             $name = $defaultNamespaceName . "." . $name;
         }
 
@@ -210,13 +210,13 @@ abstract class AbstractAsset
      * however building idents automatically for foreign keys, composite keys or such can easily create
      * very long names.
      *
-     * @param array   $columnNames
-     * @param string  $prefix
+     * @param array $columnNames
+     * @param string $prefix
      * @param integer $maxSize
      *
      * @return string
      */
-    protected function _generateIdentifierName($columnNames, $prefix='', $maxSize=30)
+    protected function _generateIdentifierName($columnNames, $prefix = '', $maxSize = 30)
     {
         $hash = implode("", array_map(function ($column) {
             return dechex(crc32($column));

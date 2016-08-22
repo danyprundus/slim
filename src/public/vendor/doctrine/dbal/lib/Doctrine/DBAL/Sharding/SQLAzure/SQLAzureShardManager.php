@@ -71,22 +71,22 @@ class SQLAzureShardManager implements ShardManager
         $this->conn = $conn;
         $params = $conn->getParams();
 
-        if ( ! isset($params['sharding']['federationName'])) {
+        if (!isset($params['sharding']['federationName'])) {
             throw ShardingException::missingDefaultFederationName();
         }
 
-        if ( ! isset($params['sharding']['distributionKey'])) {
+        if (!isset($params['sharding']['distributionKey'])) {
             throw ShardingException::missingDefaultDistributionKey();
         }
 
-        if ( ! isset($params['sharding']['distributionType'])) {
+        if (!isset($params['sharding']['distributionType'])) {
             throw ShardingException::missingDistributionType();
         }
 
         $this->federationName = $params['sharding']['federationName'];
         $this->distributionKey = $params['sharding']['distributionKey'];
         $this->distributionType = $params['sharding']['distributionType'];
-        $this->filteringEnabled = (isset($params['sharding']['filteringEnabled'])) ? (bool) $params['sharding']['filteringEnabled'] : false;
+        $this->filteringEnabled = (isset($params['sharding']['filteringEnabled'])) ? (bool)$params['sharding']['filteringEnabled'] : false;
     }
 
     /**
@@ -128,7 +128,7 @@ class SQLAzureShardManager implements ShardManager
      */
     public function setFilteringEnabled($flag)
     {
-        $this->filteringEnabled = (bool) $flag;
+        $this->filteringEnabled = (bool)$flag;
     }
 
     /**
@@ -195,9 +195,9 @@ class SQLAzureShardManager implements ShardManager
         return $this->conn->fetchAll($sql);
     }
 
-     /**
-      * {@inheritDoc}
-      */
+    /**
+     * {@inheritDoc}
+     */
     public function queryAll($sql, array $params = array(), array $types = array())
     {
         $shards = $this->getShards();
@@ -236,8 +236,8 @@ class SQLAzureShardManager implements ShardManager
         $type = Type::getType($this->distributionType);
 
         $sql = "ALTER FEDERATION " . $this->getFederationName() . " " .
-               "SPLIT AT (" . $this->getDistributionKey() . " = " .
-               $this->conn->quote($splitDistributionValue, $type->getBindingType()) . ")";
+            "SPLIT AT (" . $this->getDistributionKey() . " = " .
+            $this->conn->quote($splitDistributionValue, $type->getBindingType()) . ")";
         $this->conn->exec($sql);
     }
 }

@@ -30,7 +30,7 @@ class EntityNotFoundException extends ORMException
     /**
      * Static constructor.
      *
-     * @param string   $className
+     * @param string $className
      * @param string[] $id
      *
      * @return self

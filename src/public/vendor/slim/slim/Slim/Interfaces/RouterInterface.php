@@ -24,7 +24,7 @@ interface RouterInterface
      * Add route
      *
      * @param string[] $methods Array of HTTP methods
-     * @param string   $pattern The route pattern
+     * @param string $pattern The route pattern
      * @param callable $handler The route callable
      *
      * @return RouteInterface
@@ -45,7 +45,7 @@ interface RouterInterface
     /**
      * Add a route group to the array
      *
-     * @param string   $pattern The group pattern
+     * @param string $pattern The group pattern
      * @param callable $callable A group callable
      *
      * @return RouteGroupInterface
@@ -62,7 +62,7 @@ interface RouterInterface
     /**
      * Get named route object
      *
-     * @param string $name        Route name
+     * @param string $name Route name
      *
      * @return \Slim\Interfaces\RouteInterface
      *
@@ -80,9 +80,9 @@ interface RouterInterface
     /**
      * Build the path for a named route excluding the base path
      *
-     * @param string $name        Route name
-     * @param array  $data        Named argument replacement data
-     * @param array  $queryParams Optional query string parameters
+     * @param string $name Route name
+     * @param array $data Named argument replacement data
+     * @param array $queryParams Optional query string parameters
      *
      * @return string
      *
@@ -94,9 +94,9 @@ interface RouterInterface
     /**
      * Build the path for a named route including the base path
      *
-     * @param string $name        Route name
-     * @param array  $data        Named argument replacement data
-     * @param array  $queryParams Optional query string parameters
+     * @param string $name Route name
+     * @param array $data Named argument replacement data
+     * @param array $queryParams Optional query string parameters
      *
      * @return string
      *

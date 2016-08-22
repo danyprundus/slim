@@ -48,10 +48,10 @@ class DefaultQuoteStrategy implements QuoteStrategy
     {
         $tableName = $class->table['name'];
 
-        if ( ! empty($class->table['schema'])) {
+        if (!empty($class->table['schema'])) {
             $tableName = $class->table['schema'] . '.' . $class->table['name'];
 
-            if ( ! $platform->supportsSchemas() && $platform->canEmulateSchemas()) {
+            if (!$platform->supportsSchemas() && $platform->canEmulateSchemas()) {
                 $tableName = $class->table['schema'] . '__' . $class->table['name'];
             }
         }
@@ -126,10 +126,9 @@ class DefaultQuoteStrategy implements QuoteStrategy
             }
 
             // Association defined as Id field
-            $joinColumns            = $class->associationMappings[$fieldName]['joinColumns'];
+            $joinColumns = $class->associationMappings[$fieldName]['joinColumns'];
             $assocQuotedColumnNames = array_map(
-                function ($joinColumn) use ($platform)
-                {
+                function ($joinColumn) use ($platform) {
                     return isset($joinColumn['quoted'])
                         ? $platform->quoteIdentifier($joinColumn['name'])
                         : $joinColumn['name'];

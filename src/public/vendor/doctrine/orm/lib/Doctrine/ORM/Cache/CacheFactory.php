@@ -27,7 +27,7 @@ use Doctrine\ORM\Persisters\Entity\EntityPersister;
 
 /**
  * Contract for building second level cache regions components.
- * 
+ *
  * @since   2.5
  * @author  Fabio B. Silva <fabio.bat.silva@gmail.com>
  */
@@ -36,9 +36,9 @@ interface CacheFactory
     /**
      * Build an entity persister for the given entity metadata.
      *
-     * @param \Doctrine\ORM\EntityManagerInterface            $em        The entity manager.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The entity manager.
      * @param \Doctrine\ORM\Persisters\Entity\EntityPersister $persister The entity persister that will be cached.
-     * @param \Doctrine\ORM\Mapping\ClassMetadata             $metadata  The entity metadata.
+     * @param \Doctrine\ORM\Mapping\ClassMetadata $metadata The entity metadata.
      *
      * @return \Doctrine\ORM\Cache\Persister\Entity\CachedEntityPersister
      */
@@ -47,9 +47,9 @@ interface CacheFactory
     /**
      * Build a collection persister for the given relation mapping.
      *
-     * @param \Doctrine\ORM\EntityManagerInterface                    $em        The entity manager.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The entity manager.
      * @param \Doctrine\ORM\Persisters\Collection\CollectionPersister $persister The collection persister that will be cached.
-     * @param array                                                   $mapping   The association mapping.
+     * @param array $mapping The association mapping.
      *
      * @return \Doctrine\ORM\Cache\Persister\Collection\CachedCollectionPersister
      */
@@ -58,8 +58,8 @@ interface CacheFactory
     /**
      * Build a query cache based on the given region name
      *
-     * @param \Doctrine\ORM\EntityManagerInterface $em         The Entity manager.
-     * @param string                               $regionName The region name.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The Entity manager.
+     * @param string $regionName The region name.
      *
      * @return \Doctrine\ORM\Cache\QueryCache The built query cache.
      */
@@ -68,8 +68,8 @@ interface CacheFactory
     /**
      * Build an entity hydrator
      *
-     * @param \Doctrine\ORM\EntityManagerInterface $em       The Entity manager.
-     * @param \Doctrine\ORM\Mapping\ClassMetadata  $metadata The entity metadata.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The Entity manager.
+     * @param \Doctrine\ORM\Mapping\ClassMetadata $metadata The entity metadata.
      *
      * @return \Doctrine\ORM\Cache\EntityHydrator The built entity hydrator.
      */
@@ -78,8 +78,8 @@ interface CacheFactory
     /**
      * Build a collection hydrator
      *
-     * @param \Doctrine\ORM\EntityManagerInterface $em      The Entity manager.
-     * @param array                                $mapping The association mapping.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The Entity manager.
+     * @param array $mapping The association mapping.
      *
      * @return \Doctrine\ORM\Cache\CollectionHydrator The built collection hydrator.
      */

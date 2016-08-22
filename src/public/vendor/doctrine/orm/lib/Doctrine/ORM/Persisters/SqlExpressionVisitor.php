@@ -47,7 +47,7 @@ class SqlExpressionVisitor extends ExpressionVisitor
 
     /**
      * @param \Doctrine\ORM\Persisters\Entity\BasicEntityPersister $persister
-     * @param \Doctrine\ORM\Mapping\ClassMetadata                  $classMetadata
+     * @param \Doctrine\ORM\Mapping\ClassMetadata $classMetadata
      */
     public function __construct(BasicEntityPersister $persister, ClassMetadata $classMetadata)
     {
@@ -69,8 +69,9 @@ class SqlExpressionVisitor extends ExpressionVisitor
 
         if (isset($this->classMetadata->associationMappings[$field]) &&
             $value !== null &&
-            ! is_object($value) &&
-            ! in_array($comparison->getOperator(), array(Comparison::IN, Comparison::NIN))) {
+            !is_object($value) &&
+            !in_array($comparison->getOperator(), array(Comparison::IN, Comparison::NIN))
+        ) {
 
             throw PersisterException::matchingAssocationFieldRequiresObject($this->classMetadata->name, $field);
         }
@@ -95,7 +96,7 @@ class SqlExpressionVisitor extends ExpressionVisitor
             $expressionList[] = $this->dispatch($child);
         }
 
-        switch($expr->getType()) {
+        switch ($expr->getType()) {
             case CompositeExpression::TYPE_AND:
                 return '(' . implode(' AND ', $expressionList) . ')';
 

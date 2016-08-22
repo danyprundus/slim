@@ -30,10 +30,10 @@ class DB2Connection implements Connection, ServerInfoAwareConnection
     private $_conn = null;
 
     /**
-     * @param array  $params
+     * @param array $params
      * @param string $username
      * @param string $password
-     * @param array  $driverOptions
+     * @param array $driverOptions
      *
      * @throws \Doctrine\DBAL\Driver\IBMDB2\DB2Exception
      */
@@ -46,7 +46,7 @@ class DB2Connection implements Connection, ServerInfoAwareConnection
         } else {
             $this->_conn = db2_connect($params['dbname'], $username, $password, $driverOptions);
         }
-        if ( ! $this->_conn) {
+        if (!$this->_conn) {
             throw new DB2Exception(db2_conn_errormsg());
         }
     }
@@ -75,7 +75,7 @@ class DB2Connection implements Connection, ServerInfoAwareConnection
     public function prepare($sql)
     {
         $stmt = @db2_prepare($this->_conn, $sql);
-        if ( ! $stmt) {
+        if (!$stmt) {
             throw new DB2Exception(db2_stmt_errormsg());
         }
 
@@ -98,13 +98,13 @@ class DB2Connection implements Connection, ServerInfoAwareConnection
     /**
      * {@inheritdoc}
      */
-    public function quote($input, $type=\PDO::PARAM_STR)
+    public function quote($input, $type = \PDO::PARAM_STR)
     {
         $input = db2_escape_string($input);
         if ($type == \PDO::PARAM_INT) {
             return $input;
         } else {
-            return "'".$input."'";
+            return "'" . $input . "'";
         }
     }
 

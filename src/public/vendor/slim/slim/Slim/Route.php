@@ -72,18 +72,18 @@ class Route extends Routable implements RouteInterface
     /**
      * Create new route
      *
-     * @param string|string[]   $methods The route HTTP methods
-     * @param string            $pattern The route pattern
-     * @param callable          $callable The route callable
-     * @param RouteGroup[]      $groups The parent route groups
-     * @param int               $identifier The route identifier
+     * @param string|string[] $methods The route HTTP methods
+     * @param string $pattern The route pattern
+     * @param callable $callable The route callable
+     * @param RouteGroup[] $groups The parent route groups
+     * @param int $identifier The route identifier
      */
     public function __construct($methods, $pattern, $callable, $groups = [], $identifier = 0)
     {
-        $this->methods  = is_string($methods) ? [$methods] : $methods;
-        $this->pattern  = $pattern;
+        $this->methods = is_string($methods) ? [$methods] : $methods;
+        $this->pattern = $pattern;
         $this->callable = $callable;
-        $this->groups   = $groups;
+        $this->groups = $groups;
         $this->identifier = 'route' . $identifier;
     }
 
@@ -284,7 +284,7 @@ class Route extends Routable implements RouteInterface
      * back to the Application.
      *
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
+     * @param ResponseInterface $response
      *
      * @return ResponseInterface
      */
@@ -304,8 +304,8 @@ class Route extends Routable implements RouteInterface
      * registered for the route, each callable middleware is invoked in
      * the order specified.
      *
-     * @param ServerRequestInterface $request  The current Request object
-     * @param ResponseInterface      $response The current Response object
+     * @param ServerRequestInterface $request The current Request object
+     * @param ResponseInterface $response The current Response object
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Exception  if the route callable throws an exception
      */

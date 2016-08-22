@@ -53,7 +53,7 @@ class SelectStatement extends StatementContainer
      * Constructor.
      *
      * @param Database $dbh
-     * @param array    $columns
+     * @param array $columns
      */
     public function __construct(Database $dbh, array $columns)
     {
@@ -83,8 +83,8 @@ class SelectStatement extends StatementContainer
 
     /**
      * @param string $column
-     * @param null   $as
-     * @param bool   $distinct
+     * @param null $as
+     * @param bool $distinct
      *
      * @return $this
      */
@@ -92,14 +92,14 @@ class SelectStatement extends StatementContainer
     {
         $this->aggregate = true;
 
-        $this->columns[] = $this->setDistinct($distinct).' '.$column.' )'.$this->setAs($as);
+        $this->columns[] = $this->setDistinct($distinct) . ' ' . $column . ' )' . $this->setAs($as);
 
         return $this;
     }
 
     /**
      * @param string $column
-     * @param null   $as
+     * @param null $as
      *
      * @return $this
      */
@@ -120,7 +120,7 @@ class SelectStatement extends StatementContainer
     {
         $this->aggregate = true;
 
-        $this->columns[] = 'MAX( '.$column.' )'.$this->setAs($as);
+        $this->columns[] = 'MAX( ' . $column . ' )' . $this->setAs($as);
 
         return $this;
     }
@@ -135,7 +135,7 @@ class SelectStatement extends StatementContainer
     {
         $this->aggregate = true;
 
-        $this->columns[] = 'MIN( '.$column.' )'.$this->setAs($as);
+        $this->columns[] = 'MIN( ' . $column . ' )' . $this->setAs($as);
 
         return $this;
     }
@@ -150,7 +150,7 @@ class SelectStatement extends StatementContainer
     {
         $this->aggregate = true;
 
-        $this->columns[] = 'AVG( '.$column.' )'.$this->setAs($as);
+        $this->columns[] = 'AVG( ' . $column . ' )' . $this->setAs($as);
 
         return $this;
     }
@@ -165,7 +165,7 @@ class SelectStatement extends StatementContainer
     {
         $this->aggregate = true;
 
-        $this->columns[] = 'SUM( '.$column.' )'.$this->setAs($as);
+        $this->columns[] = 'SUM( ' . $column . ' )' . $this->setAs($as);
 
         return $this;
     }
@@ -185,8 +185,8 @@ class SelectStatement extends StatementContainer
     /**
      * @param $table
      * @param $first
-     * @param null   $operator
-     * @param null   $second
+     * @param null $operator
+     * @param null $second
      * @param string $joinType
      *
      * @return $this
@@ -257,8 +257,8 @@ class SelectStatement extends StatementContainer
 
     /**
      * @param $column
-     * @param null   $operator
-     * @param null   $value
+     * @param null $operator
+     * @param null $value
      * @param string $chainType
      *
      * @return $this
@@ -389,8 +389,8 @@ class SelectStatement extends StatementContainer
             trigger_error('No table is set for selection', E_USER_ERROR);
         }
 
-        $sql = $this->getSelect().' '.$this->getColumns();
-        $sql .= ' FROM '.$this->table;
+        $sql = $this->getSelect() . ' ' . $this->getColumns();
+        $sql .= ' FROM ' . $this->table;
         $sql .= $this->joinClause;
         $sql .= $this->whereClause;
         $sql .= $this->groupClause;
@@ -455,6 +455,6 @@ class SelectStatement extends StatementContainer
             return '';
         }
 
-        return ' AS '.$as;
+        return ' AS ' . $as;
     }
 }

@@ -66,11 +66,11 @@ abstract class AbstractCollectionPersister implements CollectionPersister
      */
     public function __construct(EntityManagerInterface $em)
     {
-        $this->em               = $em;
-        $this->uow              = $em->getUnitOfWork();
-        $this->conn             = $em->getConnection();
-        $this->platform         = $this->conn->getDatabasePlatform();
-        $this->quoteStrategy    = $em->getConfiguration()->getQuoteStrategy();
+        $this->em = $em;
+        $this->uow = $em->getUnitOfWork();
+        $this->conn = $em->getConnection();
+        $this->platform = $this->conn->getDatabasePlatform();
+        $this->quoteStrategy = $em->getConfiguration()->getQuoteStrategy();
     }
 
     /**

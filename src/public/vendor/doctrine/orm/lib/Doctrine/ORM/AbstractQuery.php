@@ -165,10 +165,10 @@ abstract class AbstractQuery
      */
     public function __construct(EntityManagerInterface $em)
     {
-        $this->_em          = $em;
-        $this->parameters   = new ArrayCollection();
-        $this->_hints       = $em->getConfiguration()->getDefaultQueryHints();
-        $this->hasCache     = $this->_em->getConfiguration()->isSecondLevelCacheEnabled();
+        $this->_em = $em;
+        $this->parameters = new ArrayCollection();
+        $this->_hints = $em->getConfiguration()->getDefaultQueryHints();
+        $this->hasCache = $this->_em->getConfiguration()->isSecondLevelCacheEnabled();
 
         if ($this->hasCache) {
             $this->cacheLogger = $em->getConfiguration()
@@ -187,7 +187,7 @@ abstract class AbstractQuery
      */
     public function setCacheable($cacheable)
     {
-        $this->cacheable = (boolean) $cacheable;
+        $this->cacheable = (boolean)$cacheable;
 
         return $this;
     }
@@ -207,16 +207,16 @@ abstract class AbstractQuery
      */
     public function setCacheRegion($cacheRegion)
     {
-        $this->cacheRegion = (string) $cacheRegion;
+        $this->cacheRegion = (string)$cacheRegion;
 
         return $this;
     }
 
     /**
-    * Obtain the name of the second level query cache region in which query results will be stored
-    *
-    * @return The cache region name; NULL indicates the default region.
-    */
+     * Obtain the name of the second level query cache region in which query results will be stored
+     *
+     * @return The cache region name; NULL indicates the default region.
+     */
     public function getCacheRegion()
     {
         return $this->cacheRegion;
@@ -247,7 +247,7 @@ abstract class AbstractQuery
      */
     public function setLifetime($lifetime)
     {
-        $this->lifetime = (integer) $lifetime;
+        $this->lifetime = (integer)$lifetime;
 
         return $this;
     }
@@ -267,7 +267,7 @@ abstract class AbstractQuery
      */
     public function setCacheMode($cacheMode)
     {
-        $this->cacheMode = (integer) $cacheMode;
+        $this->cacheMode = (integer)$cacheMode;
 
         return $this;
     }
@@ -325,8 +325,7 @@ abstract class AbstractQuery
     public function getParameter($key)
     {
         $filteredParameters = $this->parameters->filter(
-            function ($parameter) use ($key)
-            {
+            function ($parameter) use ($key) {
                 // Must not be identical because of string to integer conversion
                 return ($key == $parameter->getName());
             }
@@ -363,9 +362,9 @@ abstract class AbstractQuery
     /**
      * Sets a query parameter.
      *
-     * @param string|int  $key   The parameter position or name.
-     * @param mixed       $value The parameter value.
-     * @param string|null $type  The parameter type. If specified, the given value will be run through
+     * @param string|int $key The parameter position or name.
+     * @param mixed $value The parameter value.
+     * @param string|null $type The parameter type. If specified, the given value will be run through
      *                           the type conversion of this type. This is usually not needed for
      *                           strings and numeric types.
      *
@@ -374,8 +373,7 @@ abstract class AbstractQuery
     public function setParameter($key, $value, $type = null)
     {
         $filteredParameters = $this->parameters->filter(
-            function ($parameter) use ($key)
-            {
+            function ($parameter) use ($key) {
                 // Must not be identical because of string to integer conversion
                 return ($key == $parameter->getName());
             }
@@ -414,7 +412,7 @@ abstract class AbstractQuery
 
         if (is_array($value)) {
             foreach ($value as $key => $paramValue) {
-                $paramValue  = $this->processParameterValue($paramValue);
+                $paramValue = $this->processParameterValue($paramValue);
                 $value[$key] = is_array($paramValue) ? reset($paramValue) : $paramValue;
             }
 
@@ -502,7 +500,7 @@ abstract class AbstractQuery
      */
     public function setHydrationCacheProfile(QueryCacheProfile $profile = null)
     {
-        if ( ! $profile->getResultCacheDriver()) {
+        if (!$profile->getResultCacheDriver()) {
             $resultCacheDriver = $this->_em->getConfiguration()->getHydrationCacheImpl();
             $profile = $profile->setResultCacheDriver($resultCacheDriver);
         }
@@ -532,7 +530,7 @@ abstract class AbstractQuery
      */
     public function setResultCacheProfile(QueryCacheProfile $profile = null)
     {
-        if ( ! $profile->getResultCacheDriver()) {
+        if (!$profile->getResultCacheDriver()) {
             $resultCacheDriver = $this->_em->getConfiguration()->getResultCacheImpl();
             $profile = $profile->setResultCacheDriver($resultCacheDriver);
         }
@@ -553,7 +551,7 @@ abstract class AbstractQuery
      */
     public function setResultCacheDriver($resultCacheDriver = null)
     {
-        if ($resultCacheDriver !== null && ! ($resultCacheDriver instanceof \Doctrine\Common\Cache\Cache)) {
+        if ($resultCacheDriver !== null && !($resultCacheDriver instanceof \Doctrine\Common\Cache\Cache)) {
             throw ORMException::invalidResultCacheDriver();
         }
 
@@ -586,7 +584,7 @@ abstract class AbstractQuery
      *
      * @param boolean $bool
      * @param integer $lifetime
-     * @param string  $resultCacheId
+     * @param string $resultCacheId
      *
      * @return static This query instance.
      */
@@ -613,7 +611,7 @@ abstract class AbstractQuery
      */
     public function setResultCacheLifetime($lifetime)
     {
-        $lifetime = ($lifetime !== null) ? (int) $lifetime : 0;
+        $lifetime = ($lifetime !== null) ? (int)$lifetime : 0;
 
         $this->_queryCacheProfile = $this->_queryCacheProfile
             ? $this->_queryCacheProfile->setLifetime($lifetime)
@@ -673,7 +671,7 @@ abstract class AbstractQuery
      *
      * @param string $class
      * @param string $assocName
-     * @param int    $fetchMode
+     * @param int $fetchMode
      *
      * @return static This query instance.
      */
@@ -769,11 +767,11 @@ abstract class AbstractQuery
         }
 
 
-        if ($this->_hydrationMode !== self::HYDRATE_SINGLE_SCALAR && ! $result) {
+        if ($this->_hydrationMode !== self::HYDRATE_SINGLE_SCALAR && !$result) {
             return null;
         }
 
-        if ( ! is_array($result)) {
+        if (!is_array($result)) {
             return $result;
         }
 
@@ -803,11 +801,11 @@ abstract class AbstractQuery
     {
         $result = $this->execute(null, $hydrationMode);
 
-        if ($this->_hydrationMode !== self::HYDRATE_SINGLE_SCALAR && ! $result) {
+        if ($this->_hydrationMode !== self::HYDRATE_SINGLE_SCALAR && !$result) {
             throw new NoResultException;
         }
 
-        if ( ! is_array($result)) {
+        if (!is_array($result)) {
             return $result;
         }
 
@@ -836,8 +834,8 @@ abstract class AbstractQuery
     /**
      * Sets a query hint. If the hint name is not recognized, it is silently ignored.
      *
-     * @param string $name  The name of the hint.
-     * @param mixed  $value The value of the hint.
+     * @param string $name The name of the hint.
+     * @param mixed $value The value of the hint.
      *
      * @return static This query instance.
      */
@@ -886,8 +884,8 @@ abstract class AbstractQuery
      * Executes the query and returns an IterableResult that can be used to incrementally
      * iterate over the result.
      *
-     * @param ArrayCollection|array|null $parameters    The query parameters.
-     * @param integer|null               $hydrationMode The hydration mode to use.
+     * @param ArrayCollection|array|null $parameters The query parameters.
+     * @param integer|null $hydrationMode The hydration mode to use.
      *
      * @return \Doctrine\ORM\Internal\Hydration\IterableResult
      */
@@ -897,11 +895,11 @@ abstract class AbstractQuery
             $this->setHydrationMode($hydrationMode);
         }
 
-        if ( ! empty($parameters)) {
+        if (!empty($parameters)) {
             $this->setParameters($parameters);
         }
 
-        $rsm  = $this->getResultSetMapping();
+        $rsm = $this->getResultSetMapping();
         $stmt = $this->_doExecute();
 
         return $this->_em->newHydrator($this->_hydrationMode)->iterate($stmt, $rsm, $this->_hints);
@@ -911,7 +909,7 @@ abstract class AbstractQuery
      * Executes the query.
      *
      * @param ArrayCollection|array|null $parameters Query parameters.
-     * @param integer|null               $hydrationMode Processing mode to be used during the hydration process.
+     * @param integer|null $hydrationMode Processing mode to be used during the hydration process.
      *
      * @return mixed
      */
@@ -928,7 +926,7 @@ abstract class AbstractQuery
      * Execute query ignoring second level cache.
      *
      * @param ArrayCollection|array|null $parameters
-     * @param integer|null               $hydrationMode
+     * @param integer|null $hydrationMode
      *
      * @return mixed
      */
@@ -938,28 +936,29 @@ abstract class AbstractQuery
             $this->setHydrationMode($hydrationMode);
         }
 
-        if ( ! empty($parameters)) {
+        if (!empty($parameters)) {
             $this->setParameters($parameters);
         }
 
-        $setCacheEntry = function() {};
+        $setCacheEntry = function () {
+        };
 
         if ($this->_hydrationCacheProfile !== null) {
             list($cacheKey, $realCacheKey) = $this->getHydrationCacheId();
 
             $queryCacheProfile = $this->getHydrationCacheProfile();
-            $cache             = $queryCacheProfile->getResultCacheDriver();
-            $result            = $cache->fetch($cacheKey);
+            $cache = $queryCacheProfile->getResultCacheDriver();
+            $result = $cache->fetch($cacheKey);
 
             if (isset($result[$realCacheKey])) {
                 return $result[$realCacheKey];
             }
 
-            if ( ! $result) {
+            if (!$result) {
                 $result = array();
             }
 
-            $setCacheEntry = function($data) use ($cache, $result, $cacheKey, $realCacheKey, $queryCacheProfile) {
+            $setCacheEntry = function ($data) use ($cache, $result, $cacheKey, $realCacheKey, $queryCacheProfile) {
                 $result[$realCacheKey] = $data;
 
                 $cache->save($cacheKey, $result, $queryCacheProfile->getLifetime());
@@ -974,7 +973,7 @@ abstract class AbstractQuery
             return $stmt;
         }
 
-        $rsm  = $this->getResultSetMapping();
+        $rsm = $this->getResultSetMapping();
         $data = $this->_em->newHydrator($this->_hydrationMode)->hydrateAll($stmt, $rsm, $this->_hints);
 
         $setCacheEntry($data);
@@ -986,16 +985,16 @@ abstract class AbstractQuery
      * Load from second level cache or executes the query and put into cache.
      *
      * @param ArrayCollection|array|null $parameters
-     * @param integer|null               $hydrationMode
+     * @param integer|null $hydrationMode
      *
      * @return mixed
      */
     private function executeUsingQueryCache($parameters = null, $hydrationMode = null)
     {
-        $rsm        = $this->getResultSetMapping();
-        $querykey   = new QueryCacheKey($this->getHash(), $this->lifetime, $this->cacheMode ?: Cache::MODE_NORMAL);
+        $rsm = $this->getResultSetMapping();
+        $querykey = new QueryCacheKey($this->getHash(), $this->lifetime, $this->cacheMode ?: Cache::MODE_NORMAL);
         $queryCache = $this->_em->getCache()->getQueryCache($this->cacheRegion);
-        $result     = $queryCache->get($querykey, $rsm, $this->_hints);
+        $result = $queryCache->get($querykey, $rsm, $this->_hints);
 
         if ($result !== null) {
             if ($this->cacheLogger) {
@@ -1034,9 +1033,9 @@ abstract class AbstractQuery
             $parameters[$parameter->getName()] = $this->processParameterValue($parameter->getValue());
         }
 
-        $sql                    = $this->getSQL();
-        $queryCacheProfile      = $this->getHydrationCacheProfile();
-        $hints                  = $this->getHints();
+        $sql = $this->getSQL();
+        $queryCacheProfile = $this->getHydrationCacheProfile();
+        $hints = $this->getHints();
         $hints['hydrationMode'] = $this->getHydrationMode();
 
         ksort($hints);
@@ -1101,9 +1100,9 @@ abstract class AbstractQuery
      */
     protected function getHash()
     {
-        $query  = $this->getSQL();
-        $hints  = $this->getHints();
-        $params = array_map(function(Parameter $parameter) {
+        $query = $this->getSQL();
+        $hints = $this->getHints();
+        $params = array_map(function (Parameter $parameter) {
             // Small optimization
             // Does not invoke processParameterValue for scalar values
             if (is_scalar($value = $parameter->getValue())) {

@@ -22,10 +22,10 @@ class RequestResponseArgs implements InvocationStrategyInterface
      * Invoke a route callable with request, response and all route parameters
      * as individual arguments.
      *
-     * @param array|callable         $callable
+     * @param array|callable $callable
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param array                  $routeArguments
+     * @param ResponseInterface $response
+     * @param array $routeArguments
      *
      * @return mixed
      */
@@ -34,7 +34,8 @@ class RequestResponseArgs implements InvocationStrategyInterface
         ServerRequestInterface $request,
         ResponseInterface $response,
         array $routeArguments
-    ) {
+    )
+    {
         array_unshift($routeArguments, $request, $response);
 
         return call_user_func_array($callable, $routeArguments);

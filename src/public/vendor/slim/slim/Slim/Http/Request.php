@@ -159,13 +159,13 @@ class Request extends Message implements ServerRequestInterface
      *
      * Adds a host header when none was provided and a host is defined in uri.
      *
-     * @param string           $method        The request method
-     * @param UriInterface     $uri           The request URI object
-     * @param HeadersInterface $headers       The request headers collection
-     * @param array            $cookies       The request cookies collection
-     * @param array            $serverParams  The server environment variables
-     * @param StreamInterface  $body          The request body object
-     * @param array            $uploadedFiles The request uploadedFiles collection
+     * @param string $method The request method
+     * @param UriInterface $uri The request URI object
+     * @param HeadersInterface $headers The request headers collection
+     * @param array $cookies The request cookies collection
+     * @param array $serverParams The server environment variables
+     * @param StreamInterface $body The request body object
+     * @param array $uploadedFiles The request uploadedFiles collection
      */
     public function __construct(
         $method,
@@ -175,7 +175,8 @@ class Request extends Message implements ServerRequestInterface
         array $serverParams,
         StreamInterface $body,
         array $uploadedFiles = []
-    ) {
+    )
+    {
         $this->originalMethod = $this->filterMethod($method);
         $this->uri = $uri;
         $this->headers = $headers;
@@ -689,8 +690,8 @@ class Request extends Message implements ServerRequestInterface
      *
      * Note: This method is not part of the PSR-7 standard.
      *
-     * @param string $name    The attribute name.
-     * @param mixed  $default Default value to return if the attribute does not exist.
+     * @param string $name The attribute name.
+     * @param mixed $default Default value to return if the attribute does not exist.
      *
      * @return mixed
      */
@@ -992,7 +993,7 @@ class Request extends Message implements ServerRequestInterface
         // look for a media type with a structured syntax suffix (RFC 6839)
         $parts = explode('+', $mediaType);
         if (count($parts) >= 2) {
-            $mediaType = 'application/' . $parts[count($parts)-1];
+            $mediaType = 'application/' . $parts[count($parts) - 1];
         }
 
         if (isset($this->bodyParsers[$mediaType]) === true) {
@@ -1070,9 +1071,9 @@ class Request extends Message implements ServerRequestInterface
      *
      * Note: This method is not part of the PSR-7 standard.
      *
-     * @param string   $mediaType A HTTP media type (excluding content-type
+     * @param string $mediaType A HTTP media type (excluding content-type
      *     params).
-     * @param callable $callable  A callable that returns parsed contents for
+     * @param callable $callable A callable that returns parsed contents for
      *     media type.
      */
     public function registerMediaTypeParser($mediaType, callable $callable)

@@ -120,7 +120,7 @@ abstract class AbstractMySQLDriver implements Driver, ExceptionConverterDriver, 
      */
     public function createDatabasePlatformForVersion($version)
     {
-        if ( ! preg_match('/^(?P<major>\d+)(?:\.(?P<minor>\d+)(?:\.(?P<patch>\d+))?)?/', $version, $versionParts)) {
+        if (!preg_match('/^(?P<major>\d+)(?:\.(?P<minor>\d+)(?:\.(?P<patch>\d+))?)?/', $version, $versionParts)) {
             throw DBALException::invalidPlatformVersionSpecified(
                 $version,
                 '<major_version>.<minor_version>.<patch_version>'
@@ -134,7 +134,7 @@ abstract class AbstractMySQLDriver implements Driver, ExceptionConverterDriver, 
         $majorVersion = $versionParts['major'];
         $minorVersion = isset($versionParts['minor']) ? $versionParts['minor'] : 0;
         $patchVersion = isset($versionParts['patch']) ? $versionParts['patch'] : 0;
-        $version      = $majorVersion . '.' . $minorVersion . '.' . $patchVersion;
+        $version = $majorVersion . '.' . $minorVersion . '.' . $patchVersion;
 
         if (version_compare($version, '5.7', '>=')) {
             return new MySQL57Platform();

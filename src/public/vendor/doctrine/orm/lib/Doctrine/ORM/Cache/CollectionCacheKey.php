@@ -50,17 +50,17 @@ class CollectionCacheKey extends CacheKey
     public $association;
 
     /**
-     * @param string $entityClass     The entity class.
-     * @param string $association     The field name that represents the association.
-     * @param array  $ownerIdentifier The identifier of the owning entity.
+     * @param string $entityClass The entity class.
+     * @param string $association The field name that represents the association.
+     * @param array $ownerIdentifier The identifier of the owning entity.
      */
     public function __construct($entityClass, $association, array $ownerIdentifier)
     {
         ksort($ownerIdentifier);
 
-        $this->ownerIdentifier  = $ownerIdentifier;
-        $this->entityClass      = (string) $entityClass;
-        $this->association      = (string) $association;
-        $this->hash             = str_replace('\\', '.', strtolower($entityClass)) . '_' . implode(' ', $ownerIdentifier) . '__' .  $association;
+        $this->ownerIdentifier = $ownerIdentifier;
+        $this->entityClass = (string)$entityClass;
+        $this->association = (string)$association;
+        $this->hash = str_replace('\\', '.', strtolower($entityClass)) . '_' . implode(' ', $ownerIdentifier) . '__' . $association;
     }
 }

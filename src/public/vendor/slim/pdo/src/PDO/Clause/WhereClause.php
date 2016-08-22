@@ -15,12 +15,12 @@ class WhereClause extends ClauseContainer
 {
     /**
      * @param $column
-     * @param null   $operator
+     * @param null $operator
      * @param string $chainType
      */
     public function where($column, $operator = null, $chainType = 'AND')
     {
-        $this->container[] = ' '.$chainType.' '.$column.' '.$operator.' ?';
+        $this->container[] = ' ' . $chainType . ' ' . $column . ' ' . $operator . ' ?';
     }
 
     /**
@@ -35,7 +35,7 @@ class WhereClause extends ClauseContainer
     /**
      * @param $column
      * @param string $chainType
-     * @param bool   $not
+     * @param bool $not
      */
     public function whereBetween($column, $chainType = 'AND', $not = false)
     {
@@ -45,7 +45,7 @@ class WhereClause extends ClauseContainer
             $syntax = 'NOT BETWEEN';
         }
 
-        $this->container[] = ' '.$chainType.' '.$column.' '.$syntax.' ? AND ?';
+        $this->container[] = ' ' . $chainType . ' ' . $column . ' ' . $syntax . ' ? AND ?';
     }
 
     /**
@@ -77,7 +77,7 @@ class WhereClause extends ClauseContainer
      * @param $column
      * @param $placeholders
      * @param string $chainType
-     * @param bool   $not
+     * @param bool $not
      */
     public function whereIn($column, $placeholders, $chainType = 'AND', $not = false)
     {
@@ -87,7 +87,7 @@ class WhereClause extends ClauseContainer
             $syntax = 'NOT IN';
         }
 
-        $this->container[] = ' '.$chainType.' '.$column.' '.$syntax.' '.$placeholders;
+        $this->container[] = ' ' . $chainType . ' ' . $column . ' ' . $syntax . ' ' . $placeholders;
     }
 
     /**
@@ -121,7 +121,7 @@ class WhereClause extends ClauseContainer
     /**
      * @param $column
      * @param string $chainType
-     * @param bool   $not
+     * @param bool $not
      */
     public function whereLike($column, $chainType = 'AND', $not = false)
     {
@@ -131,7 +131,7 @@ class WhereClause extends ClauseContainer
             $syntax = 'NOT LIKE';
         }
 
-        $this->container[] = ' '.$chainType.' '.$column.' '.$syntax.' ?';
+        $this->container[] = ' ' . $chainType . ' ' . $column . ' ' . $syntax . ' ?';
     }
 
     /**
@@ -162,7 +162,7 @@ class WhereClause extends ClauseContainer
     /**
      * @param $column
      * @param string $chainType
-     * @param bool   $not
+     * @param bool $not
      */
     public function whereNull($column, $chainType = 'AND', $not = false)
     {
@@ -172,7 +172,7 @@ class WhereClause extends ClauseContainer
             $syntax = 'NOT NULL';
         }
 
-        $this->container[] = ' '.$chainType.' '.$column.' IS '.$syntax;
+        $this->container[] = ' ' . $chainType . ' ' . $column . ' IS ' . $syntax;
     }
 
     /**
@@ -201,14 +201,14 @@ class WhereClause extends ClauseContainer
     }
 
     /**
-     * @param array  $columns
-     * @param null   $operator
+     * @param array $columns
+     * @param null $operator
      * @param string $chainType
      */
     public function whereMany(array $columns, $operator = null, $chainType = 'AND')
     {
         foreach ($columns as $column) {
-            $this->container[] = ' '.$chainType.' '.$column.' '.$operator.' ?';
+            $this->container[] = ' ' . $chainType . ' ' . $column . ' ' . $operator . ' ?';
         }
     }
 
@@ -227,6 +227,6 @@ class WhereClause extends ClauseContainer
             $args[] = $where;
         }
 
-        return ' WHERE '.ltrim(implode('', $args), ' AND');
+        return ' WHERE ' . ltrim(implode('', $args), ' AND');
     }
 }

@@ -26,7 +26,7 @@ class LimitClause extends ClauseContainer
     {
         if (is_int($number)) {
             if (is_int($offset) && $offset >= 0) {
-                $this->limit = intval($offset).' , '.intval($number);
+                $this->limit = intval($offset) . ' , ' . intval($number);
             } elseif ($number >= 0) {
                 $this->limit = intval($number);
             }
@@ -42,6 +42,6 @@ class LimitClause extends ClauseContainer
             return '';
         }
 
-        return ' LIMIT '.$this->limit;
+        return ' LIMIT ' . $this->limit;
     }
 }

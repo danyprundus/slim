@@ -93,7 +93,7 @@ interface ManagerRegistry extends ConnectionRegistry
     /**
      * Gets the ObjectRepository for an persistent object.
      *
-     * @param string $persistentObject      The name of the persistent object.
+     * @param string $persistentObject The name of the persistent object.
      * @param string $persistentManagerName The object manager name (null for the default one).
      *
      * @return \Doctrine\Common\Persistence\ObjectRepository

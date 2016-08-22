@@ -29,8 +29,8 @@ class ChoiceQuestion extends Question
      * Constructor.
      *
      * @param string $question The question to ask to the user
-     * @param array  $choices  The list of available choices
-     * @param mixed  $default  The default answer to return
+     * @param array $choices The list of available choices
+     * @param mixed $default The default answer to return
      */
     public function __construct($question, array $choices, $default = null)
     {
@@ -174,7 +174,7 @@ class ChoiceQuestion extends Question
                     throw new InvalidArgumentException(sprintf($errorMessage, $value));
                 }
 
-                $multiselectChoices[] = (string) $result;
+                $multiselectChoices[] = (string)$result;
             }
 
             if ($multiselect) {

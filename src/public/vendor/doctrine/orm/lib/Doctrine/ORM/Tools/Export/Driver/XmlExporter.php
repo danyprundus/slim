@@ -40,9 +40,9 @@ class XmlExporter extends AbstractExporter
      */
     public function exportClassMetadata(ClassMetadataInfo $metadata)
     {
-        $xml = new \SimpleXmlElement("<?xml version=\"1.0\" encoding=\"utf-8\"?><doctrine-mapping ".
+        $xml = new \SimpleXmlElement("<?xml version=\"1.0\" encoding=\"utf-8\"?><doctrine-mapping " .
             "xmlns=\"http://doctrine-project.org/schemas/orm/doctrine-mapping\" " .
-            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ".
+            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " .
             "xsi:schemaLocation=\"http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd\" />");
 
         if ($metadata->isMappedSuperclass) {
@@ -97,7 +97,7 @@ class XmlExporter extends AbstractExporter
 
         $trackingPolicy = $this->_getChangeTrackingPolicyString($metadata->changeTrackingPolicy);
 
-        if ( $trackingPolicy != 'DEFERRED_IMPLICIT') {
+        if ($trackingPolicy != 'DEFERRED_IMPLICIT') {
             $root->addChild('change-tracking-policy', $trackingPolicy);
         }
 
@@ -108,7 +108,7 @@ class XmlExporter extends AbstractExporter
                 $indexXml = $indexesXml->addChild('index');
                 $indexXml->addAttribute('name', $name);
                 $indexXml->addAttribute('columns', implode(',', $index['columns']));
-                if(isset($index['flags'])) {
+                if (isset($index['flags'])) {
                     $indexXml->addAttribute('flags', implode(',', $index['flags']));
                 }
             }
@@ -143,7 +143,7 @@ class XmlExporter extends AbstractExporter
             }
         }
 
-        if ( ! $metadata->isIdentifierComposite && $idGeneratorType = $this->_getIdGeneratorTypeString($metadata->generatorType)) {
+        if (!$metadata->isIdentifierComposite && $idGeneratorType = $this->_getIdGeneratorTypeString($metadata->generatorType)) {
             $id[$metadata->getSingleIdentifierFieldName()]['generator']['strategy'] = $idGeneratorType;
         }
 
@@ -232,7 +232,7 @@ class XmlExporter extends AbstractExporter
             ClassMetadataInfo::MANY_TO_MANY,
         );
 
-        uasort($metadata->associationMappings, function($m1, $m2) use (&$orderMap){
+        uasort($metadata->associationMappings, function ($m1, $m2) use (&$orderMap) {
             $a1 = array_search($m1['type'], $orderMap);
             $a2 = array_search($m2['type'], $orderMap);
 
@@ -295,7 +295,7 @@ class XmlExporter extends AbstractExporter
             }
 
             if (count($cascade) === 5) {
-                $cascade  = array('cascade-all');
+                $cascade = array('cascade-all');
             }
 
             if ($cascade) {
@@ -377,7 +377,7 @@ class XmlExporter extends AbstractExporter
             }
         }
 
-        if (isset($metadata->lifecycleCallbacks) && count($metadata->lifecycleCallbacks)>0) {
+        if (isset($metadata->lifecycleCallbacks) && count($metadata->lifecycleCallbacks) > 0) {
             $lifecycleCallbacksXml = $root->addChild('lifecycle-callbacks');
 
             foreach ($metadata->lifecycleCallbacks as $name => $methods) {
@@ -401,12 +401,12 @@ class XmlExporter extends AbstractExporter
     private function exportTableOptions(\SimpleXMLElement $parentXml, array $options)
     {
         foreach ($options as $name => $option) {
-            $isArray   = is_array($option);
+            $isArray = is_array($option);
             $optionXml = $isArray
                 ? $parentXml->addChild('option')
-                : $parentXml->addChild('option', (string) $option);
+                : $parentXml->addChild('option', (string)$option);
 
-            $optionXml->addAttribute('name', (string) $name);
+            $optionXml->addAttribute('name', (string)$name);
 
             if ($isArray) {
                 $this->exportTableOptions($optionXml, $option);
@@ -426,7 +426,7 @@ class XmlExporter extends AbstractExporter
     {
         $sequenceDefinition = $metadata->sequenceGeneratorDefinition;
 
-        if (! ($metadata->generatorType === ClassMetadataInfo::GENERATOR_TYPE_SEQUENCE && $sequenceDefinition)) {
+        if (!($metadata->generatorType === ClassMetadataInfo::GENERATOR_TYPE_SEQUENCE && $sequenceDefinition)) {
             return;
         }
 

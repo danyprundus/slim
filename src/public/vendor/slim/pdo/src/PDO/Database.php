@@ -22,8 +22,8 @@ class Database extends \PDO
      * Constructor.
      *
      * @param $dsn
-     * @param null  $usr
-     * @param null  $pwd
+     * @param null $usr
+     * @param null $pwd
      * @param array $options
      */
     public function __construct($dsn, $usr = null, $pwd = null, array $options = array())

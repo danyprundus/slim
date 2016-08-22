@@ -57,13 +57,13 @@ class ResolveTargetEntityListener implements EventSubscriber
      *
      * @param string $originalEntity
      * @param string $newEntity
-     * @param array  $mapping
+     * @param array $mapping
      *
      * @return void
      */
     public function addResolveTargetEntity($originalEntity, $newEntity, array $mapping)
     {
-        $mapping['targetEntity']                                   = ltrim($newEntity, "\\");
+        $mapping['targetEntity'] = ltrim($newEntity, "\\");
         $this->resolveTargetEntities[ltrim($originalEntity, "\\")] = $mapping;
     }
 
@@ -114,7 +114,7 @@ class ResolveTargetEntityListener implements EventSubscriber
 
     /**
      * @param \Doctrine\ORM\Mapping\ClassMetadataInfo $classMetadata
-     * @param array                                   $mapping
+     * @param array $mapping
      *
      * @return void
      */

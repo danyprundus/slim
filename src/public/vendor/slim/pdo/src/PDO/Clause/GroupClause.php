@@ -30,6 +30,6 @@ class GroupClause extends ClauseContainer
             return '';
         }
 
-        return ' GROUP BY '.implode(' , ', $this->container);
+        return ' GROUP BY ' . implode(' , ', $this->container);
     }
 }

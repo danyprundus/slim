@@ -50,7 +50,7 @@ interface Visitor
     public function acceptTable(Table $table);
 
     /**
-     * @param \Doctrine\DBAL\Schema\Table  $table
+     * @param \Doctrine\DBAL\Schema\Table $table
      * @param \Doctrine\DBAL\Schema\Column $column
      *
      * @return void
@@ -58,7 +58,7 @@ interface Visitor
     public function acceptColumn(Table $table, Column $column);
 
     /**
-     * @param \Doctrine\DBAL\Schema\Table                $localTable
+     * @param \Doctrine\DBAL\Schema\Table $localTable
      * @param \Doctrine\DBAL\Schema\ForeignKeyConstraint $fkConstraint
      *
      * @return void

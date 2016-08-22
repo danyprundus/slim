@@ -24,8 +24,8 @@ class NotFound extends AbstractHandler
     /**
      * Invoke not found handler
      *
-     * @param  ServerRequestInterface $request  The most recent Request object
-     * @param  ResponseInterface      $response The most recent Response object
+     * @param  ServerRequestInterface $request The most recent Request object
+     * @param  ResponseInterface $response The most recent Response object
      *
      * @return ResponseInterface
      * @throws UnexpectedValueException
@@ -46,7 +46,7 @@ class NotFound extends AbstractHandler
             case 'text/html':
                 $output = $this->renderHtmlNotFoundOutput($request);
                 break;
-            
+
             default:
                 throw new UnexpectedValueException('Cannot render unknown content type ' . $contentType);
         }
@@ -55,8 +55,8 @@ class NotFound extends AbstractHandler
         $body->write($output);
 
         return $response->withStatus(404)
-                        ->withHeader('Content-Type', $contentType)
-                        ->withBody($body);
+            ->withHeader('Content-Type', $contentType)
+            ->withBody($body);
     }
 
     /**
@@ -82,7 +82,7 @@ class NotFound extends AbstractHandler
     /**
      * Return a response for text/html content not found
      *
-     * @param  ServerRequestInterface $request  The most recent Request object
+     * @param  ServerRequestInterface $request The most recent Request object
      *
      * @return ResponseInterface
      */

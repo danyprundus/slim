@@ -99,10 +99,10 @@ class Column extends AbstractAsset
      * Creates a new Column.
      *
      * @param string $columnName
-     * @param Type   $type
-     * @param array  $options
+     * @param Type $type
+     * @param array $options
      */
-    public function __construct($columnName, Type $type, array $options=array())
+    public function __construct($columnName, Type $type, array $options = array())
     {
         $this->_setName($columnName);
         $this->setType($type);
@@ -117,7 +117,7 @@ class Column extends AbstractAsset
     public function setOptions(array $options)
     {
         foreach ($options as $name => $value) {
-            $method = "set".$name;
+            $method = "set" . $name;
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -146,7 +146,7 @@ class Column extends AbstractAsset
     public function setLength($length)
     {
         if ($length !== null) {
-            $this->_length = (int) $length;
+            $this->_length = (int)$length;
         } else {
             $this->_length = null;
         }
@@ -165,7 +165,7 @@ class Column extends AbstractAsset
             $precision = 10; // defaults to 10 when no valid precision is given.
         }
 
-        $this->_precision = (int) $precision;
+        $this->_precision = (int)$precision;
 
         return $this;
     }
@@ -181,7 +181,7 @@ class Column extends AbstractAsset
             $scale = 0;
         }
 
-        $this->_scale = (int) $scale;
+        $this->_scale = (int)$scale;
 
         return $this;
     }
@@ -193,7 +193,7 @@ class Column extends AbstractAsset
      */
     public function setUnsigned($unsigned)
     {
-        $this->_unsigned = (bool) $unsigned;
+        $this->_unsigned = (bool)$unsigned;
 
         return $this;
     }
@@ -205,7 +205,7 @@ class Column extends AbstractAsset
      */
     public function setFixed($fixed)
     {
-        $this->_fixed = (bool) $fixed;
+        $this->_fixed = (bool)$fixed;
 
         return $this;
     }
@@ -217,7 +217,7 @@ class Column extends AbstractAsset
      */
     public function setNotnull($notnull)
     {
-        $this->_notnull = (bool) $notnull;
+        $this->_notnull = (bool)$notnull;
 
         return $this;
     }
@@ -248,7 +248,7 @@ class Column extends AbstractAsset
 
     /**
      * @param string $name
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return Column
      */
@@ -413,7 +413,7 @@ class Column extends AbstractAsset
 
     /**
      * @param string $name
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return Column
      */
@@ -470,15 +470,15 @@ class Column extends AbstractAsset
     public function toArray()
     {
         return array_merge(array(
-            'name'          => $this->_name,
-            'type'          => $this->_type,
-            'default'       => $this->_default,
-            'notnull'       => $this->_notnull,
-            'length'        => $this->_length,
-            'precision'     => $this->_precision,
-            'scale'         => $this->_scale,
-            'fixed'         => $this->_fixed,
-            'unsigned'      => $this->_unsigned,
+            'name' => $this->_name,
+            'type' => $this->_type,
+            'default' => $this->_default,
+            'notnull' => $this->_notnull,
+            'length' => $this->_length,
+            'precision' => $this->_precision,
+            'scale' => $this->_scale,
+            'fixed' => $this->_fixed,
+            'unsigned' => $this->_unsigned,
             'autoincrement' => $this->_autoincrement,
             'columnDefinition' => $this->_columnDefinition,
             'comment' => $this->_comment,

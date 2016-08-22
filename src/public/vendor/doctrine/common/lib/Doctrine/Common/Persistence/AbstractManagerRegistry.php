@@ -64,8 +64,8 @@ abstract class AbstractManagerRegistry implements ManagerRegistry
      * Constructor.
      *
      * @param string $name
-     * @param array  $connections
-     * @param array  $managers
+     * @param array $connections
+     * @param array $managers
      * @param string $defaultConnection
      * @param string $defaultManager
      * @param string $proxyInterfaceName
@@ -197,7 +197,7 @@ abstract class AbstractManagerRegistry implements ManagerRegistry
         $proxyClass = new \ReflectionClass($class);
 
         if ($proxyClass->implementsInterface($this->proxyInterfaceName)) {
-            if (! $parentClass = $proxyClass->getParentClass()) {
+            if (!$parentClass = $proxyClass->getParentClass()) {
                 return null;
             }
 

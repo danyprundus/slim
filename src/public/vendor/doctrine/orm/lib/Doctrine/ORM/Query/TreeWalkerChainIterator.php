@@ -20,7 +20,7 @@
 namespace Doctrine\ORM\Query;
 
 /**
- * 
+ *
  */
 class TreeWalkerChainIterator implements \Iterator, \ArrayAccess
 {

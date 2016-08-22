@@ -49,7 +49,7 @@ class QueryCacheEntry implements CacheEntry
     public function __construct($result, $time = null)
     {
         $this->result = $result;
-        $this->time   = $time ?: time();
+        $this->time = $time ?: time();
     }
 
     /**

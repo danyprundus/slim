@@ -50,7 +50,7 @@ final class IdentifierFlattener
     /**
      * Initializes a new IdentifierFlattener instance, bound to the given EntityManager.
      *
-     * @param UnitOfWork           $unitOfWork
+     * @param UnitOfWork $unitOfWork
      * @param ClassMetadataFactory $metadataFactory
      */
     public function __construct(UnitOfWork $unitOfWork, ClassMetadataFactory $metadataFactory)
@@ -63,7 +63,7 @@ final class IdentifierFlattener
      * convert foreign identifiers into scalar foreign key values to avoid object to string conversion failures.
      *
      * @param ClassMetadata $class
-     * @param array         $id
+     * @param array $id
      *
      * @return array
      */

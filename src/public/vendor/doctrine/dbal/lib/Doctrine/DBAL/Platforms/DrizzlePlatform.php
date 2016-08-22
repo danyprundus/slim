@@ -55,7 +55,7 @@ class DrizzlePlatform extends AbstractPlatform
     {
         $args = func_get_args();
 
-        return 'CONCAT(' . join(', ', (array) $args) . ')';
+        return 'CONCAT(' . join(', ', (array)$args) . ')';
     }
 
     /**
@@ -98,7 +98,7 @@ class DrizzlePlatform extends AbstractPlatform
     protected function _getCommonIntegerTypeDeclarationSQL(array $columnDef)
     {
         $autoinc = '';
-        if ( ! empty($columnDef['autoincrement'])) {
+        if (!empty($columnDef['autoincrement'])) {
             $autoinc = ' AUTO_INCREMENT';
         }
 
@@ -143,19 +143,19 @@ class DrizzlePlatform extends AbstractPlatform
     protected function initializeDoctrineTypeMappings()
     {
         $this->doctrineTypeMapping = array(
-            'boolean'       => 'boolean',
-            'varchar'       => 'string',
-            'varbinary'     => 'binary',
-            'integer'       => 'integer',
-            'blob'          => 'blob',
-            'decimal'       => 'decimal',
-            'datetime'      => 'datetime',
-            'date'          => 'date',
-            'time'          => 'time',
-            'text'          => 'text',
-            'timestamp'     => 'datetime',
-            'double'        => 'float',
-            'bigint'        => 'bigint',
+            'boolean' => 'boolean',
+            'varchar' => 'string',
+            'varbinary' => 'binary',
+            'integer' => 'integer',
+            'blob' => 'blob',
+            'decimal' => 'decimal',
+            'datetime' => 'datetime',
+            'date' => 'date',
+            'time' => 'time',
+            'text' => 'text',
+            'timestamp' => 'datetime',
+            'double' => 'float',
+            'bigint' => 'bigint',
         );
     }
 
@@ -198,21 +198,21 @@ class DrizzlePlatform extends AbstractPlatform
     {
         $queryFields = $this->getColumnDeclarationListSQL($columns);
 
-        if (isset($options['uniqueConstraints']) && ! empty($options['uniqueConstraints'])) {
+        if (isset($options['uniqueConstraints']) && !empty($options['uniqueConstraints'])) {
             foreach ($options['uniqueConstraints'] as $index => $definition) {
                 $queryFields .= ', ' . $this->getUniqueConstraintDeclarationSQL($index, $definition);
             }
         }
 
         // add all indexes
-        if (isset($options['indexes']) && ! empty($options['indexes'])) {
+        if (isset($options['indexes']) && !empty($options['indexes'])) {
             foreach ($options['indexes'] as $index => $definition) {
                 $queryFields .= ', ' . $this->getIndexDeclarationSQL($index, $definition);
             }
         }
 
         // attach all primary keys
-        if (isset($options['primary']) && ! empty($options['primary'])) {
+        if (isset($options['primary']) && !empty($options['primary'])) {
             $keyColumns = array_unique(array_values($options['primary']));
             $queryFields .= ', PRIMARY KEY(' . implode(', ', $keyColumns) . ')';
         }
@@ -230,7 +230,7 @@ class DrizzlePlatform extends AbstractPlatform
         $sql[] = $query;
 
         if (isset($options['foreignKeys'])) {
-            foreach ((array) $options['foreignKeys'] as $definition) {
+            foreach ((array)$options['foreignKeys'] as $definition) {
                 $sql[] = $this->getCreateForeignKeySQL($definition, $tableName);
             }
         }
@@ -254,14 +254,14 @@ class DrizzlePlatform extends AbstractPlatform
         $tableOptions = array();
 
         // Collate
-        if ( ! isset($options['collate'])) {
+        if (!isset($options['collate'])) {
             $options['collate'] = 'utf8_unicode_ci';
         }
 
         $tableOptions[] = sprintf('COLLATE %s', $options['collate']);
 
         // Engine
-        if ( ! isset($options['engine'])) {
+        if (!isset($options['engine'])) {
             $options['engine'] = 'InnoDB';
         }
 
@@ -337,9 +337,9 @@ class DrizzlePlatform extends AbstractPlatform
         }
 
         return "SELECT COLUMN_NAME, DATA_TYPE, COLUMN_COMMENT, IS_NULLABLE, IS_AUTO_INCREMENT, CHARACTER_MAXIMUM_LENGTH, COLUMN_DEFAULT," .
-               " NUMERIC_PRECISION, NUMERIC_SCALE, COLLATION_NAME" .
-               " FROM DATA_DICTIONARY.COLUMNS" .
-               " WHERE TABLE_SCHEMA=" . $database . " AND TABLE_NAME = '" . $table . "'";
+        " NUMERIC_PRECISION, NUMERIC_SCALE, COLLATION_NAME" .
+        " FROM DATA_DICTIONARY.COLUMNS" .
+        " WHERE TABLE_SCHEMA=" . $database . " AND TABLE_NAME = '" . $table . "'";
     }
 
     /**
@@ -354,8 +354,8 @@ class DrizzlePlatform extends AbstractPlatform
         }
 
         return "SELECT CONSTRAINT_NAME, CONSTRAINT_COLUMNS, REFERENCED_TABLE_NAME, REFERENCED_TABLE_COLUMNS, UPDATE_RULE, DELETE_RULE" .
-               " FROM DATA_DICTIONARY.FOREIGN_KEYS" .
-               " WHERE CONSTRAINT_SCHEMA=" . $database . " AND CONSTRAINT_TABLE='" . $table . "'";
+        " FROM DATA_DICTIONARY.FOREIGN_KEYS" .
+        " WHERE CONSTRAINT_SCHEMA=" . $database . " AND CONSTRAINT_TABLE='" . $table . "'";
     }
 
     /**
@@ -370,8 +370,8 @@ class DrizzlePlatform extends AbstractPlatform
         }
 
         return "SELECT INDEX_NAME AS 'key_name', COLUMN_NAME AS 'column_name', IS_USED_IN_PRIMARY AS 'primary', IS_UNIQUE=0 AS 'non_unique'" .
-               " FROM DATA_DICTIONARY.INDEX_PARTS" .
-               " WHERE TABLE_SCHEMA=" . $database . " AND TABLE_NAME='" . $table . "'";
+        " FROM DATA_DICTIONARY.INDEX_PARTS" .
+        " WHERE TABLE_SCHEMA=" . $database . " AND TABLE_NAME='" . $table . "'";
     }
 
     /**
@@ -417,7 +417,7 @@ class DrizzlePlatform extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getDropIndexSQL($index, $table=null)
+    public function getDropIndexSQL($index, $table = null)
     {
         if ($index instanceof Index) {
             $indexName = $index->getQuotedName($this);
@@ -487,7 +487,7 @@ class DrizzlePlatform extends AbstractPlatform
         $queryParts = array();
 
         if ($diff->newName !== false) {
-            $queryParts[] =  'RENAME TO ' . $diff->getNewName()->getQuotedName($this);
+            $queryParts[] = 'RENAME TO ' . $diff->getNewName()->getQuotedName($this);
         }
 
         foreach ($diff->addedColumns as $column) {
@@ -505,7 +505,7 @@ class DrizzlePlatform extends AbstractPlatform
                 continue;
             }
 
-            $queryParts[] =  'DROP ' . $column->getQuotedName($this);
+            $queryParts[] = 'DROP ' . $column->getQuotedName($this);
         }
 
         foreach ($diff->changedColumns as $columnDiff) {
@@ -528,8 +528,8 @@ class DrizzlePlatform extends AbstractPlatform
             }
 
             $columnArray['comment'] = $this->getColumnComment($column);
-            $queryParts[] =  'CHANGE ' . ($columnDiff->getOldColumnName()->getQuotedName($this)) . ' '
-                    . $this->getColumnDeclarationSQL($column->getQuotedName($this), $columnArray);
+            $queryParts[] = 'CHANGE ' . ($columnDiff->getOldColumnName()->getQuotedName($this)) . ' '
+                . $this->getColumnDeclarationSQL($column->getQuotedName($this), $columnArray);
         }
 
         foreach ($diff->renamedColumns as $oldColumnName => $column) {
@@ -541,14 +541,14 @@ class DrizzlePlatform extends AbstractPlatform
 
             $columnArray = $column->toArray();
             $columnArray['comment'] = $this->getColumnComment($column);
-            $queryParts[] =  'CHANGE ' . $oldColumnName->getQuotedName($this) . ' '
-                    . $this->getColumnDeclarationSQL($column->getQuotedName($this), $columnArray);
+            $queryParts[] = 'CHANGE ' . $oldColumnName->getQuotedName($this) . ' '
+                . $this->getColumnDeclarationSQL($column->getQuotedName($this), $columnArray);
         }
 
         $sql = array();
         $tableSql = array();
 
-        if ( ! $this->onSchemaAlterTable($diff, $tableSql)) {
+        if (!$this->onSchemaAlterTable($diff, $tableSql)) {
             if (count($queryParts) > 0) {
                 $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . implode(", ", $queryParts);
             }
@@ -588,7 +588,7 @@ class DrizzlePlatform extends AbstractPlatform
                 }
             }
         } elseif (is_bool($item) || is_numeric($item)) {
-           $item = ($item) ? 'true' : 'false';
+            $item = ($item) ? 'true' : 'false';
         }
 
         return $item;
@@ -603,7 +603,7 @@ class DrizzlePlatform extends AbstractPlatform
             return 'LOCATE(' . $substr . ', ' . $str . ')';
         }
 
-        return 'LOCATE(' . $substr . ', ' . $str . ', '.$startPos.')';
+        return 'LOCATE(' . $substr . ', ' . $str . ', ' . $startPos . ')';
     }
 
     /**

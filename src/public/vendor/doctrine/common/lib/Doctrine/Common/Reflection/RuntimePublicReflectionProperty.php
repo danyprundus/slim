@@ -41,7 +41,7 @@ class RuntimePublicReflectionProperty extends ReflectionProperty
     {
         $name = $this->getName();
 
-        if ($object instanceof Proxy && ! $object->__isInitialized()) {
+        if ($object instanceof Proxy && !$object->__isInitialized()) {
             $originalInitializer = $object->__getInitializer();
             $object->__setInitializer(null);
             $val = isset($object->$name) ? $object->$name : null;
@@ -62,7 +62,7 @@ class RuntimePublicReflectionProperty extends ReflectionProperty
      */
     public function setValue($object, $value = null)
     {
-        if ( ! ($object instanceof Proxy && ! $object->__isInitialized())) {
+        if (!($object instanceof Proxy && !$object->__isInitialized())) {
             parent::setValue($object, $value);
 
             return;

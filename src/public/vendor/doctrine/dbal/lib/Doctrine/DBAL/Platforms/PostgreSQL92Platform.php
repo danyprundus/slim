@@ -41,7 +41,7 @@ class PostgreSQL92Platform extends PostgreSQL91Platform
      */
     public function getSmallIntTypeDeclarationSQL(array $field)
     {
-        if ( ! empty($field['autoincrement'])) {
+        if (!empty($field['autoincrement'])) {
             return 'SMALLSERIAL';
         }
 

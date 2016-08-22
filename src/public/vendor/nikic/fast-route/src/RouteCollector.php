@@ -2,17 +2,19 @@
 
 namespace FastRoute;
 
-class RouteCollector {
+class RouteCollector
+{
     private $routeParser;
     private $dataGenerator;
 
     /**
      * Constructs a route collector.
      *
-     * @param RouteParser   $routeParser
+     * @param RouteParser $routeParser
      * @param DataGenerator $dataGenerator
      */
-    public function __construct(RouteParser $routeParser, DataGenerator $dataGenerator) {
+    public function __construct(RouteParser $routeParser, DataGenerator $dataGenerator)
+    {
         $this->routeParser = $routeParser;
         $this->dataGenerator = $dataGenerator;
     }
@@ -24,11 +26,12 @@ class RouteCollector {
      *
      * @param string|string[] $httpMethod
      * @param string $route
-     * @param mixed  $handler
+     * @param mixed $handler
      */
-    public function addRoute($httpMethod, $route, $handler) {
+    public function addRoute($httpMethod, $route, $handler)
+    {
         $routeDatas = $this->routeParser->parse($route);
-        foreach ((array) $httpMethod as $method) {
+        foreach ((array)$httpMethod as $method) {
             foreach ($routeDatas as $routeData) {
                 $this->dataGenerator->addRoute($method, $routeData, $handler);
             }
@@ -40,7 +43,8 @@ class RouteCollector {
      *
      * @return array
      */
-    public function getData() {
+    public function getData()
+    {
         return $this->dataGenerator->getData();
     }
 }

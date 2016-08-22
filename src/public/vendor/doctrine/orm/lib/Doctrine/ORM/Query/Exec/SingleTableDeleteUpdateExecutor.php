@@ -35,7 +35,7 @@ use Doctrine\ORM\Query\AST;
 class SingleTableDeleteUpdateExecutor extends AbstractSqlExecutor
 {
     /**
-     * @param \Doctrine\ORM\Query\AST\Node  $AST
+     * @param \Doctrine\ORM\Query\AST\Node $AST
      * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
      */
     public function __construct(AST\Node $AST, $sqlWalker)

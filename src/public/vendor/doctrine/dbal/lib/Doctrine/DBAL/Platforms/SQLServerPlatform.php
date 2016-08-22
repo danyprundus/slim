@@ -202,7 +202,7 @@ class SQLServerPlatform extends AbstractPlatform
     protected function _getCreateTableSQL($tableName, array $columns, array $options = array())
     {
         $defaultConstraintsSql = array();
-        $commentsSql           = array();
+        $commentsSql = array();
 
         // @todo does other code breaks because of this?
         // force primary keys to be not null
@@ -217,7 +217,7 @@ class SQLServerPlatform extends AbstractPlatform
                     ' ADD' . $this->getDefaultConstraintDeclarationSQL($tableName, $column);
             }
 
-            if ( ! empty($column['comment']) || is_numeric($column['comment'])) {
+            if (!empty($column['comment']) || is_numeric($column['comment'])) {
                 $commentsSql[] = $this->getCreateColumnCommentSQL($tableName, $column['name'], $column['comment']);
             }
         }
@@ -255,7 +255,7 @@ class SQLServerPlatform extends AbstractPlatform
         }
 
         if (isset($options['foreignKeys'])) {
-            foreach ((array) $options['foreignKeys'] as $definition) {
+            foreach ((array)$options['foreignKeys'] as $definition) {
                 $sql[] = $this->getCreateForeignKeySQL($definition, $tableName);
             }
         }
@@ -287,9 +287,9 @@ class SQLServerPlatform extends AbstractPlatform
      * as column comments are stored in the same property there when
      * specifying a column's "Description" attribute.
      *
-     * @param string $tableName  The quoted table name to which the column belongs.
+     * @param string $tableName The quoted table name to which the column belongs.
      * @param string $columnName The quoted column name to create the comment for.
-     * @param string $comment    The column's comment.
+     * @param string $comment The column's comment.
      *
      * @return string
      */
@@ -310,8 +310,8 @@ class SQLServerPlatform extends AbstractPlatform
     /**
      * Returns the SQL snippet for declaring a default constraint.
      *
-     * @param string $table  Name of the table to return the default constraint declaration for.
-     * @param array  $column Column definition.
+     * @param string $table Name of the table to return the default constraint declaration for.
+     * @param array $column Column definition.
      *
      * @return string
      *
@@ -319,7 +319,7 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getDefaultConstraintDeclarationSQL($table, array $column)
     {
-        if ( ! isset($column['default'])) {
+        if (!isset($column['default'])) {
             throw new \InvalidArgumentException("Incomplete column definition. 'default' required.");
         }
 
@@ -380,7 +380,7 @@ class SQLServerPlatform extends AbstractPlatform
     /**
      * Extend unique key constraint with required filters
      *
-     * @param string                      $sql
+     * @param string $sql
      * @param \Doctrine\DBAL\Schema\Index $index
      *
      * @return string
@@ -401,9 +401,9 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getAlterTableSQL(TableDiff $diff)
     {
-        $queryParts  = array();
-        $sql         = array();
-        $columnSql   = array();
+        $queryParts = array();
+        $sql = array();
+        $columnSql = array();
         $commentsSql = array();
 
         /** @var \Doctrine\DBAL\Schema\Column $column */
@@ -421,7 +421,7 @@ class SQLServerPlatform extends AbstractPlatform
 
             $comment = $this->getColumnComment($column);
 
-            if ( ! empty($comment) || is_numeric($comment)) {
+            if (!empty($comment) || is_numeric($comment)) {
                 $commentsSql[] = $this->getCreateColumnCommentSQL(
                     $diff->name,
                     $column->getQuotedName($this),
@@ -444,13 +444,13 @@ class SQLServerPlatform extends AbstractPlatform
                 continue;
             }
 
-            $column     = $columnDiff->column;
-            $comment    = $this->getColumnComment($column);
-            $hasComment = ! empty ($comment) || is_numeric($comment);
+            $column = $columnDiff->column;
+            $comment = $this->getColumnComment($column);
+            $hasComment = !empty ($comment) || is_numeric($comment);
 
             if ($columnDiff->fromColumn instanceof Column) {
-                $fromComment    = $this->getColumnComment($columnDiff->fromColumn);
-                $hasFromComment = ! empty ($fromComment) || is_numeric($fromComment);
+                $fromComment = $this->getColumnComment($columnDiff->fromColumn);
+                $hasFromComment = !empty ($fromComment) || is_numeric($fromComment);
 
                 if ($hasFromComment && $hasComment && $fromComment != $comment) {
                     $commentsSql[] = $this->getAlterColumnCommentSQL(
@@ -458,7 +458,7 @@ class SQLServerPlatform extends AbstractPlatform
                         $column->getQuotedName($this),
                         $comment
                     );
-                } elseif ($hasFromComment && ! $hasComment) {
+                } elseif ($hasFromComment && !$hasComment) {
                     $commentsSql[] = $this->getDropColumnCommentSQL($diff->name, $column->getQuotedName($this));
                 } elseif ($hasComment) {
                     $commentsSql[] = $this->getCreateColumnCommentSQL(
@@ -488,7 +488,7 @@ class SQLServerPlatform extends AbstractPlatform
             $columnDef = $column->toArray();
 
             $queryParts[] = 'ALTER COLUMN ' .
-                    $this->getColumnDeclarationSQL($column->getQuotedName($this), $columnDef);
+                $this->getColumnDeclarationSQL($column->getQuotedName($this), $columnDef);
 
             if (isset($columnDef['default']) && ($requireDropDefaultConstraint || $columnDiff->hasChanged('default'))) {
                 $queryParts[] = $this->getAlterTableAddDefaultConstraintClause($diff->name, $column);
@@ -562,7 +562,7 @@ class SQLServerPlatform extends AbstractPlatform
      * Returns the SQL clause for adding a default constraint in an ALTER TABLE statement.
      *
      * @param string $tableName The name of the table to generate the clause for.
-     * @param Column $column    The column to generate the clause for.
+     * @param Column $column The column to generate the clause for.
      *
      * @return string
      */
@@ -577,7 +577,7 @@ class SQLServerPlatform extends AbstractPlatform
     /**
      * Returns the SQL clause for dropping an existing default constraint in an ALTER TABLE statement.
      *
-     * @param string $tableName  The name of the table to generate the clause for.
+     * @param string $tableName The name of the table to generate the clause for.
      * @param string $columnName The name of the column to generate the clause for.
      *
      * @return string
@@ -603,7 +603,7 @@ class SQLServerPlatform extends AbstractPlatform
     {
         // We can only decide whether to drop an existing default constraint
         // if we know the original default value.
-        if ( ! $columnDiff->fromColumn instanceof Column) {
+        if (!$columnDiff->fromColumn instanceof Column) {
             return false;
         }
 
@@ -639,9 +639,9 @@ class SQLServerPlatform extends AbstractPlatform
      * as column comments are stored in the same property there when
      * specifying a column's "Description" attribute.
      *
-     * @param string $tableName  The quoted table name to which the column belongs.
+     * @param string $tableName The quoted table name to which the column belongs.
      * @param string $columnName The quoted column name to alter the comment for.
-     * @param string $comment    The column's comment.
+     * @param string $comment The column's comment.
      *
      * @return string
      */
@@ -670,7 +670,7 @@ class SQLServerPlatform extends AbstractPlatform
      * as column comments are stored in the same property there when
      * specifying a column's "Description" attribute.
      *
-     * @param string $tableName  The quoted table name to which the column belongs.
+     * @param string $tableName The quoted table name to which the column belongs.
      * @param string $columnName The quoted column name to drop the comment for.
      *
      * @return string
@@ -706,8 +706,8 @@ class SQLServerPlatform extends AbstractPlatform
     /**
      * Returns the SQL statement for adding an extended property to a database object.
      *
-     * @param string      $name       The name of the property to add.
-     * @param string|null $value      The value of the property to add.
+     * @param string $name The name of the property to add.
+     * @param string|null $value The value of the property to add.
      * @param string|null $level0Type The type of the object at level 0 the property belongs to.
      * @param string|null $level0Name The name of the object at level 0 the property belongs to.
      * @param string|null $level1Type The type of the object at level 1 the property belongs to.
@@ -728,18 +728,19 @@ class SQLServerPlatform extends AbstractPlatform
         $level1Name = null,
         $level2Type = null,
         $level2Name = null
-    ) {
+    )
+    {
         return "EXEC sp_addextendedproperty " .
-            "N" . $this->quoteStringLiteral($name) . ", N" . $this->quoteStringLiteral($value) . ", " .
-            "N" . $this->quoteStringLiteral($level0Type) . ", " . $level0Name . ', ' .
-            "N" . $this->quoteStringLiteral($level1Type) . ", " . $level1Name . ', ' .
-            "N" . $this->quoteStringLiteral($level2Type) . ", " . $level2Name;
+        "N" . $this->quoteStringLiteral($name) . ", N" . $this->quoteStringLiteral($value) . ", " .
+        "N" . $this->quoteStringLiteral($level0Type) . ", " . $level0Name . ', ' .
+        "N" . $this->quoteStringLiteral($level1Type) . ", " . $level1Name . ', ' .
+        "N" . $this->quoteStringLiteral($level2Type) . ", " . $level2Name;
     }
 
     /**
      * Returns the SQL statement for dropping an extended property from a database object.
      *
-     * @param string      $name       The name of the property to drop.
+     * @param string $name The name of the property to drop.
      * @param string|null $level0Type The type of the object at level 0 the property belongs to.
      * @param string|null $level0Name The name of the object at level 0 the property belongs to.
      * @param string|null $level1Type The type of the object at level 1 the property belongs to.
@@ -759,19 +760,20 @@ class SQLServerPlatform extends AbstractPlatform
         $level1Name = null,
         $level2Type = null,
         $level2Name = null
-    ) {
+    )
+    {
         return "EXEC sp_dropextendedproperty " .
-            "N" . $this->quoteStringLiteral($name) . ", " .
-            "N" . $this->quoteStringLiteral($level0Type) . ", " . $level0Name . ', ' .
-            "N" . $this->quoteStringLiteral($level1Type) . ", " . $level1Name . ', ' .
-            "N" . $this->quoteStringLiteral($level2Type) . ", " . $level2Name;
+        "N" . $this->quoteStringLiteral($name) . ", " .
+        "N" . $this->quoteStringLiteral($level0Type) . ", " . $level0Name . ', ' .
+        "N" . $this->quoteStringLiteral($level1Type) . ", " . $level1Name . ', ' .
+        "N" . $this->quoteStringLiteral($level2Type) . ", " . $level2Name;
     }
 
     /**
      * Returns the SQL statement for updating an extended property of a database object.
      *
-     * @param string      $name       The name of the property to update.
-     * @param string|null $value      The value of the property to update.
+     * @param string $name The name of the property to update.
+     * @param string|null $value The value of the property to update.
      * @param string|null $level0Type The type of the object at level 0 the property belongs to.
      * @param string|null $level0Name The name of the object at level 0 the property belongs to.
      * @param string|null $level1Type The type of the object at level 1 the property belongs to.
@@ -792,7 +794,8 @@ class SQLServerPlatform extends AbstractPlatform
         $level1Name = null,
         $level2Type = null,
         $level2Name = null
-    ) {
+    )
+    {
         return "EXEC sp_updateextendedproperty " .
         "N" . $this->quoteStringLiteral($name) . ", N" . $this->quoteStringLiteral($value) . ", " .
         "N" . $this->quoteStringLiteral($level0Type) . ", " . $level0Name . ', ' .
@@ -870,7 +873,7 @@ class SQLServerPlatform extends AbstractPlatform
                 INNER JOIN sys.objects AS o ON o.OBJECT_ID = fc.referenced_object_id
                 ON f.OBJECT_ID = fc.constraint_object_id
                 WHERE " .
-                $this->getTableWhereClause($table, 'SCHEMA_NAME (f.schema_id)', 'OBJECT_NAME (f.parent_object_id)');
+        $this->getTableWhereClause($table, 'SCHEMA_NAME (f.schema_id)', 'OBJECT_NAME (f.parent_object_id)');
     }
 
     /**
@@ -915,9 +918,9 @@ class SQLServerPlatform extends AbstractPlatform
     /**
      * Returns the where clause to filter schema and table name in a query.
      *
-     * @param string $table        The full qualified name of the table.
+     * @param string $table The full qualified name of the table.
      * @param string $schemaColumn The name of the column to compare the schema to in the where clause.
-     * @param string $tableColumn  The name of the column to compare the table to in the where clause.
+     * @param string $tableColumn The name of the column to compare the table to in the where clause.
      *
      * @return string
      */
@@ -974,7 +977,7 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getTrimExpression($str, $pos = self::TRIM_UNSPECIFIED, $char = false)
     {
-        if ( ! $char) {
+        if (!$char) {
             switch ($pos) {
                 case self::TRIM_LEADING:
                     $trimFn = 'LTRIM';
@@ -992,13 +995,13 @@ class SQLServerPlatform extends AbstractPlatform
         }
 
         /** Original query used to get those expressions
-          declare @c varchar(100) = 'xxxBarxxx', @trim_char char(1) = 'x';
-          declare @pat varchar(10) = '%[^' + @trim_char + ']%';
-          select @c as string
-          , @trim_char as trim_char
-          , stuff(@c, 1, patindex(@pat, @c) - 1, null) as trim_leading
-          , reverse(stuff(reverse(@c), 1, patindex(@pat, reverse(@c)) - 1, null)) as trim_trailing
-          , reverse(stuff(reverse(stuff(@c, 1, patindex(@pat, @c) - 1, null)), 1, patindex(@pat, reverse(stuff(@c, 1, patindex(@pat, @c) - 1, null))) - 1, null)) as trim_both;
+         * declare @c varchar(100) = 'xxxBarxxx', @trim_char char(1) = 'x';
+         * declare @pat varchar(10) = '%[^' + @trim_char + ']%';
+         * select @c as string
+         * , @trim_char as trim_char
+         * , stuff(@c, 1, patindex(@pat, @c) - 1, null) as trim_leading
+         * , reverse(stuff(reverse(@c), 1, patindex(@pat, reverse(@c)) - 1, null)) as trim_trailing
+         * , reverse(stuff(reverse(stuff(@c, 1, patindex(@pat, @c) - 1, null)), 1, patindex(@pat, reverse(stuff(@c, 1, patindex(@pat, @c) - 1, null))) - 1, null)) as trim_both;
          */
         $pattern = "'%[^' + $char + ']%'";
 
@@ -1180,8 +1183,8 @@ class SQLServerPlatform extends AbstractPlatform
             return $query;
         }
 
-        $start   = $offset + 1;
-        $end     = $offset + $limit;
+        $start = $offset + 1;
+        $end = $offset + $limit;
 
         // We'll find a SELECT or SELECT distinct and prepend TOP n to it
         // Even if the TOP n is very large, the use of a CTE will
@@ -1490,7 +1493,7 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getTruncateTableSQL($tableName, $cascade = false)
     {
-        return 'TRUNCATE TABLE '.$tableName;
+        return 'TRUNCATE TABLE ' . $tableName;
     }
 
     /**
@@ -1506,23 +1509,23 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getDefaultValueDeclarationSQL($field)
     {
-        if ( ! isset($field['default'])) {
+        if (!isset($field['default'])) {
             return empty($field['notnull']) ? ' NULL' : '';
         }
 
-        if ( ! isset($field['type'])) {
+        if (!isset($field['type'])) {
             return " DEFAULT '" . $field['default'] . "'";
         }
 
-        if (in_array((string) $field['type'], array('Integer', 'BigInt', 'SmallInt'))) {
+        if (in_array((string)$field['type'], array('Integer', 'BigInt', 'SmallInt'))) {
             return " DEFAULT " . $field['default'];
         }
 
-        if (in_array((string) $field['type'], array('DateTime', 'DateTimeTz')) && $field['default'] == $this->getCurrentTimestampSQL()) {
+        if (in_array((string)$field['type'], array('DateTime', 'DateTimeTz')) && $field['default'] == $this->getCurrentTimestampSQL()) {
             return " DEFAULT " . $this->getCurrentTimestampSQL();
         }
 
-        if ((string) $field['type'] == 'Boolean') {
+        if ((string)$field['type'] == 'Boolean') {
             return " DEFAULT '" . $this->convertBooleans($field['default']) . "'";
         }
 
@@ -1560,7 +1563,7 @@ class SQLServerPlatform extends AbstractPlatform
     /**
      * Returns a unique default constraint name for a table and column.
      *
-     * @param string $table  Name of the table to generate the unique default constraint name for.
+     * @param string $table Name of the table to generate the unique default constraint name for.
      * @param string $column Name of the column in the table to generate the unique default constraint name for.
      *
      * @return string

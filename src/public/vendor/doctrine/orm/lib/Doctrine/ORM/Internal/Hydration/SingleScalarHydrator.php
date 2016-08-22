@@ -36,7 +36,7 @@ class SingleScalarHydrator extends AbstractHydrator
      */
     protected function hydrateAllData()
     {
-        $data    = $this->_stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $data = $this->_stmt->fetchAll(\PDO::FETCH_ASSOC);
         $numRows = count($data);
 
         if ($numRows === 0) {
@@ -46,7 +46,7 @@ class SingleScalarHydrator extends AbstractHydrator
         if ($numRows > 1) {
             throw new NonUniqueResultException('The query returned multiple rows. Change the query or use a different result function like getScalarResult().');
         }
-        
+
         if (count($data[key($data)]) > 1) {
             throw new NonUniqueResultException('The query returned a row containing multiple columns. Change the query or use a different result function like getScalarResult().');
         }

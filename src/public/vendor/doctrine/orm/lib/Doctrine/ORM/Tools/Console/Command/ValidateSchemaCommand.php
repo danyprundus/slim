@@ -44,25 +44,25 @@ class ValidateSchemaCommand extends Command
     protected function configure()
     {
         $this
-        ->setName('orm:validate-schema')
-        ->setDescription('Validate the mapping files.')
-        ->addOption(
-            'skip-mapping',
-            null,
-            InputOption::VALUE_NONE,
-            'Skip the mapping validation check'
-        )
-        ->addOption(
-            'skip-sync',
-            null,
-            InputOption::VALUE_NONE,
-            'Skip checking if the mapping is in sync with the database'
-        )
-        ->setHelp(
-            <<<EOT
-'Validate that the mapping files are correct and in sync with the database.'
+            ->setName('orm:validate-schema')
+            ->setDescription('Validate the mapping files.')
+            ->addOption(
+                'skip-mapping',
+                null,
+                InputOption::VALUE_NONE,
+                'Skip the mapping validation check'
+            )
+            ->addOption(
+                'skip-sync',
+                null,
+                InputOption::VALUE_NONE,
+                'Skip checking if the mapping is in sync with the database'
+            )
+            ->setHelp(
+                <<<EOT
+    'Validate that the mapping files are correct and in sync with the database.'
 EOT
-        );
+            );
     }
 
     /**

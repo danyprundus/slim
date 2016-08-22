@@ -25,18 +25,18 @@ class FileCacheTest extends \Doctrine\Tests\DoctrineTestCase
 
     public function testFilenameShouldCreateThePathWithOneSubDirectory()
     {
-        $cache          = $this->driver;
-        $method         = new \ReflectionMethod($cache, 'getFilename');
-        $key            = 'item-key';
-        $expectedDir    = array(
+        $cache = $this->driver;
+        $method = new \ReflectionMethod($cache, 'getFilename');
+        $key = 'item-key';
+        $expectedDir = array(
             '84',
         );
-        $expectedDir    = implode(DIRECTORY_SEPARATOR, $expectedDir);
+        $expectedDir = implode(DIRECTORY_SEPARATOR, $expectedDir);
 
         $method->setAccessible(true);
 
-        $path       = $method->invoke($cache, $key);
-        $dirname    = pathinfo($path, PATHINFO_DIRNAME);
+        $path = $method->invoke($cache, $key);
+        $dirname = pathinfo($path, PATHINFO_DIRNAME);
 
         $this->assertEquals(DIRECTORY_SEPARATOR . $expectedDir, $dirname);
     }
@@ -208,11 +208,11 @@ class FileCacheTest extends \Doctrine\Tests\DoctrineTestCase
      * @runInSeparateProcess
      * @dataProvider getPathLengthsToTest
      *
-     * @covers \Doctrine\Common\Cache\FileCache::getFilename
+     * @covers       \Doctrine\Common\Cache\FileCache::getFilename
      */
     public function testWindowsPathLengthLimitationsAreCorrectlyRespected($length, $pathShouldBeHashed)
     {
-        if (! defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if (!defined('PHP_WINDOWS_VERSION_BUILD')) {
             define('PHP_WINDOWS_VERSION_BUILD', 'Yes, this is the "usual suspect", with the usual limitations');
         }
 

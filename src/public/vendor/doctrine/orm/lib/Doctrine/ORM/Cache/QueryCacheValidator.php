@@ -31,7 +31,7 @@ interface QueryCacheValidator
     /**
      * Checks if the query entry is valid
      *
-     * @param \Doctrine\ORM\Cache\QueryCacheKey   $key
+     * @param \Doctrine\ORM\Cache\QueryCacheKey $key
      * @param \Doctrine\ORM\Cache\QueryCacheEntry $entry
      *
      * @return boolean

@@ -41,7 +41,7 @@ class EmbeddedBuilder
 
     /**
      * @param ClassMetadataBuilder $builder
-     * @param array                $mapping
+     * @param array $mapping
      */
     public function __construct(ClassMetadataBuilder $builder, array $mapping)
     {

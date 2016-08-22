@@ -72,7 +72,7 @@ class MappingDriverChain implements MappingDriver
      * Adds a nested driver.
      *
      * @param MappingDriver $nestedDriver
-     * @param string        $namespace
+     * @param string $namespace
      *
      * @return void
      */

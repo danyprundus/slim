@@ -36,8 +36,8 @@ use Doctrine\ORM\Query\QueryException;
 class PersisterHelper
 {
     /**
-     * @param string                 $fieldName
-     * @param ClassMetadata          $class
+     * @param string $fieldName
+     * @param ClassMetadata $class
      * @param EntityManagerInterface $em
      *
      * @return array
@@ -50,13 +50,13 @@ class PersisterHelper
             return array($class->fieldMappings[$fieldName]['type']);
         }
 
-        if ( ! isset($class->associationMappings[$fieldName])) {
+        if (!isset($class->associationMappings[$fieldName])) {
             return array();
         }
 
         $assoc = $class->associationMappings[$fieldName];
 
-        if (! $assoc['isOwningSide']) {
+        if (!$assoc['isOwningSide']) {
             return self::getTypeOfField($assoc['mappedBy'], $em->getClassMetadata($assoc['targetEntity']), $em);
         }
 
@@ -66,7 +66,7 @@ class PersisterHelper
             $joinData = $assoc;
         }
 
-        $types       = array();
+        $types = array();
         $targetClass = $em->getClassMetadata($assoc['targetEntity']);
 
         foreach ($joinData['joinColumns'] as $joinColumn) {
@@ -77,8 +77,8 @@ class PersisterHelper
     }
 
     /**
-     * @param string                 $columnName
-     * @param ClassMetadata          $class
+     * @param string $columnName
+     * @param ClassMetadata $class
      * @param EntityManagerInterface $em
      *
      * @return string
@@ -97,14 +97,14 @@ class PersisterHelper
 
         // iterate over to-one association mappings
         foreach ($class->associationMappings as $assoc) {
-            if ( ! isset($assoc['joinColumns'])) {
+            if (!isset($assoc['joinColumns'])) {
                 continue;
             }
 
             foreach ($assoc['joinColumns'] as $joinColumn) {
                 if ($joinColumn['name'] == $columnName) {
                     $targetColumnName = $joinColumn['referencedColumnName'];
-                    $targetClass      = $em->getClassMetadata($assoc['targetEntity']);
+                    $targetClass = $em->getClassMetadata($assoc['targetEntity']);
 
                     return self::getTypeOfColumn($targetColumnName, $targetClass, $em);
                 }
@@ -113,14 +113,14 @@ class PersisterHelper
 
         // iterate over to-many association mappings
         foreach ($class->associationMappings as $assoc) {
-            if ( ! (isset($assoc['joinTable']) && isset($assoc['joinTable']['joinColumns']))) {
+            if (!(isset($assoc['joinTable']) && isset($assoc['joinTable']['joinColumns']))) {
                 continue;
             }
 
             foreach ($assoc['joinTable']['joinColumns'] as $joinColumn) {
                 if ($joinColumn['name'] == $columnName) {
                     $targetColumnName = $joinColumn['referencedColumnName'];
-                    $targetClass      = $em->getClassMetadata($assoc['targetEntity']);
+                    $targetClass = $em->getClassMetadata($assoc['targetEntity']);
 
                     return self::getTypeOfColumn($targetColumnName, $targetClass, $em);
                 }

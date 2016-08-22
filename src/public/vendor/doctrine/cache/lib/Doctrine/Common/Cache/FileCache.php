@@ -73,7 +73,7 @@ abstract class FileCache extends CacheProvider
     public function __construct($directory, $extension = '', $umask = 0002)
     {
         // YES, this needs to be *before* createPathIfNeeded()
-        if ( ! is_int($umask)) {
+        if (!is_int($umask)) {
             throw new \InvalidArgumentException(sprintf(
                 'The umask parameter is required to be integer, was: %s',
                 gettype($umask)
@@ -81,14 +81,14 @@ abstract class FileCache extends CacheProvider
         }
         $this->umask = $umask;
 
-        if ( ! $this->createPathIfNeeded($directory)) {
+        if (!$this->createPathIfNeeded($directory)) {
             throw new \InvalidArgumentException(sprintf(
                 'The directory "%s" does not exist and could not be created.',
                 $directory
             ));
         }
 
-        if ( ! is_writable($directory)) {
+        if (!is_writable($directory)) {
             throw new \InvalidArgumentException(sprintf(
                 'The directory "%s" is not writable.',
                 $directory
@@ -97,11 +97,11 @@ abstract class FileCache extends CacheProvider
 
         // YES, this needs to be *after* createPathIfNeeded()
         $this->directory = realpath($directory);
-        $this->extension = (string) $extension;
+        $this->extension = (string)$extension;
 
         $this->directoryStringLength = strlen($this->directory);
         $this->extensionStringLength = strlen($this->extension);
-        $this->isRunningOnWindows    = defined('PHP_WINDOWS_VERSION_BUILD');
+        $this->isRunningOnWindows = defined('PHP_WINDOWS_VERSION_BUILD');
     }
 
     /**
@@ -150,11 +150,11 @@ abstract class FileCache extends CacheProvider
         }
 
         return $this->directory
-            . DIRECTORY_SEPARATOR
-            . substr($hash, 0, 2)
-            . DIRECTORY_SEPARATOR
-            . $filename
-            . $this->extension;
+        . DIRECTORY_SEPARATOR
+        . substr($hash, 0, 2)
+        . DIRECTORY_SEPARATOR
+        . $filename
+        . $this->extension;
     }
 
     /**
@@ -164,7 +164,7 @@ abstract class FileCache extends CacheProvider
     {
         $filename = $this->getFilename($id);
 
-        return @unlink($filename) || ! file_exists($filename);
+        return @unlink($filename) || !file_exists($filename);
     }
 
     /**
@@ -195,7 +195,7 @@ abstract class FileCache extends CacheProvider
     {
         $usage = 0;
         foreach ($this->getIterator() as $name => $file) {
-            if (! $file->isDir() && $this->isFilenameEndingWithExtension($name)) {
+            if (!$file->isDir() && $this->isFilenameEndingWithExtension($name)) {
                 $usage += $file->getSize();
             }
         }
@@ -203,11 +203,11 @@ abstract class FileCache extends CacheProvider
         $free = disk_free_space($this->directory);
 
         return array(
-            Cache::STATS_HITS               => null,
-            Cache::STATS_MISSES             => null,
-            Cache::STATS_UPTIME             => null,
-            Cache::STATS_MEMORY_USAGE       => $usage,
-            Cache::STATS_MEMORY_AVAILABLE   => $free,
+            Cache::STATS_HITS => null,
+            Cache::STATS_MISSES => null,
+            Cache::STATS_UPTIME => null,
+            Cache::STATS_MEMORY_USAGE => $usage,
+            Cache::STATS_MEMORY_AVAILABLE => $free,
         );
     }
 
@@ -219,7 +219,7 @@ abstract class FileCache extends CacheProvider
      */
     private function createPathIfNeeded($path)
     {
-        if ( ! is_dir($path)) {
+        if (!is_dir($path)) {
             if (false === @mkdir($path, 0777 & (~$this->umask), true) && !is_dir($path)) {
                 return false;
             }
@@ -232,7 +232,7 @@ abstract class FileCache extends CacheProvider
      * Writes a string content to file in an atomic way.
      *
      * @param string $filename Path to the file where to write the data.
-     * @param string $content  The content to write
+     * @param string $content The content to write
      *
      * @return bool TRUE on success, FALSE if path cannot be created, if path is not writable or an any other error.
      */
@@ -240,11 +240,11 @@ abstract class FileCache extends CacheProvider
     {
         $filepath = pathinfo($filename, PATHINFO_DIRNAME);
 
-        if ( ! $this->createPathIfNeeded($filepath)) {
+        if (!$this->createPathIfNeeded($filepath)) {
             return false;
         }
 
-        if ( ! is_writable($filepath)) {
+        if (!is_writable($filepath)) {
             return false;
         }
 
@@ -281,6 +281,6 @@ abstract class FileCache extends CacheProvider
     private function isFilenameEndingWithExtension($name)
     {
         return '' === $this->extension
-            || strrpos($name, $this->extension) === (strlen($name) - $this->extensionStringLength);
+        || strrpos($name, $this->extension) === (strlen($name) - $this->extensionStringLength);
     }
 }

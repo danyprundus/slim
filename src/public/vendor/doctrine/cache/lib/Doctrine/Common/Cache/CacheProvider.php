@@ -56,7 +56,7 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
      */
     public function setNamespace($namespace)
     {
-        $this->namespace        = (string) $namespace;
+        $this->namespace = (string)$namespace;
         $this->namespaceVersion = null;
     }
 
@@ -86,11 +86,11 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
         if (empty($keys)) {
             return array();
         }
-        
+
         // note: the array_combine() is in place to keep an association between our $keys and the $namespacedKeys
         $namespacedKeys = array_combine($keys, array_map(array($this, 'getNamespacedId'), $keys));
-        $items          = $this->doFetchMultiple($namespacedKeys);
-        $foundItems     = array();
+        $items = $this->doFetchMultiple($namespacedKeys);
+        $foundItems = array();
 
         // no internal array function supports this sort of mapping: needs to be iterative
         // this filters and combines keys in one pass
@@ -162,7 +162,7 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
     public function deleteAll()
     {
         $namespaceCacheKey = $this->getNamespaceCacheKey();
-        $namespaceVersion  = $this->getNamespaceVersion() + 1;
+        $namespaceVersion = $this->getNamespaceVersion() + 1;
 
         if ($this->doSave($namespaceCacheKey, $namespaceVersion)) {
             $this->namespaceVersion = $namespaceVersion;
@@ -182,7 +182,7 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
      */
     private function getNamespacedId($id)
     {
-        $namespaceVersion  = $this->getNamespaceVersion();
+        $namespaceVersion = $this->getNamespaceVersion();
 
         return sprintf('%s[%s][%s]', $this->namespace, $id, $namespaceVersion);
     }
@@ -254,8 +254,8 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
     /**
      * Default implementation of doSaveMultiple. Each driver that supports multi-put should override it.
      *
-     * @param array $keysAndValues  Array of keys and values to save in cache
-     * @param int   $lifetime       The lifetime. If != 0, sets a specific lifetime for these
+     * @param array $keysAndValues Array of keys and values to save in cache
+     * @param int $lifetime The lifetime. If != 0, sets a specific lifetime for these
      *                              cache entries (0 => infinite lifeTime).
      *
      * @return bool TRUE if the operation was successful, FALSE if it wasn't.
@@ -276,9 +276,9 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
     /**
      * Puts data into the cache.
      *
-     * @param string $id       The cache id.
-     * @param string $data     The cache entry/data.
-     * @param int    $lifeTime The lifetime. If != 0, sets a specific lifetime for this
+     * @param string $id The cache id.
+     * @param string $data The cache entry/data.
+     * @param int $lifeTime The lifetime. If != 0, sets a specific lifetime for this
      *                           cache entry (0 => infinite lifeTime).
      *
      * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise.

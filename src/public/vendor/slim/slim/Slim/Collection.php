@@ -44,8 +44,8 @@ class Collection implements CollectionInterface
     /**
      * Set collection item
      *
-     * @param string $key   The data key
-     * @param mixed  $value The data value
+     * @param string $key The data key
+     * @param mixed $value The data value
      */
     public function set($key, $value)
     {
@@ -55,8 +55,8 @@ class Collection implements CollectionInterface
     /**
      * Get collection item for key
      *
-     * @param string $key     The data key
-     * @param mixed  $default The default value to return if data key does not exist
+     * @param string $key The data key
+     * @param mixed $default The default value to return if data key does not exist
      *
      * @return mixed The key's value, or the default value
      */
@@ -158,8 +158,8 @@ class Collection implements CollectionInterface
     /**
      * Set collection item
      *
-     * @param string $key   The data key
-     * @param mixed  $value The data value
+     * @param string $key The data key
+     * @param mixed $value The data value
      */
     public function offsetSet($key, $value)
     {

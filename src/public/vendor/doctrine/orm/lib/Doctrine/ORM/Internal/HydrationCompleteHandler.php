@@ -58,14 +58,14 @@ final class HydrationCompleteHandler
     public function __construct(ListenersInvoker $listenersInvoker, EntityManagerInterface $em)
     {
         $this->listenersInvoker = $listenersInvoker;
-        $this->em               = $em;
+        $this->em = $em;
     }
 
     /**
      * Method schedules invoking of postLoad entity to the very end of current hydration cycle.
      *
      * @param ClassMetadata $class
-     * @param object        $entity
+     * @param object $entity
      */
     public function deferPostLoadInvoking(ClassMetadata $class, $entity)
     {
@@ -85,7 +85,7 @@ final class HydrationCompleteHandler
      */
     public function hydrationComplete()
     {
-        $toInvoke                          = $this->deferredPostLoadInvocations;
+        $toInvoke = $this->deferredPostLoadInvocations;
         $this->deferredPostLoadInvocations = array();
 
         foreach ($toInvoke as $classAndEntity) {

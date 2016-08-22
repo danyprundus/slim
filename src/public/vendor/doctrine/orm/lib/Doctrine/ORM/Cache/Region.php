@@ -58,9 +58,9 @@ interface Region extends MultiGetRegion
     /**
      * Put an item into the cache.
      *
-     * @param \Doctrine\ORM\Cache\CacheKey   $key   The key under which to cache the item.
+     * @param \Doctrine\ORM\Cache\CacheKey $key The key under which to cache the item.
      * @param \Doctrine\ORM\Cache\CacheEntry $entry The entry to cache.
-     * @param \Doctrine\ORM\Cache\Lock       $lock  The lock previously obtained.
+     * @param \Doctrine\ORM\Cache\Lock $lock The lock previously obtained.
      *
      * @throws \Doctrine\ORM\Cache\CacheException Indicates a problem accessing the region.
      */

@@ -65,7 +65,7 @@ interface SchemaDiffVisitor
     function visitNewTable(Table $table);
 
     /**
-     * @param \Doctrine\DBAL\Schema\Table                $table
+     * @param \Doctrine\DBAL\Schema\Table $table
      * @param \Doctrine\DBAL\Schema\ForeignKeyConstraint $foreignKey
      */
     function visitNewTableForeignKey(Table $table, ForeignKeyConstraint $foreignKey);

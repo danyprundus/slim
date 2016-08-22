@@ -185,15 +185,15 @@ class Inflector
             '.*ss',
         ),
         'irregular' => array(
-            'criteria'  => 'criterion',
-            'curves'    => 'curve',
-            'emphases'  => 'emphasis',
-            'foes'      => 'foe',
-            'hoaxes'    => 'hoax',
-            'media'     => 'medium',
-            'neuroses'  => 'neurosis',
-            'waves'     => 'wave',
-            'oases'     => 'oasis',
+            'criteria' => 'criterion',
+            'curves' => 'curve',
+            'emphases' => 'emphasis',
+            'foes' => 'foe',
+            'hoaxes' => 'hoax',
+            'media' => 'medium',
+            'neuroses' => 'neurosis',
+            'waves' => 'wave',
+            'oases' => 'oasis',
         )
     );
 
@@ -296,7 +296,7 @@ class Inflector
     {
         return preg_replace_callback(
             '/[^' . preg_quote($delimiters, '/') . ']+/',
-            function($matches) {
+            function ($matches) {
                 return ucfirst($matches[0]);
             },
             $string
@@ -338,8 +338,8 @@ class Inflector
      * ));
      * }}}
      *
-     * @param string  $type  The type of inflection, either 'plural' or 'singular'
-     * @param array   $rules An array of rules to be added.
+     * @param string $type The type of inflection, either 'plural' or 'singular'
+     * @param array $rules An array of rules to be added.
      * @param boolean $reset If true, will unset default inflections for all
      *                       new rules that are being defined in $rules.
      *
@@ -348,7 +348,7 @@ class Inflector
     public static function rules($type, $rules, $reset = false)
     {
         foreach ($rules as $rule => $pattern) {
-            if ( ! is_array($pattern)) {
+            if (!is_array($pattern)) {
                 continue;
             }
 
@@ -399,12 +399,12 @@ class Inflector
 
         if (!isset(self::$plural['cacheUninflected']) || !isset(self::$plural['cacheIrregular'])) {
             self::$plural['cacheUninflected'] = '(?:' . implode('|', self::$plural['merged']['uninflected']) . ')';
-            self::$plural['cacheIrregular']   = '(?:' . implode('|', array_keys(self::$plural['merged']['irregular'])) . ')';
+            self::$plural['cacheIrregular'] = '(?:' . implode('|', array_keys(self::$plural['merged']['irregular'])) . ')';
         }
 
         if (preg_match('/(.*)\\b(' . self::$plural['cacheIrregular'] . ')$/i', $word, $regs)) {
             self::$cache['pluralize'][$word] = $regs[1] . substr($word, 0, 1) . substr(self::$plural['merged']['irregular'][strtolower($regs[2])], 1);
-            
+
             return self::$cache['pluralize'][$word];
         }
 
@@ -457,7 +457,7 @@ class Inflector
 
         if (preg_match('/(.*)\\b(' . self::$singular['cacheIrregular'] . ')$/i', $word, $regs)) {
             self::$cache['singularize'][$word] = $regs[1] . substr($word, 0, 1) . substr(self::$singular['merged']['irregular'][strtolower($regs[2])], 1);
-            
+
             return self::$cache['singularize'][$word];
         }
 

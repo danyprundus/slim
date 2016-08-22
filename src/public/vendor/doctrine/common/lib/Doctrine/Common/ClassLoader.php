@@ -71,7 +71,7 @@ class ClassLoader
      * If neither a namespace nor an include path is given, the ClassLoader will
      * be responsible for loading all classes, thereby relying on the PHP include_path.
      *
-     * @param string|null $ns          The namespace of the classes to load.
+     * @param string|null $ns The namespace of the classes to load.
      * @param string|null $includePath The base include path to use.
      */
     public function __construct($ns = null, $includePath = null)
@@ -179,13 +179,13 @@ class ClassLoader
             return true;
         }
 
-        if (! $this->canLoadClass($className)) {
+        if (!$this->canLoadClass($className)) {
             return false;
         }
 
         require ($this->includePath !== null ? $this->includePath . DIRECTORY_SEPARATOR : '')
-               . str_replace($this->namespaceSeparator, DIRECTORY_SEPARATOR, $className)
-               . $this->fileExtension;
+            . str_replace($this->namespaceSeparator, DIRECTORY_SEPARATOR, $className)
+            . $this->fileExtension;
 
         return self::typeExists($className);
     }
@@ -200,7 +200,7 @@ class ClassLoader
      */
     public function canLoadClass($className)
     {
-        if ($this->namespace !== null && strpos($className, $this->namespace.$this->namespaceSeparator) !== 0) {
+        if ($this->namespace !== null && strpos($className, $this->namespace . $this->namespaceSeparator) !== 0) {
             return false;
         }
 
@@ -250,7 +250,7 @@ class ClassLoader
      */
     public static function getClassLoader($className)
     {
-         foreach (spl_autoload_functions() as $loader) {
+        foreach (spl_autoload_functions() as $loader) {
             if (is_array($loader)
                 && ($classLoader = reset($loader))
                 && $classLoader instanceof ClassLoader
@@ -267,14 +267,14 @@ class ClassLoader
      * Checks whether a given type exists
      *
      * @param string $type
-     * @param bool   $autoload
+     * @param bool $autoload
      *
      * @return bool
      */
     private static function typeExists($type, $autoload = false)
     {
         return class_exists($type, $autoload)
-            || interface_exists($type, $autoload)
-            || trait_exists($type, $autoload);
+        || interface_exists($type, $autoload)
+        || trait_exists($type, $autoload);
     }
 }

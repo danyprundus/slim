@@ -35,7 +35,7 @@ class EntityRepositoryGenerator
     private $repositoryName;
 
     protected static $_template =
-'<?php
+        '<?php
 
 <namespace>
 
@@ -58,9 +58,9 @@ class <className> extends <repositoryName>
     public function generateEntityRepositoryClass($fullClassName)
     {
         $variables = array(
-            '<namespace>'       => $this->generateEntityRepositoryNamespace($fullClassName),
-            '<repositoryName>'  => $this->generateEntityRepositoryName($fullClassName),
-            '<className>'       => $this->generateClassName($fullClassName)
+            '<namespace>' => $this->generateEntityRepositoryNamespace($fullClassName),
+            '<repositoryName>' => $this->generateEntityRepositoryName($fullClassName),
+            '<className>' => $this->generateClassName($fullClassName)
         );
 
         return str_replace(array_keys($variables), array_values($variables), self::$_template);
@@ -70,7 +70,7 @@ class <className> extends <repositoryName>
      * Generates the namespace, if class do not have namespace, return empty string instead.
      *
      * @param string $fullClassName
-     * 
+     *
      * @return string $namespace
      */
     private function getClassNamespace($fullClassName)
@@ -82,9 +82,9 @@ class <className> extends <repositoryName>
 
     /**
      * Generates the class name
-     * 
+     *
      * @param string $fullClassName
-     * 
+     *
      * @return string
      */
     private function generateClassName($fullClassName)
@@ -102,7 +102,7 @@ class <className> extends <repositoryName>
 
     /**
      * Generates the namespace statement, if class do not have namespace, return empty string instead.
-     * 
+     *
      * @param string $fullClassName The full repository class name.
      *
      * @return string $namespace
@@ -116,7 +116,7 @@ class <className> extends <repositoryName>
 
     /**
      * @param string $fullClassName
-     * 
+     *
      * @return string $repositoryName
      */
     private function generateEntityRepositoryName($fullClassName)
@@ -143,14 +143,14 @@ class <className> extends <repositoryName>
         $code = $this->generateEntityRepositoryClass($fullClassName);
 
         $path = $outputDirectory . DIRECTORY_SEPARATOR
-              . str_replace('\\', \DIRECTORY_SEPARATOR, $fullClassName) . '.php';
+            . str_replace('\\', \DIRECTORY_SEPARATOR, $fullClassName) . '.php';
         $dir = dirname($path);
 
-        if ( ! is_dir($dir)) {
+        if (!is_dir($dir)) {
             mkdir($dir, 0775, true);
         }
 
-        if ( ! file_exists($path)) {
+        if (!file_exists($path)) {
             file_put_contents($path, $code);
             chmod($path, 0664);
         }
@@ -158,7 +158,7 @@ class <className> extends <repositoryName>
 
     /**
      * @param string $repositoryName
-     * 
+     *
      * @return \Doctrine\ORM\Tools\EntityRepositoryGenerator
      */
     public function setDefaultRepositoryName($repositoryName)

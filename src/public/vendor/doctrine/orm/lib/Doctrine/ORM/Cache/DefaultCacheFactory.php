@@ -73,11 +73,11 @@ class DefaultCacheFactory implements CacheFactory
 
     /**
      * @param RegionsConfiguration $cacheConfig
-     * @param CacheAdapter         $cache
+     * @param CacheAdapter $cache
      */
     public function __construct(RegionsConfiguration $cacheConfig, CacheAdapter $cache)
     {
-        $this->cache         = $cache;
+        $this->cache = $cache;
         $this->regionsConfig = $cacheConfig;
     }
 
@@ -86,7 +86,7 @@ class DefaultCacheFactory implements CacheFactory
      */
     public function setFileLockRegionDirectory($fileLockRegionDirectory)
     {
-        $this->fileLockRegionDirectory = (string) $fileLockRegionDirectory;
+        $this->fileLockRegionDirectory = (string)$fileLockRegionDirectory;
     }
 
     /**
@@ -118,8 +118,8 @@ class DefaultCacheFactory implements CacheFactory
      */
     public function buildCachedEntityPersister(EntityManagerInterface $em, EntityPersister $persister, ClassMetadata $metadata)
     {
-        $region     = $this->getRegion($metadata->cache);
-        $usage      = $metadata->cache['usage'];
+        $region = $this->getRegion($metadata->cache);
+        $usage = $metadata->cache['usage'];
 
         if ($usage === ClassMetadata::CACHE_USAGE_READ_ONLY) {
             return new ReadOnlyCachedEntityPersister($persister, $region, $em, $metadata);
@@ -141,8 +141,8 @@ class DefaultCacheFactory implements CacheFactory
      */
     public function buildCachedCollectionPersister(EntityManagerInterface $em, CollectionPersister $persister, array $mapping)
     {
-        $usage      = $mapping['cache']['usage'];
-        $region     = $this->getRegion($mapping['cache']);
+        $usage = $mapping['cache']['usage'];
+        $region = $this->getRegion($mapping['cache']);
 
         if ($usage === ClassMetadata::CACHE_USAGE_READ_ONLY) {
             return new ReadOnlyCachedCollectionPersister($persister, $region, $em, $mapping);
@@ -169,7 +169,7 @@ class DefaultCacheFactory implements CacheFactory
             $this->getRegion(
                 array(
                     'region' => $regionName ?: Cache::DEFAULT_QUERY_REGION_NAME,
-                    'usage'  => ClassMetadata::CACHE_USAGE_NONSTRICT_READ_WRITE
+                    'usage' => ClassMetadata::CACHE_USAGE_NONSTRICT_READ_WRITE
                 )
             )
         );
@@ -206,7 +206,7 @@ class DefaultCacheFactory implements CacheFactory
             $cacheAdapter->setNamespace($cache['region']);
         }
 
-        $name     = $cache['region'];
+        $name = $cache['region'];
         $lifetime = $this->regionsConfig->getLifetime($cache['region']);
 
         $region = ($cacheAdapter instanceof MultiGetCache)
@@ -215,7 +215,7 @@ class DefaultCacheFactory implements CacheFactory
 
         if ($cache['usage'] === ClassMetadata::CACHE_USAGE_READ_WRITE) {
 
-            if ( ! $this->fileLockRegionDirectory) {
+            if (!$this->fileLockRegionDirectory) {
                 throw new \LogicException(
                     'If you what to use a "READ_WRITE" cache an implementation of "Doctrine\ORM\Cache\ConcurrentRegion" is required, ' .
                     'The default implementation provided by doctrine is "Doctrine\ORM\Cache\Region\FileLockRegion" if you what to use it please provide a valid directory, DefaultCacheFactory#setFileLockRegionDirectory(). '
@@ -223,7 +223,7 @@ class DefaultCacheFactory implements CacheFactory
             }
 
             $directory = $this->fileLockRegionDirectory . DIRECTORY_SEPARATOR . $cache['region'];
-            $region    = new FileLockRegion($region, $directory, $this->regionsConfig->getLockLifetime($cache['region']));
+            $region = new FileLockRegion($region, $directory, $this->regionsConfig->getLockLifetime($cache['region']));
         }
 
         return $this->regions[$cache['region']] = $region;
@@ -235,7 +235,7 @@ class DefaultCacheFactory implements CacheFactory
     public function getTimestampRegion()
     {
         if ($this->timestampRegion === null) {
-            $name     = Cache::DEFAULT_TIMESTAMP_REGION_NAME;
+            $name = Cache::DEFAULT_TIMESTAMP_REGION_NAME;
             $lifetime = $this->regionsConfig->getLifetime($name);
 
             $this->timestampRegion = new UpdateTimestampCache($name, clone $this->cache, $lifetime);

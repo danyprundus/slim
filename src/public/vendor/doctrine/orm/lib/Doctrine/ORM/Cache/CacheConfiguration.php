@@ -73,7 +73,7 @@ class CacheConfiguration
      */
     public function getCacheLogger()
     {
-         return $this->cacheLogger;
+        return $this->cacheLogger;
     }
 
     /**
@@ -113,7 +113,7 @@ class CacheConfiguration
             $this->queryValidator = new TimestampQueryCacheValidator();
         }
 
-         return $this->queryValidator;
+        return $this->queryValidator;
     }
 
     /**

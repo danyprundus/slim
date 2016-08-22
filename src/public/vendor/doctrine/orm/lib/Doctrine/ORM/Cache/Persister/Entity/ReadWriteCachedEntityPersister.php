@@ -36,9 +36,9 @@ class ReadWriteCachedEntityPersister extends AbstractEntityPersister
 {
     /**
      * @param \Doctrine\ORM\Persisters\Entity\EntityPersister $persister The entity persister to cache.
-     * @param \Doctrine\ORM\Cache\ConcurrentRegion            $region    The entity cache region.
-     * @param \Doctrine\ORM\EntityManagerInterface            $em        The entity manager.
-     * @param \Doctrine\ORM\Mapping\ClassMetadata             $class     The entity metadata.
+     * @param \Doctrine\ORM\Cache\ConcurrentRegion $region The entity cache region.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The entity manager.
+     * @param \Doctrine\ORM\Mapping\ClassMetadata $class The entity metadata.
      */
     public function __construct(EntityPersister $persister, ConcurrentRegion $region, EntityManagerInterface $em, ClassMetadata $class)
     {
@@ -100,8 +100,8 @@ class ReadWriteCachedEntityPersister extends AbstractEntityPersister
      */
     public function delete($entity)
     {
-        $key   = new EntityCacheKey($this->class->rootEntityName, $this->uow->getEntityIdentifier($entity));
-        $lock  = $this->region->lock($key);
+        $key = new EntityCacheKey($this->class->rootEntityName, $this->uow->getEntityIdentifier($entity));
+        $lock = $this->region->lock($key);
 
         if ($this->persister->delete($entity)) {
             $this->region->evict($key);
@@ -112,8 +112,8 @@ class ReadWriteCachedEntityPersister extends AbstractEntityPersister
         }
 
         $this->queuedCache['delete'][] = array(
-            'lock'   => $lock,
-            'key'    => $key
+            'lock' => $lock,
+            'key' => $key
         );
     }
 
@@ -122,7 +122,7 @@ class ReadWriteCachedEntityPersister extends AbstractEntityPersister
      */
     public function update($entity)
     {
-        $key  = new EntityCacheKey($this->class->rootEntityName, $this->uow->getEntityIdentifier($entity));
+        $key = new EntityCacheKey($this->class->rootEntityName, $this->uow->getEntityIdentifier($entity));
         $lock = $this->region->lock($key);
 
         $this->persister->update($entity);
@@ -132,8 +132,8 @@ class ReadWriteCachedEntityPersister extends AbstractEntityPersister
         }
 
         $this->queuedCache['update'][] = array(
-            'lock'   => $lock,
-            'key'    => $key
+            'lock' => $lock,
+            'key' => $key
         );
     }
 }

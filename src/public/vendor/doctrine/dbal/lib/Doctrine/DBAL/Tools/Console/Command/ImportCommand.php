@@ -43,17 +43,17 @@ class ImportCommand extends Command
     protected function configure()
     {
         $this
-        ->setName('dbal:import')
-        ->setDescription('Import SQL file(s) directly to Database.')
-        ->setDefinition(array(
-            new InputArgument(
-                'file', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'File path(s) of SQL to be executed.'
-            )
-        ))
-        ->setHelp(<<<EOT
+            ->setName('dbal:import')
+            ->setDescription('Import SQL file(s) directly to Database.')
+            ->setDefinition(array(
+                new InputArgument(
+                    'file', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'File path(s) of SQL to be executed.'
+                )
+            ))
+            ->setHelp(<<<EOT
 Import SQL file(s) directly to Database.
 EOT
-        );
+            );
     }
 
     /**
@@ -64,7 +64,7 @@ EOT
         $conn = $this->getHelper('db')->getConnection();
 
         if (($fileNames = $input->getArgument('file')) !== null) {
-            foreach ((array) $fileNames as $fileName) {
+            foreach ((array)$fileNames as $fileName) {
                 $filePath = realpath($fileName);
 
                 // Phar compatibility.
@@ -72,11 +72,11 @@ EOT
                     $filePath = $fileName;
                 }
 
-                if ( ! file_exists($filePath)) {
+                if (!file_exists($filePath)) {
                     throw new \InvalidArgumentException(
                         sprintf("SQL file '<info>%s</info>' does not exist.", $filePath)
                     );
-                } elseif ( ! is_readable($filePath)) {
+                } elseif (!is_readable($filePath)) {
                     throw new \InvalidArgumentException(
                         sprintf("SQL file '<info>%s</info>' does not have read permissions.", $filePath)
                     );

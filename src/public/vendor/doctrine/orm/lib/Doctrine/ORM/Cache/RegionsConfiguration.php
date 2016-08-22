@@ -54,8 +54,8 @@ class RegionsConfiguration
      */
     public function __construct($defaultLifetime = 3600, $defaultLockLifetime = 60)
     {
-        $this->defaultLifetime      = (integer) $defaultLifetime;
-        $this->defaultLockLifetime  = (integer) $defaultLockLifetime;
+        $this->defaultLifetime = (integer)$defaultLifetime;
+        $this->defaultLockLifetime = (integer)$defaultLockLifetime;
     }
 
     /**
@@ -71,7 +71,7 @@ class RegionsConfiguration
      */
     public function setDefaultLifetime($defaultLifetime)
     {
-        $this->defaultLifetime = (integer) $defaultLifetime;
+        $this->defaultLifetime = (integer)$defaultLifetime;
     }
 
     /**
@@ -87,7 +87,7 @@ class RegionsConfiguration
      */
     public function setDefaultLockLifetime($defaultLockLifetime)
     {
-        $this->defaultLockLifetime = (integer) $defaultLockLifetime;
+        $this->defaultLockLifetime = (integer)$defaultLockLifetime;
     }
 
     /**
@@ -103,12 +103,12 @@ class RegionsConfiguration
     }
 
     /**
-     * @param string  $name
+     * @param string $name
      * @param integer $lifetime
      */
     public function setLifetime($name, $lifetime)
     {
-        $this->lifetimes[$name] = (integer) $lifetime;
+        $this->lifetimes[$name] = (integer)$lifetime;
     }
 
     /**
@@ -124,11 +124,11 @@ class RegionsConfiguration
     }
 
     /**
-     * @param string  $name
+     * @param string $name
      * @param integer $lifetime
      */
     public function setLockLifetime($name, $lifetime)
     {
-        $this->lockLifetimes[$name] = (integer) $lifetime;
+        $this->lockLifetimes[$name] = (integer)$lifetime;
     }
 }

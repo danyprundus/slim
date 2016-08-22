@@ -65,9 +65,9 @@ abstract class CacheTest extends \Doctrine\Tests\DoctrineTestCase
 
     public function testFetchMultiple()
     {
-        $cache  = $this->_getCacheDriver();
+        $cache = $this->_getCacheDriver();
         $values = $this->provideDataToCache();
-        $saved  = array();
+        $saved = array();
 
         foreach ($values as $key => $value) {
             $cache->save($key, $value[0]);
@@ -138,7 +138,7 @@ abstract class CacheTest extends \Doctrine\Tests\DoctrineTestCase
             'array' => array(array('one', 2, 3.01)),
             'string' => array('value'),
             'string_invalid_utf8' => array("\xc3\x28"),
-            'string_null_byte' => array('with'."\0".'null char'),
+            'string_null_byte' => array('with' . "\0" . 'null char'),
             'integer' => array(1),
             'float' => array(1.5),
             'object' => array(new ArrayObject(array('one', 2, 3.01))),
@@ -280,7 +280,7 @@ abstract class CacheTest extends \Doctrine\Tests\DoctrineTestCase
 
     public function testDeleteAllAndNamespaceVersioningBetweenCaches()
     {
-        if ( ! $this->isSharedStorage()) {
+        if (!$this->isSharedStorage()) {
             $this->markTestSkipped('The cache storage needs to be shared.');
         }
 
@@ -330,7 +330,7 @@ abstract class CacheTest extends \Doctrine\Tests\DoctrineTestCase
 
     public function testFlushAllAndNamespaceVersioningBetweenCaches()
     {
-        if ( ! $this->isSharedStorage()) {
+        if (!$this->isSharedStorage()) {
             $this->markTestSkipped('The cache storage needs to be shared.');
         }
 

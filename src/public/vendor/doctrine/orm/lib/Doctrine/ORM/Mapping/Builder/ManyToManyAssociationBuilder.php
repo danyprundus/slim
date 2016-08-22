@@ -53,10 +53,10 @@ class ManyToManyAssociationBuilder extends OneToManyAssociationBuilder
     /**
      * Adds Inverse Join Columns.
      *
-     * @param string      $columnName
-     * @param string      $referencedColumnName
-     * @param bool        $nullable
-     * @param bool        $unique
+     * @param string $columnName
+     * @param string $referencedColumnName
+     * @param bool $nullable
+     * @param bool $unique
      * @param string|null $onDelete
      * @param string|null $columnDef
      *

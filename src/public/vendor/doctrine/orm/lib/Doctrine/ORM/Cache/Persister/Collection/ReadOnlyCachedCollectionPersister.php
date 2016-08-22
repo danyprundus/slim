@@ -30,7 +30,7 @@ use Doctrine\Common\Util\ClassUtils;
  */
 class ReadOnlyCachedCollectionPersister extends NonStrictReadWriteCachedCollectionPersister
 {
-     /**
+    /**
      * {@inheritdoc}
      */
     public function update(PersistentCollection $collection)

@@ -26,7 +26,7 @@ class InputDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$fixtures = __DIR__.'/../Fixtures/';
+        self::$fixtures = __DIR__ . '/../Fixtures/';
     }
 
     public function testConstructorArguments()
@@ -185,7 +185,7 @@ class InputDefinitionTest extends \PHPUnit_Framework_TestCase
             new InputArgument('foo1', InputArgument::OPTIONAL),
             new InputArgument('foo2', InputArgument::OPTIONAL, '', 'default'),
             new InputArgument('foo3', InputArgument::OPTIONAL | InputArgument::IS_ARRAY),
-        //  new InputArgument('foo4', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, '', array(1, 2)),
+            //  new InputArgument('foo4', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, '', array(1, 2)),
         ));
         $this->assertEquals(array('foo1' => null, 'foo2' => 'default', 'foo3' => array()), $definition->getArgumentDefaults(), '->getArgumentDefaults() return the default values for each argument');
 
@@ -360,7 +360,7 @@ class InputDefinitionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSynopsis(InputDefinition $definition, $expectedSynopsis, $message = null)
     {
-        $this->assertEquals($expectedSynopsis, $definition->getSynopsis(), $message ? '->getSynopsis() '.$message : '');
+        $this->assertEquals($expectedSynopsis, $definition->getSynopsis(), $message ? '->getSynopsis() ' . $message : '');
     }
 
     public function getGetSynopsisData()

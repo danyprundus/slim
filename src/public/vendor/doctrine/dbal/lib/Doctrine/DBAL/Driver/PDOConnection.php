@@ -30,10 +30,10 @@ use PDO;
 class PDOConnection extends PDO implements Connection, ServerInfoAwareConnection
 {
     /**
-     * @param string      $dsn
+     * @param string $dsn
      * @param string|null $user
      * @param string|null $password
-     * @param array|null  $options
+     * @param array|null $options
      *
      * @throws PDOException in case of an error.
      */

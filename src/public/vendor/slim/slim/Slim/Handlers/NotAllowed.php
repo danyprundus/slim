@@ -24,9 +24,9 @@ class NotAllowed extends AbstractHandler
     /**
      * Invoke error handler
      *
-     * @param  ServerRequestInterface $request  The most recent Request object
-     * @param  ResponseInterface      $response The most recent Response object
-     * @param  string[]               $methods  Allowed HTTP methods
+     * @param  ServerRequestInterface $request The most recent Request object
+     * @param  ResponseInterface $response The most recent Response object
+     * @param  string[] $methods Allowed HTTP methods
      *
      * @return ResponseInterface
      * @throws UnexpectedValueException
@@ -63,16 +63,16 @@ class NotAllowed extends AbstractHandler
         $allow = implode(', ', $methods);
 
         return $response
-                ->withStatus($status)
-                ->withHeader('Content-type', $contentType)
-                ->withHeader('Allow', $allow)
-                ->withBody($body);
+            ->withStatus($status)
+            ->withHeader('Content-type', $contentType)
+            ->withHeader('Allow', $allow)
+            ->withBody($body);
     }
 
     /**
      * Render PLAIN not allowed message
      *
-     * @param  array                  $methods
+     * @param  array $methods
      * @return string
      */
     protected function renderPlainNotAllowedMessage($methods)
@@ -85,7 +85,7 @@ class NotAllowed extends AbstractHandler
     /**
      * Render JSON not allowed message
      *
-     * @param  array                  $methods
+     * @param  array $methods
      * @return string
      */
     protected function renderJsonNotAllowedMessage($methods)
@@ -98,7 +98,7 @@ class NotAllowed extends AbstractHandler
     /**
      * Render XML not allowed message
      *
-     * @param  array                  $methods
+     * @param  array $methods
      * @return string
      */
     protected function renderXmlNotAllowedMessage($methods)
@@ -111,7 +111,7 @@ class NotAllowed extends AbstractHandler
     /**
      * Render HTML not allowed message
      *
-     * @param  array                  $methods
+     * @param  array $methods
      * @return string
      */
     protected function renderHtmlNotAllowedMessage($methods)

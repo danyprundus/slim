@@ -100,7 +100,7 @@ class App
      *
      * This method prepends new middleware to the app's middleware stack.
      *
-     * @param  callable|string    $callable The callback routine
+     * @param  callable|string $callable The callback routine
      *
      * @return static
      */
@@ -136,8 +136,8 @@ class App
     /**
      * Add GET route
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -149,8 +149,8 @@ class App
     /**
      * Add POST route
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -162,8 +162,8 @@ class App
     /**
      * Add PUT route
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -175,8 +175,8 @@ class App
     /**
      * Add PATCH route
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -188,8 +188,8 @@ class App
     /**
      * Add DELETE route
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -201,8 +201,8 @@ class App
     /**
      * Add OPTIONS route
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -214,8 +214,8 @@ class App
     /**
      * Add route for any HTTP method
      *
-     * @param  string $pattern  The route URI pattern
-     * @param  callable|string  $callable The route callback routine
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return \Slim\Interfaces\RouteInterface
      */
@@ -227,9 +227,9 @@ class App
     /**
      * Add route with multiple methods
      *
-     * @param  string[] $methods  Numeric array of HTTP method names
-     * @param  string   $pattern  The route URI pattern
-     * @param  callable|string    $callable The route callback routine
+     * @param  string[] $methods Numeric array of HTTP method names
+     * @param  string $pattern The route URI pattern
+     * @param  callable|string $callable The route callback routine
      *
      * @return RouteInterface
      */
@@ -258,7 +258,7 @@ class App
      * declarations in the callback will be prepended by the group(s)
      * that it is in.
      *
-     * @param string   $pattern
+     * @param string $pattern
      * @param callable $callable
      *
      * @return RouteGroupInterface
@@ -377,10 +377,10 @@ class App
             if ($body->isSeekable()) {
                 $body->rewind();
             }
-            $settings       = $this->container->get('settings');
-            $chunkSize      = $settings['responseChunkSize'];
+            $settings = $this->container->get('settings');
+            $chunkSize = $settings['responseChunkSize'];
 
-            $contentLength  = $response->getHeaderLine('Content-Length');
+            $contentLength = $response->getHeaderLine('Content-Length');
             if (!$contentLength) {
                 $contentLength = $body->getSize();
             }
@@ -391,9 +391,9 @@ class App
                 while ($amountToRead > 0 && !$body->eof()) {
                     $data = $body->read(min($chunkSize, $amountToRead));
                     echo $data;
-                    
+
                     $amountToRead -= strlen($data);
-                                        
+
                     if (connection_status() != CONNECTION_NORMAL) {
                         break;
                     }
@@ -417,8 +417,8 @@ class App
      * after compiling the routes registered in the Router and dispatching
      * the Request object to the appropriate Route callback routine.
      *
-     * @param  ServerRequestInterface $request  The most recent Request object
-     * @param  ResponseInterface      $response The most recent Response object
+     * @param  ServerRequestInterface $request The most recent Request object
+     * @param  ResponseInterface $response The most recent Response object
      *
      * @return ResponseInterface
      * @throws MethodNotAllowedException
@@ -433,7 +433,7 @@ class App
         $router = $this->container->get('router');
 
         // If router hasn't been dispatched or the URI changed then dispatch
-        if (null === $routeInfo || ($routeInfo['request'] !== [$request->getMethod(), (string) $request->getUri()])) {
+        if (null === $routeInfo || ($routeInfo['request'] !== [$request->getMethod(), (string)$request->getUri()])) {
             $request = $this->dispatchRouterAndPrepareRoute($request, $router);
             $routeInfo = $request->getAttribute('routeInfo');
         }
@@ -467,13 +467,13 @@ class App
      * cookies, body, and server variables against the set of registered
      * application routes. The result response object is returned.
      *
-     * @param  string            $method      The request method (e.g., GET, POST, PUT, etc.)
-     * @param  string            $path        The request URI path
-     * @param  string            $query       The request URI query string
-     * @param  array             $headers     The request headers (key-value array)
-     * @param  array             $cookies     The request cookies (key-value array)
-     * @param  string            $bodyContent The request body
-     * @param  ResponseInterface $response     The response object (optional)
+     * @param  string $method The request method (e.g., GET, POST, PUT, etc.)
+     * @param  string $path The request URI path
+     * @param  string $query The request URI query string
+     * @param  array $headers The request headers (key-value array)
+     * @param  array $cookies The request cookies (key-value array)
+     * @param  string $bodyContent The request body
+     * @param  ResponseInterface $response The response object (optional)
      * @return ResponseInterface
      */
     public function subRequest(
@@ -484,7 +484,8 @@ class App
         array $cookies = [],
         $bodyContent = '',
         ResponseInterface $response = null
-    ) {
+    )
+    {
         $env = $this->container->get('environment');
         $uri = Uri::createFromEnvironment($env)->withPath($path)->withQuery($query);
         $headers = new Headers($headers);
@@ -505,7 +506,7 @@ class App
      * Dispatch the router to find the route. Prepare the route for use.
      *
      * @param ServerRequestInterface $request
-     * @param RouterInterface        $router
+     * @param RouterInterface $router
      * @return ServerRequestInterface
      */
     protected function dispatchRouterAndPrepareRoute(ServerRequestInterface $request, RouterInterface $router)
@@ -525,7 +526,7 @@ class App
             $request = $request->withAttribute('route', $route);
         }
 
-        $routeInfo['request'] = [$request->getMethod(), (string) $request->getUri()];
+        $routeInfo['request'] = [$request->getMethod(), (string)$request->getUri()];
 
         return $request->withAttribute('routeInfo', $routeInfo);
     }
@@ -547,14 +548,15 @@ class App
 
         // Add Content-Length header if `addContentLengthHeader` setting is set
         if (isset($this->container->get('settings')['addContentLengthHeader']) &&
-            $this->container->get('settings')['addContentLengthHeader'] == true) {
+            $this->container->get('settings')['addContentLengthHeader'] == true
+        ) {
             if (ob_get_length() > 0) {
                 throw new \RuntimeException("Unexpected data in output buffer. " .
                     "Maybe you have characters before an opening <?php tag?");
             }
             $size = $response->getBody()->getSize();
             if ($size !== null && !$response->hasHeader('Content-Length')) {
-                $response = $response->withHeader('Content-Length', (string) $size);
+                $response = $response->withHeader('Content-Length', (string)$size);
             }
         }
 

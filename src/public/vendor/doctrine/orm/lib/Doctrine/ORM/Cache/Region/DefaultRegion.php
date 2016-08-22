@@ -54,15 +54,15 @@ class DefaultRegion implements Region
     protected $lifetime = 0;
 
     /**
-     * @param string       $name
+     * @param string $name
      * @param CacheAdapter $cache
-     * @param integer      $lifetime
+     * @param integer $lifetime
      */
     public function __construct($name, CacheAdapter $cache, $lifetime = 0)
     {
-        $this->cache    = $cache;
-        $this->name     = (string) $name;
-        $this->lifetime = (integer) $lifetime;
+        $this->cache = $cache;
+        $this->name = (string)$name;
+        $this->lifetime = (integer)$lifetime;
     }
 
     /**
@@ -105,7 +105,7 @@ class DefaultRegion implements Region
         $result = array();
 
         foreach ($collection->identifiers as $key) {
-            $entryKey   = $this->getCacheEntryKey($key);
+            $entryKey = $this->getCacheEntryKey($key);
             $entryValue = $this->cache->fetch($entryKey);
 
             if ($entryValue === false) {
@@ -148,7 +148,7 @@ class DefaultRegion implements Region
      */
     public function evictAll()
     {
-        if (! $this->cache instanceof ClearableCache) {
+        if (!$this->cache instanceof ClearableCache) {
             throw new \BadMethodCallException(sprintf(
                 'Clearing all cache entries is not supported by the supplied cache adapter of type %s',
                 get_class($this->cache)

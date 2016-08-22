@@ -62,7 +62,7 @@ interface Cache
     public function getEntityCacheRegion($className);
 
     /**
-     * @param string $className   The entity class.
+     * @param string $className The entity class.
      * @param string $association The field name that represents the association.
      *
      * @return \Doctrine\ORM\Cache\Region|null
@@ -72,8 +72,8 @@ interface Cache
     /**
      * Determine whether the cache contains data for the given entity "instance".
      *
-     * @param string $className  The entity class.
-     * @param mixed  $identifier The entity identifier
+     * @param string $className The entity class.
+     * @param mixed $identifier The entity identifier
      *
      * @return boolean true if the underlying cache contains corresponding data; false otherwise.
      */
@@ -82,8 +82,8 @@ interface Cache
     /**
      * Evicts the entity data for a particular entity "instance".
      *
-     * @param string $className  The entity class.
-     * @param mixed  $identifier The entity identifier.
+     * @param string $className The entity class.
+     * @param mixed $identifier The entity identifier.
      *
      * @return void
      */
@@ -108,9 +108,9 @@ interface Cache
     /**
      * Determine whether the cache contains data for the given collection.
      *
-     * @param string $className       The entity class.
-     * @param string $association     The field name that represents the association.
-     * @param mixed  $ownerIdentifier The identifier of the owning entity.
+     * @param string $className The entity class.
+     * @param string $association The field name that represents the association.
+     * @param mixed $ownerIdentifier The identifier of the owning entity.
      *
      * @return boolean true if the underlying cache contains corresponding data; false otherwise.
      */
@@ -119,9 +119,9 @@ interface Cache
     /**
      * Evicts the cache data for the given identified collection instance.
      *
-     * @param string $className       The entity class.
-     * @param string $association     The field name that represents the association.
-     * @param mixed  $ownerIdentifier The identifier of the owning entity.
+     * @param string $className The entity class.
+     * @param string $association The field name that represents the association.
+     * @param mixed $ownerIdentifier The identifier of the owning entity.
      *
      * @return void
      */
@@ -130,7 +130,7 @@ interface Cache
     /**
      * Evicts all entity data from the given region.
      *
-     * @param string $className   The entity class.
+     * @param string $className The entity class.
      * @param string $association The field name that represents the association.
      *
      * @return void

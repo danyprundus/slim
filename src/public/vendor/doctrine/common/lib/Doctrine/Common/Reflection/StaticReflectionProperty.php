@@ -40,7 +40,7 @@ class StaticReflectionProperty extends ReflectionProperty
 
     /**
      * @param StaticReflectionParser $staticReflectionParser
-     * @param string|null            $propertyName
+     * @param string|null $propertyName
      */
     public function __construct(StaticReflectionParser $staticReflectionParser, $propertyName)
     {

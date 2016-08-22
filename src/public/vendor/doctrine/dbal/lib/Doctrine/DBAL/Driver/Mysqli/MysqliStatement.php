@@ -82,7 +82,7 @@ class MysqliStatement implements \IteratorAggregate, Statement
 
     /**
      * @param \mysqli $conn
-     * @param string  $prepareString
+     * @param string $prepareString
      *
      * @throws \Doctrine\DBAL\Driver\Mysqli\MysqliException
      */
@@ -151,7 +151,7 @@ class MysqliStatement implements \IteratorAggregate, Statement
     {
         if (null !== $this->_bindedValues) {
             if (null !== $params) {
-                if ( ! $this->_bindValues($params)) {
+                if (!$this->_bindValues($params)) {
                     throw new MysqliException($this->_stmt->error, $this->_stmt->errno);
                 }
             } else {
@@ -161,7 +161,7 @@ class MysqliStatement implements \IteratorAggregate, Statement
             }
         }
 
-        if ( ! $this->_stmt->execute()) {
+        if (!$this->_stmt->execute()) {
             throw new MysqliException($this->_stmt->error, $this->_stmt->sqlstate, $this->_stmt->errno);
         }
 

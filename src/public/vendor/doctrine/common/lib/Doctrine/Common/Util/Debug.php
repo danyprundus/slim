@@ -46,10 +46,10 @@ final class Debug
      *
      * @link http://xdebug.org/
      *
-     * @param mixed   $var       The variable to dump.
-     * @param integer $maxDepth  The maximum nesting level for object properties.
+     * @param mixed $var The variable to dump.
+     * @param integer $maxDepth The maximum nesting level for object properties.
      * @param boolean $stripTags Whether output should strip HTML tags.
-     * @param boolean $echo      Send the dumped value to the output buffer
+     * @param boolean $echo Send the dumped value to the output buffer
      *
      * @return string
      */
@@ -77,17 +77,17 @@ final class Debug
         $dumpText = ($stripTags ? strip_tags(html_entity_decode($dump)) : $dump);
 
         ini_set('html_errors', $html);
-        
+
         if ($echo) {
             echo $dumpText;
         }
-        
+
         return $dumpText;
     }
 
     /**
      * @param mixed $var
-     * @param int   $maxDepth
+     * @param int $maxDepth
      *
      * @return mixed
      */
@@ -127,7 +127,7 @@ final class Debug
                     }
 
                     foreach ($reflClass->getProperties() as $reflProperty) {
-                        $name  = $reflProperty->getName();
+                        $name = $reflProperty->getName();
 
                         $reflProperty->setAccessible(true);
                         $return->$name = self::export($reflProperty->getValue($var), $maxDepth - 1);
@@ -153,6 +153,6 @@ final class Debug
      */
     public static function toString($obj)
     {
-        return method_exists($obj, '__toString') ? (string) $obj : get_class($obj) . '@' . spl_object_hash($obj);
+        return method_exists($obj, '__toString') ? (string)$obj : get_class($obj) . '@' . spl_object_hash($obj);
     }
 }

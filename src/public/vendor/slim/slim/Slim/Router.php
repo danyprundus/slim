@@ -78,7 +78,7 @@ class Router implements RouterInterface
     /**
      * Create new router
      *
-     * @param RouteParser   $parser
+     * @param RouteParser $parser
      */
     public function __construct(RouteParser $parser = null)
     {
@@ -130,7 +130,7 @@ class Router implements RouterInterface
      * Add route
      *
      * @param  string[] $methods Array of HTTP methods
-     * @param  string   $pattern The route pattern
+     * @param  string $pattern The route pattern
      * @param  callable $handler The route callable
      *
      * @return RouteInterface
@@ -182,7 +182,7 @@ class Router implements RouterInterface
      * Create a new Route object
      *
      * @param  string[] $methods Array of HTTP methods
-     * @param  string   $pattern The route pattern
+     * @param  string $pattern The route pattern
      * @param  callable $handler The route callable
      *
      * @return Slim\Interfaces\RouteInterface
@@ -242,7 +242,7 @@ class Router implements RouterInterface
     /**
      * Get named route object
      *
-     * @param string $name        Route name
+     * @param string $name Route name
      *
      * @return Route
      *
@@ -261,7 +261,7 @@ class Router implements RouterInterface
     /**
      * Remove named route
      *
-     * @param string $name        Route name
+     * @param string $name Route name
      *
      * @throws RuntimeException   If named route does not exist
      */
@@ -290,7 +290,7 @@ class Router implements RouterInterface
     /**
      * Add a route group to the array
      *
-     * @param string   $pattern
+     * @param string $pattern
      * @param callable $callable
      *
      * @return RouteGroupInterface
@@ -328,9 +328,9 @@ class Router implements RouterInterface
     /**
      * Build the path for a named route excluding the base path
      *
-     * @param string $name        Route name
-     * @param array  $data        Named argument replacement data
-     * @param array  $queryParams Optional query string parameters
+     * @param string $name Route name
+     * @param array $data Named argument replacement data
+     * @param array $queryParams Optional query string parameters
      *
      * @return string
      *
@@ -392,9 +392,9 @@ class Router implements RouterInterface
     /**
      * Build the path for a named route including the base path
      *
-     * @param string $name        Route name
-     * @param array  $data        Named argument replacement data
-     * @param array  $queryParams Optional query string parameters
+     * @param string $name Route name
+     * @param array $data Named argument replacement data
+     * @param array $queryParams Optional query string parameters
      *
      * @return string
      *
@@ -417,9 +417,9 @@ class Router implements RouterInterface
      *
      * This method is deprecated. Use pathFor() from now on.
      *
-     * @param string $name        Route name
-     * @param array  $data        Named argument replacement data
-     * @param array  $queryParams Optional query string parameters
+     * @param string $name Route name
+     * @param array $data Named argument replacement data
+     * @param array $queryParams Optional query string parameters
      *
      * @return string
      *

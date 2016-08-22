@@ -59,7 +59,7 @@ class SQLite3Cache extends CacheProvider
     /**
      * Constructor.
      *
-     * Calling the constructor will ensure that the database file and table 
+     * Calling the constructor will ensure that the database file and table
      * exist and will create both if they don't.
      *
      * @param SQLite3 $sqlite
@@ -68,7 +68,7 @@ class SQLite3Cache extends CacheProvider
     public function __construct(SQLite3 $sqlite, $table)
     {
         $this->sqlite = $sqlite;
-        $this->table  = (string) $table;
+        $this->table = (string)$table;
 
         list($id, $data, $exp) = $this->getFields();
 
@@ -214,7 +214,7 @@ class SQLite3Cache extends CacheProvider
     private function isExpired(array $item)
     {
         return isset($item[static::EXPIRATION_FIELD]) &&
-            $item[self::EXPIRATION_FIELD] !== null &&
-            $item[self::EXPIRATION_FIELD] < time();
+        $item[self::EXPIRATION_FIELD] !== null &&
+        $item[self::EXPIRATION_FIELD] < time();
     }
 }

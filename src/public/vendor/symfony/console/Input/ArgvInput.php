@@ -46,7 +46,7 @@ class ArgvInput extends Input
     /**
      * Constructor.
      *
-     * @param array|null           $argv       An array of parameters from the CLI (in the argv format)
+     * @param array|null $argv An array of parameters from the CLI (in the argv format)
      * @param InputDefinition|null $definition A InputDefinition instance
      */
     public function __construct(array $argv = null, InputDefinition $definition = null)
@@ -169,12 +169,12 @@ class ArgvInput extends Input
             $arg = $this->definition->getArgument($c);
             $this->arguments[$arg->getName()] = $arg->isArray() ? array($token) : $token;
 
-        // if last argument isArray(), append token to last argument
+            // if last argument isArray(), append token to last argument
         } elseif ($this->definition->hasArgument($c - 1) && $this->definition->getArgument($c - 1)->isArray()) {
             $arg = $this->definition->getArgument($c - 1);
             $this->arguments[$arg->getName()][] = $token;
 
-        // unexpected argument
+            // unexpected argument
         } else {
             throw new RuntimeException('Too many arguments.');
         }
@@ -184,7 +184,7 @@ class ArgvInput extends Input
      * Adds a short option value.
      *
      * @param string $shortcut The short option key
-     * @param mixed  $value    The value for the option
+     * @param mixed $value The value for the option
      *
      * @throws RuntimeException When option given doesn't exist
      */
@@ -200,8 +200,8 @@ class ArgvInput extends Input
     /**
      * Adds a long option value.
      *
-     * @param string $name  The long option key
-     * @param mixed  $value The value for the option
+     * @param string $name The long option key
+     * @param mixed $value The value for the option
      *
      * @throws RuntimeException When option given doesn't exist
      */
@@ -271,14 +271,14 @@ class ArgvInput extends Input
      */
     public function hasParameterOption($values, $onlyParams = false)
     {
-        $values = (array) $values;
+        $values = (array)$values;
 
         foreach ($this->tokens as $token) {
             if ($onlyParams && $token === '--') {
                 return false;
             }
             foreach ($values as $value) {
-                if ($token === $value || 0 === strpos($token, $value.'=')) {
+                if ($token === $value || 0 === strpos($token, $value . '=')) {
                     return true;
                 }
             }
@@ -292,7 +292,7 @@ class ArgvInput extends Input
      */
     public function getParameterOption($values, $default = false, $onlyParams = false)
     {
-        $values = (array) $values;
+        $values = (array)$values;
         $tokens = $this->tokens;
 
         while (0 < count($tokens)) {
@@ -302,7 +302,7 @@ class ArgvInput extends Input
             }
 
             foreach ($values as $value) {
-                if ($token === $value || 0 === strpos($token, $value.'=')) {
+                if ($token === $value || 0 === strpos($token, $value . '=')) {
                     if (false !== $pos = strpos($token, '=')) {
                         return substr($token, $pos + 1);
                     }
@@ -324,7 +324,7 @@ class ArgvInput extends Input
     {
         $tokens = array_map(function ($token) {
             if (preg_match('{^(-[^=]+=)(.+)}', $token, $match)) {
-                return $match[1].$this->escapeToken($match[2]);
+                return $match[1] . $this->escapeToken($match[2]);
             }
 
             if ($token && $token[0] !== '-') {

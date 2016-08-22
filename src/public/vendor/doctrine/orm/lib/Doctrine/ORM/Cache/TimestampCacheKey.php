@@ -33,6 +33,6 @@ class TimestampCacheKey extends CacheKey
      */
     public function __construct($space)
     {
-        $this->hash = (string) $space;
+        $this->hash = (string)$space;
     }
 }

@@ -101,7 +101,7 @@ trait MiddlewareAwareTrait
      * Call middleware stack
      *
      * @param  ServerRequestInterface $req A request object
-     * @param  ResponseInterface      $res A response object
+     * @param  ResponseInterface $res A response object
      *
      * @return ResponseInterface
      */

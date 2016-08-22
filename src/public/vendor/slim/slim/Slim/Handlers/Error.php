@@ -24,9 +24,9 @@ class Error extends AbstractError
     /**
      * Invoke error handler
      *
-     * @param ServerRequestInterface $request   The most recent Request object
-     * @param ResponseInterface      $response  The most recent Response object
-     * @param \Exception             $exception The caught Exception object
+     * @param ServerRequestInterface $request The most recent Request object
+     * @param ResponseInterface $response The most recent Response object
+     * @param \Exception $exception The caught Exception object
      *
      * @return ResponseInterface
      * @throws UnexpectedValueException
@@ -47,7 +47,7 @@ class Error extends AbstractError
             case 'text/html':
                 $output = $this->renderHtmlErrorMessage($exception);
                 break;
-            
+
             default:
                 throw new UnexpectedValueException('Cannot render unknown content type ' . $contentType);
         }
@@ -58,9 +58,9 @@ class Error extends AbstractError
         $body->write($output);
 
         return $response
-                ->withStatus(500)
-                ->withHeader('Content-type', $contentType)
-                ->withBody($body);
+            ->withStatus(500)
+            ->withHeader('Content-type', $contentType)
+            ->withBody($body);
     }
 
     /**

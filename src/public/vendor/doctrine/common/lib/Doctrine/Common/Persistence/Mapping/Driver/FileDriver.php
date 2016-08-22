@@ -57,9 +57,9 @@ abstract class FileDriver implements MappingDriver
      * Initializes a new FileDriver that looks in the given path(s) for mapping
      * documents and operates in the specified operating mode.
      *
-     * @param string|array|FileLocator $locator       A FileLocator or one/multiple paths
+     * @param string|array|FileLocator $locator A FileLocator or one/multiple paths
      *                                                where mapping documents can be found.
-     * @param string|null              $fileExtension
+     * @param string|null $fileExtension
      */
     public function __construct($locator, $fileExtension = null)
     {
@@ -145,13 +145,13 @@ abstract class FileDriver implements MappingDriver
             $this->initialize();
         }
 
-        if (! $this->classCache) {
-            return (array) $this->locator->getAllClassNames($this->globalBasename);
+        if (!$this->classCache) {
+            return (array)$this->locator->getAllClassNames($this->globalBasename);
         }
 
         return array_merge(
             array_keys($this->classCache),
-            (array) $this->locator->getAllClassNames($this->globalBasename)
+            (array)$this->locator->getAllClassNames($this->globalBasename)
         );
     }
 
@@ -181,7 +181,7 @@ abstract class FileDriver implements MappingDriver
         $this->classCache = [];
         if (null !== $this->globalBasename) {
             foreach ($this->locator->getPaths() as $path) {
-                $file = $path.'/'.$this->globalBasename.$this->locator->getFileExtension();
+                $file = $path . '/' . $this->globalBasename . $this->locator->getFileExtension();
                 if (is_file($file)) {
                     $this->classCache = array_merge(
                         $this->classCache,

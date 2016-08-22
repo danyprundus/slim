@@ -26,5 +26,4 @@ require 'routes/finance.php';
 require 'routes/clients.php';
 
 
-
 $app->run();

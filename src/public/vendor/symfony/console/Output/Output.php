@@ -35,8 +35,8 @@ abstract class Output implements OutputInterface
     /**
      * Constructor.
      *
-     * @param int                           $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
-     * @param bool                          $decorated Whether to decorate messages
+     * @param int $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
+     * @param bool $decorated Whether to decorate messages
      * @param OutputFormatterInterface|null $formatter Output formatter instance (null to use default OutputFormatter)
      */
     public function __construct($verbosity = self::VERBOSITY_NORMAL, $decorated = false, OutputFormatterInterface $formatter = null)
@@ -83,7 +83,7 @@ abstract class Output implements OutputInterface
      */
     public function setVerbosity($level)
     {
-        $this->verbosity = (int) $level;
+        $this->verbosity = (int)$level;
     }
 
     /**
@@ -139,7 +139,7 @@ abstract class Output implements OutputInterface
      */
     public function write($messages, $newline = false, $options = self::OUTPUT_NORMAL)
     {
-        $messages = (array) $messages;
+        $messages = (array)$messages;
 
         $types = self::OUTPUT_NORMAL | self::OUTPUT_RAW | self::OUTPUT_PLAIN;
         $type = $types & $options ?: self::OUTPUT_NORMAL;
@@ -171,7 +171,7 @@ abstract class Output implements OutputInterface
      * Writes a message to the output.
      *
      * @param string $message A message to write to the output
-     * @param bool   $newline Whether to add a newline or not
+     * @param bool $newline Whether to add a newline or not
      */
     abstract protected function doWrite($message, $newline);
 }

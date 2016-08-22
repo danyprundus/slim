@@ -52,7 +52,7 @@ class BigIntegerIdentityGenerator extends AbstractIdGenerator
      */
     public function generate(EntityManager $em, $entity)
     {
-        return (string) $em->getConnection()->lastInsertId($this->sequenceName);
+        return (string)$em->getConnection()->lastInsertId($this->sequenceName);
     }
 
     /**

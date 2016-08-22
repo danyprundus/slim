@@ -55,12 +55,12 @@ class LazyCriteriaCollection extends AbstractLazyCollection implements Selectabl
 
     /**
      * @param EntityPersister $entityPersister
-     * @param Criteria        $criteria
+     * @param Criteria $criteria
      */
     public function __construct(EntityPersister $entityPersister, Criteria $criteria)
     {
         $this->entityPersister = $entityPersister;
-        $this->criteria        = $criteria;
+        $this->criteria = $criteria;
     }
 
     /**
@@ -112,7 +112,7 @@ class LazyCriteriaCollection extends AbstractLazyCollection implements Selectabl
      */
     protected function doInitialize()
     {
-        $elements         = $this->entityPersister->loadCriteria($this->criteria);
+        $elements = $this->entityPersister->loadCriteria($this->criteria);
         $this->collection = new ArrayCollection($elements);
     }
 }

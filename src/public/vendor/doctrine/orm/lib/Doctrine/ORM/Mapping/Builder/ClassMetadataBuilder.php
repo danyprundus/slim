@@ -83,8 +83,8 @@ class ClassMetadataBuilder
     /**
      * Adds and embedded class
      *
-     * @param string      $fieldName
-     * @param string      $class
+     * @param string $fieldName
+     * @param string $class
      * @param string|null $columnPrefix
      *
      * @return $this
@@ -92,8 +92,8 @@ class ClassMetadataBuilder
     public function addEmbedded($fieldName, $class, $columnPrefix = null)
     {
         $this->cm->mapEmbedded(array(
-            'fieldName'    => $fieldName,
-            'class'        => $class,
+            'fieldName' => $fieldName,
+            'class' => $class,
             'columnPrefix' => $columnPrefix
         ));
 
@@ -143,7 +143,7 @@ class ClassMetadataBuilder
     /**
      * Adds Index.
      *
-     * @param array  $columns
+     * @param array $columns
      * @param string $name
      *
      * @return ClassMetadataBuilder
@@ -162,14 +162,14 @@ class ClassMetadataBuilder
     /**
      * Adds Unique Constraint.
      *
-     * @param array  $columns
+     * @param array $columns
      * @param string $name
      *
      * @return ClassMetadataBuilder
      */
     public function addUniqueConstraint(array $columns, $name)
     {
-        if ( ! isset($this->cm->table['uniqueConstraints'])) {
+        if (!isset($this->cm->table['uniqueConstraints'])) {
             $this->cm->table['uniqueConstraints'] = array();
         }
 
@@ -225,7 +225,7 @@ class ClassMetadataBuilder
      *
      * @param string $name
      * @param string $type
-     * @param int    $length
+     * @param int $length
      *
      * @return ClassMetadataBuilder
      */
@@ -299,7 +299,7 @@ class ClassMetadataBuilder
      *
      * @param string $name
      * @param string $type
-     * @param array  $mapping
+     * @param array $mapping
      *
      * @return ClassMetadataBuilder
      */
@@ -327,7 +327,7 @@ class ClassMetadataBuilder
             $this,
             array(
                 'fieldName' => $name,
-                'type'      => $type
+                'type' => $type
             )
         );
     }
@@ -345,8 +345,8 @@ class ClassMetadataBuilder
         return new EmbeddedBuilder(
             $this,
             array(
-                'fieldName'    => $fieldName,
-                'class'        => $class,
+                'fieldName' => $fieldName,
+                'class' => $class,
                 'columnPrefix' => null
             )
         );
@@ -355,8 +355,8 @@ class ClassMetadataBuilder
     /**
      * Adds a simple many to one association, optionally with the inversed by field.
      *
-     * @param string      $name
-     * @param string      $targetEntity
+     * @param string $name
+     * @param string $targetEntity
      * @param string|null $inversedBy
      *
      * @return ClassMetadataBuilder
@@ -387,7 +387,7 @@ class ClassMetadataBuilder
         return new AssociationBuilder(
             $this,
             array(
-                'fieldName'    => $name,
+                'fieldName' => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::MANY_TO_ONE
@@ -407,7 +407,7 @@ class ClassMetadataBuilder
         return new AssociationBuilder(
             $this,
             array(
-                'fieldName'    => $name,
+                'fieldName' => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::ONE_TO_ONE
@@ -434,8 +434,8 @@ class ClassMetadataBuilder
     /**
      * Adds simple owning one-to-one association.
      *
-     * @param string      $name
-     * @param string      $targetEntity
+     * @param string $name
+     * @param string $targetEntity
      * @param string|null $inversedBy
      *
      * @return ClassMetadataBuilder
@@ -464,7 +464,7 @@ class ClassMetadataBuilder
         return new ManyToManyAssociationBuilder(
             $this,
             array(
-                'fieldName'    => $name,
+                'fieldName' => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::MANY_TO_MANY
@@ -474,8 +474,8 @@ class ClassMetadataBuilder
     /**
      * Adds a simple owning many to many association.
      *
-     * @param string      $name
-     * @param string      $targetEntity
+     * @param string $name
+     * @param string $targetEntity
      * @param string|null $inversedBy
      *
      * @return ClassMetadataBuilder
@@ -521,7 +521,7 @@ class ClassMetadataBuilder
         return new OneToManyAssociationBuilder(
             $this,
             array(
-                'fieldName'    => $name,
+                'fieldName' => $name,
                 'targetEntity' => $targetEntity
             ),
             ClassMetadata::ONE_TO_MANY

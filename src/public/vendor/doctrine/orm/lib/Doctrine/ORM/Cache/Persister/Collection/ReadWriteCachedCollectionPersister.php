@@ -33,10 +33,10 @@ use Doctrine\ORM\PersistentCollection;
 class ReadWriteCachedCollectionPersister extends AbstractCollectionPersister
 {
     /**
-     * @param \Doctrine\ORM\Persisters\Collection\CollectionPersister $persister   The collection persister that will be cached.
-     * @param \Doctrine\ORM\Cache\ConcurrentRegion                    $region      The collection region.
-     * @param \Doctrine\ORM\EntityManagerInterface                    $em          The entity manager.
-     * @param array                                                   $association The association mapping.
+     * @param \Doctrine\ORM\Persisters\Collection\CollectionPersister $persister The collection persister that will be cached.
+     * @param \Doctrine\ORM\Cache\ConcurrentRegion $region The collection region.
+     * @param \Doctrine\ORM\EntityManagerInterface $em The entity manager.
+     * @param array $association The association mapping.
      */
     public function __construct(CollectionPersister $persister, ConcurrentRegion $region, EntityManagerInterface $em, array $association)
     {
@@ -89,8 +89,8 @@ class ReadWriteCachedCollectionPersister extends AbstractCollectionPersister
     public function delete(PersistentCollection $collection)
     {
         $ownerId = $this->uow->getEntityIdentifier($collection->getOwner());
-        $key     = new CollectionCacheKey($this->sourceEntity->rootEntityName, $this->association['fieldName'], $ownerId);
-        $lock    = $this->region->lock($key);
+        $key = new CollectionCacheKey($this->sourceEntity->rootEntityName, $this->association['fieldName'], $ownerId);
+        $lock = $this->region->lock($key);
 
         $this->persister->delete($collection);
 
@@ -99,8 +99,8 @@ class ReadWriteCachedCollectionPersister extends AbstractCollectionPersister
         }
 
         $this->queuedCache['delete'][spl_object_hash($collection)] = array(
-            'key'   => $key,
-            'lock'  => $lock
+            'key' => $key,
+            'lock' => $lock
         );
     }
 
@@ -110,25 +110,25 @@ class ReadWriteCachedCollectionPersister extends AbstractCollectionPersister
     public function update(PersistentCollection $collection)
     {
         $isInitialized = $collection->isInitialized();
-        $isDirty       = $collection->isDirty();
+        $isDirty = $collection->isDirty();
 
-        if ( ! $isInitialized && ! $isDirty) {
+        if (!$isInitialized && !$isDirty) {
             return;
         }
 
         $this->persister->update($collection);
 
         $ownerId = $this->uow->getEntityIdentifier($collection->getOwner());
-        $key     = new CollectionCacheKey($this->sourceEntity->rootEntityName, $this->association['fieldName'], $ownerId);
-        $lock    = $this->region->lock($key);
+        $key = new CollectionCacheKey($this->sourceEntity->rootEntityName, $this->association['fieldName'], $ownerId);
+        $lock = $this->region->lock($key);
 
         if ($lock === null) {
             return;
         }
 
         $this->queuedCache['update'][spl_object_hash($collection)] = array(
-            'key'   => $key,
-            'lock'  => $lock
+            'key' => $key,
+            'lock' => $lock
         );
     }
 }

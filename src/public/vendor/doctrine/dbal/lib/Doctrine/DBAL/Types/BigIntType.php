@@ -58,6 +58,6 @@ class BigIntType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return (null === $value) ? null : (string) $value;
+        return (null === $value) ? null : (string)$value;
     }
 }

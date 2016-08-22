@@ -25,7 +25,7 @@ abstract class AbstractError extends AbstractHandler
      */
     public function __construct($displayErrorDetails = false)
     {
-        $this->displayErrorDetails = (bool) $displayErrorDetails;
+        $this->displayErrorDetails = (bool)$displayErrorDetails;
     }
 
     /**

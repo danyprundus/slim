@@ -19,7 +19,7 @@ class InsertStatement extends StatementContainer
      * Constructor.
      *
      * @param Database $dbh
-     * @param array    $columnsOrPairs
+     * @param array $columnsOrPairs
      */
     public function __construct(Database $dbh, array $columnsOrPairs)
     {
@@ -88,9 +88,9 @@ class InsertStatement extends StatementContainer
             trigger_error('Missing values for insertion', E_USER_ERROR);
         }
 
-        $sql = 'INSERT INTO '.$this->table;
-        $sql .= ' '.$this->getColumns();
-        $sql .= ' VALUES '.$this->getPlaceholders();
+        $sql = 'INSERT INTO ' . $this->table;
+        $sql .= ' ' . $this->getColumns();
+        $sql .= ' VALUES ' . $this->getPlaceholders();
 
         return $sql;
     }
@@ -116,6 +116,6 @@ class InsertStatement extends StatementContainer
      */
     protected function getColumns()
     {
-        return '( '.implode(' , ', $this->columns).' )';
+        return '( ' . implode(' , ', $this->columns) . ' )';
     }
 }

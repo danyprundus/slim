@@ -56,13 +56,13 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
     /**
      * @param ReflectionProperty $parentProperty
      * @param ReflectionProperty $childProperty
-     * @param string             $embeddedClass
+     * @param string $embeddedClass
      */
     public function __construct(ReflectionProperty $parentProperty, ReflectionProperty $childProperty, $embeddedClass)
     {
-        $this->parentProperty  = $parentProperty;
-        $this->childProperty   = $childProperty;
-        $this->embeddedClass   = (string) $embeddedClass;
+        $this->parentProperty = $parentProperty;
+        $this->childProperty = $childProperty;
+        $this->embeddedClass = (string)$embeddedClass;
 
         parent::__construct($childProperty->getDeclaringClass()->getName(), $childProperty->getName());
     }

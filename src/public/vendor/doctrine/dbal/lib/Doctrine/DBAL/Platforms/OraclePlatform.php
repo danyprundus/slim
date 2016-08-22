@@ -49,7 +49,7 @@ class OraclePlatform extends AbstractPlatform
      */
     static public function assertValidIdentifier($identifier)
     {
-        if ( ! preg_match('(^(([a-zA-Z]{1}[a-zA-Z0-9_$#]{0,})|("[^"]+"))$)', $identifier)) {
+        if (!preg_match('(^(([a-zA-Z]{1}[a-zA-Z0-9_$#]{0,})|("[^"]+"))$)', $identifier)) {
             throw new DBALException("Invalid Oracle identifier");
         }
     }
@@ -86,10 +86,10 @@ class OraclePlatform extends AbstractPlatform
     public function getLocateExpression($str, $substr, $startPos = false)
     {
         if ($startPos == false) {
-            return 'INSTR('.$str.', '.$substr.')';
+            return 'INSTR(' . $str . ', ' . $substr . ')';
         }
 
-        return 'INSTR('.$str.', '.$substr.', '.$startPos.')';
+        return 'INSTR(' . $str . ', ' . $substr . ', ' . $startPos . ')';
     }
 
     /**
@@ -155,7 +155,7 @@ class OraclePlatform extends AbstractPlatform
      */
     public function getDateDiffExpression($date1, $date2)
     {
-        return "TRUNC(TO_NUMBER(SUBSTR((" . $date1 . "-" . $date2 . "), 1, INSTR(" . $date1 . "-" . $date2 .", ' '))))";
+        return "TRUNC(TO_NUMBER(SUBSTR((" . $date1 . "-" . $date2 . "), 1, INSTR(" . $date1 . "-" . $date2 . ", ' '))))";
     }
 
     /**
@@ -163,7 +163,7 @@ class OraclePlatform extends AbstractPlatform
      */
     public function getBitAndComparisonExpression($value1, $value2)
     {
-        return 'BITAND('.$value1 . ', ' . $value2 . ')';
+        return 'BITAND(' . $value1 . ', ' . $value2 . ')';
     }
 
     /**
@@ -172,8 +172,8 @@ class OraclePlatform extends AbstractPlatform
     public function getBitOrComparisonExpression($value1, $value2)
     {
         return '(' . $value1 . '-' .
-                $this->getBitAndComparisonExpression($value1, $value2)
-                . '+' . $value2 . ')';
+        $this->getBitAndComparisonExpression($value1, $value2)
+        . '+' . $value2 . ')';
     }
 
     /**
@@ -186,10 +186,10 @@ class OraclePlatform extends AbstractPlatform
     public function getCreateSequenceSQL(Sequence $sequence)
     {
         return 'CREATE SEQUENCE ' . $sequence->getQuotedName($this) .
-               ' START WITH ' . $sequence->getInitialValue() .
-               ' MINVALUE ' . $sequence->getInitialValue() .
-               ' INCREMENT BY ' . $sequence->getAllocationSize() .
-               $this->getSequenceCacheSQL($sequence);
+        ' START WITH ' . $sequence->getInitialValue() .
+        ' MINVALUE ' . $sequence->getInitialValue() .
+        ' INCREMENT BY ' . $sequence->getAllocationSize() .
+        $this->getSequenceCacheSQL($sequence);
     }
 
     /**
@@ -198,8 +198,8 @@ class OraclePlatform extends AbstractPlatform
     public function getAlterSequenceSQL(Sequence $sequence)
     {
         return 'ALTER SEQUENCE ' . $sequence->getQuotedName($this) .
-               ' INCREMENT BY ' . $sequence->getAllocationSize()
-               . $this->getSequenceCacheSQL($sequence);
+        ' INCREMENT BY ' . $sequence->getAllocationSize()
+        . $this->getSequenceCacheSQL($sequence);
     }
 
     /**
@@ -334,7 +334,7 @@ class OraclePlatform extends AbstractPlatform
     protected function getVarcharTypeDeclarationSQLSnippet($length, $fixed)
     {
         return $fixed ? ($length ? 'CHAR(' . $length . ')' : 'CHAR(2000)')
-                : ($length ? 'VARCHAR2(' . $length . ')' : 'VARCHAR2(4000)');
+            : ($length ? 'VARCHAR2(' . $length . ')' : 'VARCHAR2(4000)');
     }
 
     /**
@@ -376,8 +376,8 @@ class OraclePlatform extends AbstractPlatform
     {
         $database = $this->normalizeIdentifier($database);
 
-        return "SELECT sequence_name, min_value, increment_by FROM sys.all_sequences ".
-               "WHERE SEQUENCE_OWNER = '" . $database->getName() . "'";
+        return "SELECT sequence_name, min_value, increment_by FROM sys.all_sequences " .
+        "WHERE SEQUENCE_OWNER = '" . $database->getName() . "'";
     }
 
     /**
@@ -395,12 +395,13 @@ class OraclePlatform extends AbstractPlatform
             }
 
             if (isset($column['autoincrement']) && $column['autoincrement'] ||
-               (isset($column['autoinc']) && $column['autoinc'])) {
+                (isset($column['autoinc']) && $column['autoinc'])
+            ) {
                 $sql = array_merge($sql, $this->getCreateAutoincrementSql($name, $table));
             }
         }
 
-        if (isset($indexes) && ! empty($indexes)) {
+        if (isset($indexes) && !empty($indexes)) {
             foreach ($indexes as $index) {
                 $sql[] = $this->getCreateIndexSQL($index, $table);
             }
@@ -420,14 +421,14 @@ class OraclePlatform extends AbstractPlatform
         $table = $this->normalizeIdentifier($table);
 
         return "SELECT uind.index_name AS name, " .
-             "       uind.index_type AS type, " .
-             "       decode( uind.uniqueness, 'NONUNIQUE', 0, 'UNIQUE', 1 ) AS is_unique, " .
-             "       uind_col.column_name AS column_name, " .
-             "       uind_col.column_position AS column_pos, " .
-             "       (SELECT ucon.constraint_type FROM user_constraints ucon WHERE ucon.constraint_name = uind.index_name) AS is_primary ".
-             "FROM user_indexes uind, user_ind_columns uind_col " .
-             "WHERE uind.index_name = uind_col.index_name AND uind_col.table_name = '" . $table->getName() . "' " .
-             "ORDER BY uind_col.column_position ASC";
+        "       uind.index_type AS type, " .
+        "       decode( uind.uniqueness, 'NONUNIQUE', 0, 'UNIQUE', 1 ) AS is_unique, " .
+        "       uind_col.column_name AS column_name, " .
+        "       uind_col.column_position AS column_pos, " .
+        "       (SELECT ucon.constraint_type FROM user_constraints ucon WHERE ucon.constraint_name = uind.index_name) AS is_primary " .
+        "FROM user_indexes uind, user_ind_columns uind_col " .
+        "WHERE uind.index_name = uind_col.index_name AND uind_col.table_name = '" . $table->getName() . "' " .
+        "ORDER BY uind_col.column_position ASC";
     }
 
     /**
@@ -459,12 +460,12 @@ class OraclePlatform extends AbstractPlatform
      */
     public function getDropViewSQL($name)
     {
-        return 'DROP VIEW '. $name;
+        return 'DROP VIEW ' . $name;
     }
 
     /**
-     * @param string  $name
-     * @param string  $table
+     * @param string $name
+     * @param string $table
      * @param integer $start
      *
      * @return array
@@ -490,7 +491,7 @@ class OraclePlatform extends AbstractPlatform
 BEGIN
   SELECT COUNT(CONSTRAINT_NAME) INTO constraints_Count FROM USER_CONSTRAINTS WHERE TABLE_NAME = \'' . $unquotedTableName . '\' AND CONSTRAINT_TYPE = \'P\';
   IF constraints_Count = 0 OR constraints_Count = \'\' THEN
-    EXECUTE IMMEDIATE \''.$this->getCreateConstraintSQL($idx, $quotedTableName).'\';
+    EXECUTE IMMEDIATE \'' . $this->getCreateConstraintSQL($idx, $quotedTableName) . '\';
   END IF;
 END;';
 
@@ -510,7 +511,7 @@ DECLARE
    last_InsertID NUMBER;
 BEGIN
    SELECT ' . $sequenceName . '.NEXTVAL INTO :NEW.' . $quotedName . ' FROM DUAL;
-   IF (:NEW.' . $quotedName . ' IS NULL OR :NEW.'.$quotedName.' = 0) THEN
+   IF (:NEW.' . $quotedName . ' IS NULL OR :NEW.' . $quotedName . ' = 0) THEN
       SELECT ' . $sequenceName . '.NEXTVAL INTO :NEW.' . $quotedName . ' FROM DUAL;
    ELSE
       SELECT NVL(Last_Number, 0) INTO last_Sequence
@@ -641,9 +642,9 @@ LEFT JOIN user_cons_columns r_cols
             $ownerCondition = "AND c.owner = '" . $database->getName() . "'";
         }
 
-        return "SELECT c.*, d.comments FROM $tabColumnsTableName c ".
-               "INNER JOIN " . $colCommentsTableName . " d ON d.TABLE_NAME = c.TABLE_NAME AND d.COLUMN_NAME = c.COLUMN_NAME ".
-               "WHERE c.table_name = '" . $table->getName() . "' ".$ownerCondition." ORDER BY c.column_name";
+        return "SELECT c.*, d.comments FROM $tabColumnsTableName c " .
+        "INNER JOIN " . $colCommentsTableName . " d ON d.TABLE_NAME = c.TABLE_NAME AND d.COLUMN_NAME = c.COLUMN_NAME " .
+        "WHERE c.table_name = '" . $table->getName() . "' " . $ownerCondition . " ORDER BY c.column_name";
     }
 
     /**
@@ -774,10 +775,10 @@ LEFT JOIN user_cons_columns r_cols
             /**
              * Do not add query part if only comment has changed
              */
-            if ( ! ($columnHasChangedComment && count($columnDiff->changedProperties) === 1)) {
+            if (!($columnHasChangedComment && count($columnDiff->changedProperties) === 1)) {
                 $columnInfo = $column->toArray();
 
-                if ( ! $columnDiff->hasChanged('notnull')) {
+                if (!$columnDiff->hasChanged('notnull')) {
                     unset($columnInfo['notnull']);
                 }
 
@@ -805,7 +806,7 @@ LEFT JOIN user_cons_columns r_cols
             $oldColumnName = new Identifier($oldColumnName);
 
             $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) .
-                ' RENAME COLUMN ' . $oldColumnName->getQuotedName($this) .' TO ' . $column->getQuotedName($this);
+                ' RENAME COLUMN ' . $oldColumnName->getQuotedName($this) . ' TO ' . $column->getQuotedName($this);
         }
 
         $fields = array();
@@ -818,12 +819,12 @@ LEFT JOIN user_cons_columns r_cols
         }
 
         if (count($fields)) {
-            $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' DROP (' . implode(', ', $fields).')';
+            $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' DROP (' . implode(', ', $fields) . ')';
         }
 
         $tableSql = array();
 
-        if ( ! $this->onSchemaAlterTable($diff, $tableSql)) {
+        if (!$this->onSchemaAlterTable($diff, $tableSql)) {
             $sql = array_merge($sql, $commentsSQL);
 
             if ($diff->newName !== false) {
@@ -938,8 +939,8 @@ LEFT JOIN user_cons_columns r_cols
      */
     protected function doModifyLimitQuery($query, $limit, $offset = null)
     {
-        $limit = (int) $limit;
-        $offset = (int) $offset;
+        $limit = (int)$limit;
+        $offset = (int)$offset;
 
         if (preg_match('/^\s*SELECT/i', $query)) {
             if (!preg_match('/\sFROM\s/i', $query)) {
@@ -951,8 +952,8 @@ LEFT JOIN user_cons_columns r_cols
                 if ($offset > 0) {
                     $min = $offset + 1;
                     $query = 'SELECT * FROM (SELECT a.' . $column . ', rownum AS doctrine_rownum FROM (' .
-                            $query .
-                            ') a WHERE rownum <= ' . $max . ') WHERE doctrine_rownum >= ' . $min;
+                        $query .
+                        ') a WHERE rownum <= ' . $max . ') WHERE doctrine_rownum >= ' . $min;
                 } else {
                     $query = 'SELECT a.' . $column . ' FROM (' . $query . ') a WHERE ROWNUM <= ' . $max;
                 }
@@ -1054,7 +1055,7 @@ LEFT JOIN user_cons_columns r_cols
      */
     public function getTruncateTableSQL($tableName, $cascade = false)
     {
-        return 'TRUNCATE TABLE '.$tableName;
+        return 'TRUNCATE TABLE ' . $tableName;
     }
 
     /**
@@ -1071,29 +1072,29 @@ LEFT JOIN user_cons_columns r_cols
     protected function initializeDoctrineTypeMappings()
     {
         $this->doctrineTypeMapping = array(
-            'integer'           => 'integer',
-            'number'            => 'integer',
-            'pls_integer'       => 'boolean',
-            'binary_integer'    => 'boolean',
-            'varchar'           => 'string',
-            'varchar2'          => 'string',
-            'nvarchar2'         => 'string',
-            'char'              => 'string',
-            'nchar'             => 'string',
-            'date'              => 'datetime',
-            'timestamp'         => 'datetime',
-            'timestamptz'       => 'datetimetz',
-            'float'             => 'float',
-            'binary_float'      => 'float',
-            'binary_double'     => 'float',
-            'long'              => 'string',
-            'clob'              => 'text',
-            'nclob'             => 'text',
-            'raw'               => 'binary',
-            'long raw'          => 'blob',
-            'rowid'             => 'string',
-            'urowid'            => 'string',
-            'blob'              => 'blob',
+            'integer' => 'integer',
+            'number' => 'integer',
+            'pls_integer' => 'boolean',
+            'binary_integer' => 'boolean',
+            'varchar' => 'string',
+            'varchar2' => 'string',
+            'nvarchar2' => 'string',
+            'char' => 'string',
+            'nchar' => 'string',
+            'date' => 'datetime',
+            'timestamp' => 'datetime',
+            'timestamptz' => 'datetimetz',
+            'float' => 'float',
+            'binary_float' => 'float',
+            'binary_double' => 'float',
+            'long' => 'string',
+            'clob' => 'text',
+            'nclob' => 'text',
+            'raw' => 'binary',
+            'long raw' => 'blob',
+            'rowid' => 'string',
+            'urowid' => 'string',
+            'blob' => 'blob',
         );
     }
 

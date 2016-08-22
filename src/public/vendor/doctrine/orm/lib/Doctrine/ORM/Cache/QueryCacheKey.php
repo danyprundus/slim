@@ -45,14 +45,14 @@ class QueryCacheKey extends CacheKey
     public $cacheMode;
 
     /**
-     * @param string  $hash      Result cache id
-     * @param integer $lifetime  Query lifetime
+     * @param string $hash Result cache id
+     * @param integer $lifetime Query lifetime
      * @param integer $cacheMode Query cache mode
      */
     public function __construct($hash, $lifetime = 0, $cacheMode = Cache::MODE_NORMAL)
     {
-        $this->hash      = $hash;
-        $this->lifetime  = $lifetime;
+        $this->hash = $hash;
+        $this->lifetime = $lifetime;
         $this->cacheMode = $cacheMode;
     }
 }

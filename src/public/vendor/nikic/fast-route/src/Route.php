@@ -2,7 +2,8 @@
 
 namespace FastRoute;
 
-class Route {
+class Route
+{
     public $httpMethod;
     public $regex;
     public $variables;
@@ -12,11 +13,12 @@ class Route {
      * Constructs a route (value object).
      *
      * @param string $httpMethod
-     * @param mixed  $handler
+     * @param mixed $handler
      * @param string $regex
-     * @param array  $variables
+     * @param array $variables
      */
-    public function __construct($httpMethod, $handler, $regex, $variables) {
+    public function __construct($httpMethod, $handler, $regex, $variables)
+    {
         $this->httpMethod = $httpMethod;
         $this->handler = $handler;
         $this->regex = $regex;
@@ -30,9 +32,10 @@ class Route {
      *
      * @return bool
      */
-    public function matches($str) {
+    public function matches($str)
+    {
         $regex = '~^' . $this->regex . '$~';
-        return (bool) preg_match($regex, $str);
+        return (bool)preg_match($regex, $str);
     }
 }
 

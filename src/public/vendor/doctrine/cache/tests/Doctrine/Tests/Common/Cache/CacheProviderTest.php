@@ -96,8 +96,8 @@ class CacheProviderTest extends \Doctrine\Tests\DoctrineTestCase
             ->will($this->returnValue(true));
 
         $cache->saveMultiple(array(
-            'kerr'  => 'verr',
-            'kok'   => 'vok',
+            'kerr' => 'verr',
+            'kok' => 'vok',
         ));
     }
 }

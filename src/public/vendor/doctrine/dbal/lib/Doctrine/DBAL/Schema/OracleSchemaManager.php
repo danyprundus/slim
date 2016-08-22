@@ -69,7 +69,7 @@ class OracleSchemaManager extends AbstractSchemaManager
      * @license New BSD License
      * @link http://ezcomponents.org/docs/api/trunk/DatabaseSchema/ezcDbSchemaPgsqlReader.html
      */
-    protected function _getPortableTableIndexesList($tableIndexes, $tableName=null)
+    protected function _getPortableTableIndexesList($tableIndexes, $tableName = null)
     {
         $indexBuffer = array();
         foreach ($tableIndexes as $tableIndex) {
@@ -111,7 +111,7 @@ class OracleSchemaManager extends AbstractSchemaManager
 
         $unsigned = $fixed = null;
 
-        if ( ! isset($tableColumn['column_name'])) {
+        if (!isset($tableColumn['column_name'])) {
             $tableColumn['column_name'] = '';
         }
 
@@ -198,14 +198,14 @@ class OracleSchemaManager extends AbstractSchemaManager
         }
 
         $options = array(
-            'notnull'    => (bool) ($tableColumn['nullable'] === 'N'),
-            'fixed'      => (bool) $fixed,
-            'unsigned'   => (bool) $unsigned,
-            'default'    => $tableColumn['data_default'],
-            'length'     => $length,
-            'precision'  => $precision,
-            'scale'      => $scale,
-            'comment'    => isset($tableColumn['comments']) && '' !== $tableColumn['comments']
+            'notnull' => (bool)($tableColumn['nullable'] === 'N'),
+            'fixed' => (bool)$fixed,
+            'unsigned' => (bool)$unsigned,
+            'default' => $tableColumn['data_default'],
+            'length' => $length,
+            'precision' => $precision,
+            'scale' => $scale,
+            'comment' => isset($tableColumn['comments']) && '' !== $tableColumn['comments']
                 ? $tableColumn['comments']
                 : null,
             'platformDetails' => array(),
@@ -299,10 +299,10 @@ class OracleSchemaManager extends AbstractSchemaManager
         }
 
         $params = $this->_conn->getParams();
-        $username   = $database;
-        $password   = $params['password'];
+        $username = $database;
+        $password = $params['password'];
 
-        $query  = 'CREATE USER ' . $username . ' IDENTIFIED BY ' . $password;
+        $query = 'CREATE USER ' . $username . ' IDENTIFIED BY ' . $password;
         $this->_conn->executeUpdate($query);
 
         $query = 'GRANT CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE, CREATE SEQUENCE, CREATE TRIGGER TO ' . $username;

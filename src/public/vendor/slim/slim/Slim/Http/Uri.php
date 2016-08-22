@@ -100,13 +100,13 @@ class Uri implements UriInterface
     /**
      * Create new Uri.
      *
-     * @param string $scheme   Uri scheme.
-     * @param string $host     Uri host.
-     * @param int    $port     Uri port number.
-     * @param string $path     Uri path.
-     * @param string $query    Uri query string.
+     * @param string $scheme Uri scheme.
+     * @param string $host Uri host.
+     * @param int $port Uri port number.
+     * @param string $path Uri path.
+     * @param string $query Uri query string.
      * @param string $fragment Uri fragment.
-     * @param string $user     Uri user.
+     * @param string $user Uri user.
      * @param string $password Uri password.
      */
     public function __construct(
@@ -118,7 +118,8 @@ class Uri implements UriInterface
         $fragment = '',
         $user = '',
         $password = ''
-    ) {
+    )
+    {
         $this->scheme = $this->filterScheme($scheme);
         $this->host = $host;
         $this->port = $this->filterPort($port);
@@ -186,12 +187,12 @@ class Uri implements UriInterface
             $host = $matches[1];
 
             if ($matches[2]) {
-                $port = (int) substr($matches[2], 1);
+                $port = (int)substr($matches[2], 1);
             }
         } else {
             $pos = strpos($host, ':');
             if ($pos !== false) {
-                $port = (int) substr($host, $pos + 1);
+                $port = (int)substr($host, $pos + 1);
                 $host = strstr($host, ':', true);
             }
         }
@@ -792,10 +793,10 @@ class Uri implements UriInterface
         $path = $basePath . '/' . ltrim($path, '/');
 
         return ($scheme ? $scheme . ':' : '')
-            . ($authority ? '//' . $authority : '')
-            . $path
-            . ($query ? '?' . $query : '')
-            . ($fragment ? '#' . $fragment : '');
+        . ($authority ? '//' . $authority : '')
+        . $path
+        . ($query ? '?' . $query : '')
+        . ($fragment ? '#' . $fragment : '');
     }
 
     /**
@@ -818,7 +819,7 @@ class Uri implements UriInterface
         }
 
         return ($scheme ? $scheme . ':' : '')
-            . ($authority ? '//' . $authority : '')
-            . rtrim($basePath, '/');
+        . ($authority ? '//' . $authority : '')
+        . rtrim($basePath, '/');
     }
 }

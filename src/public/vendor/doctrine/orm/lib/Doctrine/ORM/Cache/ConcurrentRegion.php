@@ -46,8 +46,8 @@ interface ConcurrentRegion extends Region
     /**
      * Attempts to read unlock the mapping for the given key.
      *
-     * @param \Doctrine\ORM\Cache\CacheKey $key  The key of the item to unlock.
-     * @param \Doctrine\ORM\Cache\Lock     $lock The lock previously obtained from {@link readLock}
+     * @param \Doctrine\ORM\Cache\CacheKey $key The key of the item to unlock.
+     * @param \Doctrine\ORM\Cache\Lock $lock The lock previously obtained from {@link readLock}
      *
      * @return void
      *

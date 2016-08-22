@@ -47,10 +47,10 @@ interface EntityPersister
      * Get all queued inserts.
      *
      * @return array
-    */
+     */
     public function getInserts();
 
-     /**
+    /**
      * @TODO - It should not be here.
      * But its necessary since JoinedSubclassPersister#executeInserts invoke the root persister.
      *
@@ -64,11 +64,11 @@ interface EntityPersister
      * Gets the SELECT SQL to select one or more entities by a set of field criteria.
      *
      * @param array|\Doctrine\Common\Collections\Criteria $criteria
-     * @param array|null                                  $assoc
-     * @param int|null                                    $lockMode
-     * @param int|null                                    $limit
-     * @param int|null                                    $offset
-     * @param array|null                                  $orderBy
+     * @param array|null $assoc
+     * @param int|null $lockMode
+     * @param int|null $limit
+     * @param int|null $offset
+     * @param array|null $orderBy
      *
      * @return string
      */
@@ -103,9 +103,9 @@ interface EntityPersister
     /**
      * Gets the SQL WHERE condition for matching a field with a given value.
      *
-     * @param string      $field
-     * @param mixed       $value
-     * @param array|null  $assoc
+     * @param string $field
+     * @param mixed $value
+     * @param array|null $assoc
      * @param string|null $comparison
      *
      * @return string
@@ -182,15 +182,15 @@ interface EntityPersister
     /**
      * Loads an entity by a list of field criteria.
      *
-     * @param array       $criteria The criteria by which to load the entity.
-     * @param object|null $entity   The entity to load the data into. If not specified, a new entity is created.
-     * @param array|null  $assoc    The association that connects the entity to load to another entity, if any.
-     * @param array       $hints    Hints for entity creation.
-     * @param int|null    $lockMode One of the \Doctrine\DBAL\LockMode::* constants
+     * @param array $criteria The criteria by which to load the entity.
+     * @param object|null $entity The entity to load the data into. If not specified, a new entity is created.
+     * @param array|null $assoc The association that connects the entity to load to another entity, if any.
+     * @param array $hints Hints for entity creation.
+     * @param int|null $lockMode One of the \Doctrine\DBAL\LockMode::* constants
      *                              or NULL if no specific lock mode should be used
      *                              for loading the entity.
-     * @param int|null    $limit    Limit number of results.
-     * @param array|null  $orderBy  Criteria to order by.
+     * @param int|null $limit Limit number of results.
+     * @param array|null $orderBy Criteria to order by.
      *
      * @return object|null The loaded and managed entity instance or NULL if the entity can not be found.
      *
@@ -201,8 +201,8 @@ interface EntityPersister
     /**
      * Loads an entity by identifier.
      *
-     * @param array       $identifier   The entity identifier.
-     * @param object|null $entity       The entity to load the data into. If not specified, a new entity is created.
+     * @param array $identifier The entity identifier.
+     * @param object|null $entity The entity to load the data into. If not specified, a new entity is created.
      *
      * @return object The loaded and managed entity instance or NULL if the entity can not be found.
      *
@@ -214,9 +214,9 @@ interface EntityPersister
      * Loads an entity of this persister's mapped class as part of a single-valued
      * association from another entity.
      *
-     * @param array  $assoc        The association to load.
+     * @param array $assoc The association to load.
      * @param object $sourceEntity The entity that owns the association (not necessarily the "owning side").
-     * @param array  $identifier   The identifier of the entity to load. Must be provided if
+     * @param array $identifier The identifier of the entity to load. Must be provided if
      *                             the association to load represents the owning side, otherwise
      *                             the identifier is derived from the $sourceEntity.
      *
@@ -229,9 +229,9 @@ interface EntityPersister
     /**
      * Refreshes a managed entity.
      *
-     * @param array    $id       The identifier of the entity as an associative array from
+     * @param array $id The identifier of the entity as an associative array from
      *                           column or field names to values.
-     * @param object   $entity   The entity to refresh.
+     * @param object $entity The entity to refresh.
      * @param int|null $lockMode One of the \Doctrine\DBAL\LockMode::* constants
      *                           or NULL if no specific lock mode should be used
      *                           for refreshing the managed entity.
@@ -252,10 +252,10 @@ interface EntityPersister
     /**
      * Loads a list of entities by a list of field criteria.
      *
-     * @param array      $criteria
+     * @param array $criteria
      * @param array|null $orderBy
-     * @param int|null   $limit
-     * @param int|null   $offset
+     * @param int|null $limit
+     * @param int|null $offset
      *
      * @return array
      */
@@ -264,8 +264,8 @@ interface EntityPersister
     /**
      * Gets (sliced or full) elements of the given collection.
      *
-     * @param array    $assoc
-     * @param object   $sourceEntity
+     * @param array $assoc
+     * @param object $sourceEntity
      * @param int|null $offset
      * @param int|null $limit
      *
@@ -276,9 +276,9 @@ interface EntityPersister
     /**
      * Loads a collection of entities of a many-to-many association.
      *
-     * @param array                $assoc        The association mapping of the association being loaded.
-     * @param object               $sourceEntity The entity that owns the collection.
-     * @param PersistentCollection $collection         The collection to fill.
+     * @param array $assoc The association mapping of the association being loaded.
+     * @param object $sourceEntity The entity that owns the collection.
+     * @param PersistentCollection $collection The collection to fill.
      *
      * @return array
      */
@@ -287,9 +287,9 @@ interface EntityPersister
     /**
      * Loads a collection of entities in a one-to-many association.
      *
-     * @param array                $assoc
-     * @param object               $sourceEntity
-     * @param PersistentCollection $collection         The collection to load/fill.
+     * @param array $assoc
+     * @param object $sourceEntity
+     * @param PersistentCollection $collection The collection to load/fill.
      *
      * @return array
      */
@@ -299,7 +299,7 @@ interface EntityPersister
      * Locks all rows of this entity matching the given criteria with the specified pessimistic lock mode.
      *
      * @param array $criteria
-     * @param int   $lockMode One of the Doctrine\DBAL\LockMode::* constants.
+     * @param int $lockMode One of the Doctrine\DBAL\LockMode::* constants.
      *
      * @return void
      */
@@ -308,8 +308,8 @@ interface EntityPersister
     /**
      * Returns an array with (sliced or full list) of elements in the specified collection.
      *
-     * @param array    $assoc
-     * @param object   $sourceEntity
+     * @param array $assoc
+     * @param object $sourceEntity
      * @param int|null $offset
      * @param int|null $limit
      *
@@ -320,7 +320,7 @@ interface EntityPersister
     /**
      * Checks whether the given managed entity exists in the database.
      *
-     * @param object        $entity
+     * @param object $entity
      * @param Criteria|null $extraConditions
      *
      * @return boolean TRUE if the entity exists in the database, FALSE otherwise.

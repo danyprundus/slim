@@ -19,7 +19,7 @@ class OrderClause extends ClauseContainer
      */
     public function orderBy($column, $direction = 'ASC')
     {
-        $this->container[] = $column.' '.strtoupper($direction);
+        $this->container[] = $column . ' ' . strtoupper($direction);
     }
 
     /**
@@ -31,6 +31,6 @@ class OrderClause extends ClauseContainer
             return '';
         }
 
-        return ' ORDER BY '.implode(' , ', $this->container);
+        return ' ORDER BY ' . implode(' , ', $this->container);
     }
 }

@@ -33,7 +33,7 @@ class Criteria
     /**
      * @var string
      */
-    const ASC  = 'ASC';
+    const ASC = 'ASC';
 
     /**
      * @var string
@@ -92,10 +92,10 @@ class Criteria
     /**
      * Construct a new Criteria.
      *
-     * @param Expression    $expression
+     * @param Expression $expression
      * @param string[]|null $orderings
-     * @param int|null      $firstResult
-     * @param int|null      $maxResults
+     * @param int|null $firstResult
+     * @param int|null $maxResults
      */
     public function __construct(Expression $expression = null, array $orderings = null, $firstResult = null, $maxResults = null)
     {
@@ -228,7 +228,7 @@ class Criteria
      */
     public function setFirstResult($firstResult)
     {
-        $this->firstResult = null === $firstResult ? null : (int) $firstResult;
+        $this->firstResult = null === $firstResult ? null : (int)$firstResult;
 
         return $this;
     }
@@ -252,7 +252,7 @@ class Criteria
      */
     public function setMaxResults($maxResults)
     {
-        $this->maxResults = null === $maxResults ? null : (int) $maxResults;
+        $this->maxResults = null === $maxResults ? null : (int)$maxResults;
 
         return $this;
     }

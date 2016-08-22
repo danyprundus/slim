@@ -18,6 +18,7 @@
  */
 
 namespace Doctrine\ORM\Persisters\Entity;
+
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\ResultSetMapping;
 
@@ -86,17 +87,18 @@ class CachedPersisterContext
     public $handlesLimits;
 
     /**
-     * @param ClassMetadata    $class
+     * @param ClassMetadata $class
      * @param ResultSetMapping $rsm
-     * @param bool             $handlesLimits
+     * @param bool $handlesLimits
      */
     public function __construct(
         ClassMetadata $class,
         ResultSetMapping $rsm,
         $handlesLimits
-    ) {
-        $this->class         = $class;
-        $this->rsm           = $rsm;
-        $this->handlesLimits = (bool) $handlesLimits;
+    )
+    {
+        $this->class = $class;
+        $this->rsm = $rsm;
+        $this->handlesLimits = (bool)$handlesLimits;
     }
 }

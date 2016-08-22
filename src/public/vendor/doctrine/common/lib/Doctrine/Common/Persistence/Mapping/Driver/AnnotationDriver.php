@@ -79,14 +79,14 @@ abstract class AnnotationDriver implements MappingDriver
      * Initializes a new AnnotationDriver that uses the given AnnotationReader for reading
      * docblock annotations.
      *
-     * @param AnnotationReader  $reader The AnnotationReader to use, duck-typed.
-     * @param string|array|null $paths  One or multiple paths where mapping classes can be found.
+     * @param AnnotationReader $reader The AnnotationReader to use, duck-typed.
+     * @param string|array|null $paths One or multiple paths where mapping classes can be found.
      */
     public function __construct($reader, $paths = null)
     {
         $this->reader = $reader;
         if ($paths) {
-            $this->addPaths((array) $paths);
+            $this->addPaths((array)$paths);
         }
     }
 
@@ -204,7 +204,7 @@ abstract class AnnotationDriver implements MappingDriver
         $includedFiles = [];
 
         foreach ($this->paths as $path) {
-            if ( ! is_dir($path)) {
+            if (!is_dir($path)) {
                 throw MappingException::fileMappingDriversRequireConfiguredDirectoryPath($path);
             }
 
@@ -220,7 +220,7 @@ abstract class AnnotationDriver implements MappingDriver
             foreach ($iterator as $file) {
                 $sourceFile = $file[0];
 
-                if ( ! preg_match('(^phar:)i', $sourceFile)) {
+                if (!preg_match('(^phar:)i', $sourceFile)) {
                     $sourceFile = realpath($sourceFile);
                 }
 
@@ -244,7 +244,7 @@ abstract class AnnotationDriver implements MappingDriver
         foreach ($declared as $className) {
             $rc = new \ReflectionClass($className);
             $sourceFile = $rc->getFileName();
-            if (in_array($sourceFile, $includedFiles) && ! $this->isTransient($className)) {
+            if (in_array($sourceFile, $includedFiles) && !$this->isTransient($className)) {
                 $classes[] = $className;
             }
         }

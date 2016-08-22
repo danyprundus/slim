@@ -47,12 +47,12 @@ class OnClassMetadataNotFoundEventArgs extends ManagerEventArgs
     /**
      * Constructor.
      *
-     * @param string        $className
+     * @param string $className
      * @param ObjectManager $objectManager
      */
     public function __construct($className, ObjectManager $objectManager)
     {
-        $this->className = (string) $className;
+        $this->className = (string)$className;
 
         parent::__construct($objectManager);
     }

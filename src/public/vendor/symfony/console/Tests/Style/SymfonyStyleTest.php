@@ -50,9 +50,9 @@ class SymfonyStyleTest extends PHPUnit_Framework_TestCase
 
     public function inputCommandToOutputFilesProvider()
     {
-        $baseDir = __DIR__.'/../Fixtures/Style/SymfonyStyle';
+        $baseDir = __DIR__ . '/../Fixtures/Style/SymfonyStyle';
 
-        return array_map(null, glob($baseDir.'/command/command_*.php'), glob($baseDir.'/output/output_*.txt'));
+        return array_map(null, glob($baseDir . '/command/command_*.php'), glob($baseDir . '/output/output_*.txt'));
     }
 }
 

@@ -54,14 +54,14 @@ final class DefaultRepositoryFactory implements RepositoryFactory
      * Create a new repository instance for an entity class.
      *
      * @param \Doctrine\ORM\EntityManagerInterface $entityManager The EntityManager instance.
-     * @param string                               $entityName    The name of the entity.
+     * @param string $entityName The name of the entity.
      *
      * @return \Doctrine\Common\Persistence\ObjectRepository
      */
     private function createRepository(EntityManagerInterface $entityManager, $entityName)
     {
         /* @var $metadata \Doctrine\ORM\Mapping\ClassMetadata */
-        $metadata            = $entityManager->getClassMetadata($entityName);
+        $metadata = $entityManager->getClassMetadata($entityName);
         $repositoryClassName = $metadata->customRepositoryClassName
             ?: $entityManager->getConfiguration()->getDefaultRepositoryClassName();
 

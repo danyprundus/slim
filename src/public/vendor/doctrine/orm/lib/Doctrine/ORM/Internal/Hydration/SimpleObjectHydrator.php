@@ -80,7 +80,7 @@ class SimpleObjectHydrator extends AbstractHydrator
     protected function hydrateRowData(array $sqlResult, array &$result)
     {
         $entityName = $this->class->name;
-        $data       = array();
+        $data = array();
 
         // We need to find the correct entity class name if we have inheritance in resultset
         if ($this->class->inheritanceType !== ClassMetadata::INHERITANCE_TYPE_NONE) {
@@ -91,7 +91,7 @@ class SimpleObjectHydrator extends AbstractHydrator
                 $discrColumnName = $metaMappingDiscrColumnName;
             }
 
-            if ( ! isset($sqlResult[$discrColumnName])) {
+            if (!isset($sqlResult[$discrColumnName])) {
                 throw HydrationException::missingDiscriminatorColumn($entityName, $discrColumnName, key($this->_rsm->aliasMap));
             }
 
@@ -101,7 +101,7 @@ class SimpleObjectHydrator extends AbstractHydrator
 
             $discrMap = $this->class->discriminatorMap;
 
-            if ( ! isset($discrMap[$sqlResult[$discrColumnName]])) {
+            if (!isset($discrMap[$sqlResult[$discrColumnName]])) {
                 throw HydrationException::invalidDiscriminatorValue($sqlResult[$discrColumnName], array_keys($discrMap));
             }
 
@@ -118,20 +118,20 @@ class SimpleObjectHydrator extends AbstractHydrator
 
             $cacheKeyInfo = $this->hydrateColumnInfo($column);
 
-            if ( ! $cacheKeyInfo) {
+            if (!$cacheKeyInfo) {
                 continue;
             }
 
             // Convert field to a valid PHP value
             if (isset($cacheKeyInfo['type'])) {
-                $type  = $cacheKeyInfo['type'];
+                $type = $cacheKeyInfo['type'];
                 $value = $type->convertToPHPValue($value, $this->_platform);
             }
 
             $fieldName = $cacheKeyInfo['fieldName'];
 
             // Prevent overwrite in case of inherit classes using same property name (See AbstractHydrator)
-            if ( ! isset($data[$fieldName]) || $value !== null) {
+            if (!isset($data[$fieldName]) || $value !== null) {
                 $data[$fieldName] = $value;
             }
         }
@@ -140,7 +140,7 @@ class SimpleObjectHydrator extends AbstractHydrator
             $this->registerManaged($this->class, $this->_hints[Query::HINT_REFRESH_ENTITY], $data);
         }
 
-        $uow    = $this->_em->getUnitOfWork();
+        $uow = $this->_em->getUnitOfWork();
         $entity = $uow->createEntity($entityName, $data, $this->_hints);
 
         $result[] = $entity;

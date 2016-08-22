@@ -38,9 +38,9 @@ class SQLAnywhere12Platform extends SQLAnywhere11Platform
     public function getCreateSequenceSQL(Sequence $sequence)
     {
         return 'CREATE SEQUENCE ' . $sequence->getQuotedName($this) .
-            ' INCREMENT BY ' . $sequence->getAllocationSize() .
-            ' START WITH ' . $sequence->getInitialValue() .
-            ' MINVALUE ' . $sequence->getInitialValue();
+        ' INCREMENT BY ' . $sequence->getAllocationSize() .
+        ' START WITH ' . $sequence->getInitialValue() .
+        ' MINVALUE ' . $sequence->getInitialValue();
     }
 
     /**
@@ -49,7 +49,7 @@ class SQLAnywhere12Platform extends SQLAnywhere11Platform
     public function getAlterSequenceSQL(Sequence $sequence)
     {
         return 'ALTER SEQUENCE ' . $sequence->getQuotedName($this) .
-            ' INCREMENT BY ' . $sequence->getAllocationSize();
+        ' INCREMENT BY ' . $sequence->getAllocationSize();
     }
 
     /**
@@ -109,7 +109,7 @@ class SQLAnywhere12Platform extends SQLAnywhere11Platform
      */
     protected function getAdvancedIndexOptionsSQL(Index $index)
     {
-        if ( ! $index->isPrimary() && $index->isUnique() && $index->hasFlag('with_nulls_not_distinct')) {
+        if (!$index->isPrimary() && $index->isUnique() && $index->hasFlag('with_nulls_not_distinct')) {
             return ' WITH NULLS NOT DISTINCT' . parent::getAdvancedIndexOptionsSQL($index);
         }
 

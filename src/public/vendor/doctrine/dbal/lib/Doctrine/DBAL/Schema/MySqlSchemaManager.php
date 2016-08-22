@@ -63,7 +63,7 @@ class MySqlSchemaManager extends AbstractSchemaManager
     /**
      * {@inheritdoc}
      */
-    protected function _getPortableTableIndexesList($tableIndexes, $tableName=null)
+    protected function _getPortableTableIndexesList($tableIndexes, $tableName = null)
     {
         foreach ($tableIndexes as $k => $v) {
             $v = array_change_key_case($v, CASE_LOWER);
@@ -116,7 +116,7 @@ class MySqlSchemaManager extends AbstractSchemaManager
 
         $fixed = null;
 
-        if ( ! isset($tableColumn['name'])) {
+        if (!isset($tableColumn['name'])) {
             $tableColumn['name'] = '';
         }
 
@@ -176,18 +176,18 @@ class MySqlSchemaManager extends AbstractSchemaManager
                 break;
         }
 
-        $length = ((int) $length == 0) ? null : (int) $length;
+        $length = ((int)$length == 0) ? null : (int)$length;
 
         $options = array(
-            'length'        => $length,
-            'unsigned'      => (bool) (strpos($tableColumn['type'], 'unsigned') !== false),
-            'fixed'         => (bool) $fixed,
-            'default'       => isset($tableColumn['default']) ? $tableColumn['default'] : null,
-            'notnull'       => (bool) ($tableColumn['null'] != 'YES'),
-            'scale'         => null,
-            'precision'     => null,
-            'autoincrement' => (bool) (strpos($tableColumn['extra'], 'auto_increment') !== false),
-            'comment'       => isset($tableColumn['comment']) && $tableColumn['comment'] !== ''
+            'length' => $length,
+            'unsigned' => (bool)(strpos($tableColumn['type'], 'unsigned') !== false),
+            'fixed' => (bool)$fixed,
+            'default' => isset($tableColumn['default']) ? $tableColumn['default'] : null,
+            'notnull' => (bool)($tableColumn['null'] != 'YES'),
+            'scale' => null,
+            'precision' => null,
+            'autoincrement' => (bool)(strpos($tableColumn['extra'], 'auto_increment') !== false),
+            'comment' => isset($tableColumn['comment']) && $tableColumn['comment'] !== ''
                 ? $tableColumn['comment']
                 : null,
         );

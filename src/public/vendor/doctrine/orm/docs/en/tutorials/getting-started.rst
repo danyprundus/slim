@@ -787,7 +787,7 @@ Lets add metadata mappings for the ``User`` and ``Bug`` as we did for
 the ``Product`` before:
 
 .. configuration-block::
-    .. code-block:: php
+.. code-block:: php
 
         <?php
         // src/Bug.php

@@ -70,7 +70,7 @@ class Application
     /**
      * Constructor.
      *
-     * @param string $name    The name of the application
+     * @param string $name The name of the application
      * @param string $version The version of the application
      */
     public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN')
@@ -94,7 +94,7 @@ class Application
     /**
      * Runs the current application.
      *
-     * @param InputInterface  $input  An Input instance
+     * @param InputInterface $input An Input instance
      * @param OutputInterface $output An Output instance
      *
      * @return int 0 if everything went fine, or an error code
@@ -128,7 +128,7 @@ class Application
 
             $exitCode = $e->getCode();
             if (is_numeric($exitCode)) {
-                $exitCode = (int) $exitCode;
+                $exitCode = (int)$exitCode;
                 if (0 === $exitCode) {
                     $exitCode = 1;
                 }
@@ -151,7 +151,7 @@ class Application
     /**
      * Runs the current application.
      *
-     * @param InputInterface  $input  An Input instance
+     * @param InputInterface $input An Input instance
      * @param OutputInterface $output An Output instance
      *
      * @return int 0 if everything went fine, or an error code
@@ -256,7 +256,7 @@ class Application
      */
     public function setCatchExceptions($boolean)
     {
-        $this->catchExceptions = (bool) $boolean;
+        $this->catchExceptions = (bool)$boolean;
     }
 
     /**
@@ -276,7 +276,7 @@ class Application
      */
     public function setAutoExit($boolean)
     {
-        $this->autoExit = (bool) $boolean;
+        $this->autoExit = (bool)$boolean;
     }
 
     /**
@@ -353,7 +353,7 @@ class Application
      * Adds an array of command objects.
      *
      * If a Command is not enabled it will not be added.
-     * 
+     *
      * @param Command[] $commands An array of commands
      */
     public function addCommands(array $commands)
@@ -470,8 +470,10 @@ class Application
     public function findNamespace($namespace)
     {
         $allNamespaces = $this->getNamespaces();
-        $expr = preg_replace_callback('{([^:]+|)}', function ($matches) { return preg_quote($matches[1]).'[^:]*'; }, $namespace);
-        $namespaces = preg_grep('{^'.$expr.'}', $allNamespaces);
+        $expr = preg_replace_callback('{([^:]+|)}', function ($matches) {
+            return preg_quote($matches[1]) . '[^:]*';
+        }, $namespace);
+        $namespaces = preg_grep('{^' . $expr . '}', $allNamespaces);
 
         if (empty($namespaces)) {
             $message = sprintf('There are no commands defined in the "%s" namespace.', $namespace);
@@ -512,10 +514,12 @@ class Application
     public function find($name)
     {
         $allCommands = array_keys($this->commands);
-        $expr = preg_replace_callback('{([^:]+|)}', function ($matches) { return preg_quote($matches[1]).'[^:]*'; }, $name);
-        $commands = preg_grep('{^'.$expr.'}', $allCommands);
+        $expr = preg_replace_callback('{([^:]+|)}', function ($matches) {
+            return preg_quote($matches[1]) . '[^:]*';
+        }, $name);
+        $commands = preg_grep('{^' . $expr . '}', $allCommands);
 
-        if (empty($commands) || count(preg_grep('{^'.$expr.'$}', $commands)) < 1) {
+        if (empty($commands) || count(preg_grep('{^' . $expr . '$}', $commands)) < 1) {
             if (false !== $pos = strrpos($name, ':')) {
                 // check if a namespace exists and contains commands
                 $this->findNamespace(substr($name, 0, $pos));
@@ -603,7 +607,7 @@ class Application
     /**
      * Renders a caught exception.
      *
-     * @param \Exception      $e      An exception instance
+     * @param \Exception $e An exception instance
      * @param OutputInterface $output An OutputInterface instance
      */
     public function renderException(\Exception $e, OutputInterface $output)
@@ -614,7 +618,7 @@ class Application
             $title = sprintf(
                 '  [%s%s]  ',
                 get_class($e),
-                $output->isVerbose() && 0 !== ($code = $e->getCode()) ? ' ('.$code.')' : ''
+                $output->isVerbose() && 0 !== ($code = $e->getCode()) ? ' (' . $code . ')' : ''
             );
 
             $len = $this->stringWidth($title);
@@ -717,22 +721,22 @@ class Application
         if ('\\' === DIRECTORY_SEPARATOR) {
             // extract [w, H] from "wxh (WxH)"
             if (preg_match('/^(\d+)x\d+ \(\d+x(\d+)\)$/', trim(getenv('ANSICON')), $matches)) {
-                return array((int) $matches[1], (int) $matches[2]);
+                return array((int)$matches[1], (int)$matches[2]);
             }
             // extract [w, h] from "wxh"
             if (preg_match('/^(\d+)x(\d+)$/', $this->getConsoleMode(), $matches)) {
-                return array((int) $matches[1], (int) $matches[2]);
+                return array((int)$matches[1], (int)$matches[2]);
             }
         }
 
         if ($sttyString = $this->getSttyColumns()) {
             // extract [w, h] from "rows h; columns w;"
             if (preg_match('/rows.(\d+);.columns.(\d+);/i', $sttyString, $matches)) {
-                return array((int) $matches[2], (int) $matches[1]);
+                return array((int)$matches[2], (int)$matches[1]);
             }
             // extract [w, h] from "; h rows; w columns"
             if (preg_match('/;.(\d+).rows;.(\d+).columns/i', $sttyString, $matches)) {
-                return array((int) $matches[2], (int) $matches[1]);
+                return array((int)$matches[2], (int)$matches[1]);
             }
         }
 
@@ -744,7 +748,7 @@ class Application
      *
      * Can be useful to force terminal dimensions for functional tests.
      *
-     * @param int $width  The width
+     * @param int $width The width
      * @param int $height The height
      *
      * @return Application The current application
@@ -759,7 +763,7 @@ class Application
     /**
      * Configures the input and output instances based on the user arguments and options.
      *
-     * @param InputInterface  $input  An InputInterface instance
+     * @param InputInterface $input An InputInterface instance
      * @param OutputInterface $output An OutputInterface instance
      */
     protected function configureIO(InputInterface $input, OutputInterface $output)
@@ -798,9 +802,9 @@ class Application
      * If an event dispatcher has been attached to the application,
      * events are also dispatched during the life-cycle of the command.
      *
-     * @param Command         $command A Command instance
-     * @param InputInterface  $input   An Input instance
-     * @param OutputInterface $output  An Output instance
+     * @param Command $command A Command instance
+     * @param InputInterface $input An Input instance
+     * @param OutputInterface $output An Output instance
      *
      * @return int 0 if everything went fine, or an error code
      *
@@ -953,7 +957,7 @@ class Application
             proc_close($process);
 
             if (preg_match('/--------+\r?\n.+?(\d+)\r?\n.+?(\d+)\r?\n/', $info, $matches)) {
-                return $matches[2].'x'.$matches[1];
+                return $matches[2] . 'x' . $matches[1];
             }
         }
     }
@@ -975,7 +979,7 @@ class Application
      *
      * This method is not part of public API and should not be used directly.
      *
-     * @param string $name  The full name of the command
+     * @param string $name The full name of the command
      * @param string $limit The maximum number of parts of the namespace
      *
      * @return string The namespace of the command
@@ -992,7 +996,7 @@ class Application
      * Finds alternative of $name among $collection,
      * if nothing is found in $collection, try in $abbrevs.
      *
-     * @param string             $name       The string
+     * @param string $name The string
      * @param array|\Traversable $collection The collection
      *
      * @return string[] A sorted array of similar string
@@ -1033,7 +1037,9 @@ class Application
             }
         }
 
-        $alternatives = array_filter($alternatives, function ($lev) use ($threshold) { return $lev < 2 * $threshold; });
+        $alternatives = array_filter($alternatives, function ($lev) use ($threshold) {
+            return $lev < 2 * $threshold;
+        });
         asort($alternatives);
 
         return array_keys($alternatives);
@@ -1072,7 +1078,7 @@ class Application
         $line = '';
         foreach (preg_split('//u', $utf8String) as $char) {
             // test if $char could be appended to current line
-            if (mb_strwidth($line.$char, 'utf8') <= $width) {
+            if (mb_strwidth($line . $char, 'utf8') <= $width) {
                 $line .= $char;
                 continue;
             }
@@ -1104,7 +1110,7 @@ class Application
 
         foreach ($parts as $part) {
             if (count($namespaces)) {
-                $namespaces[] = end($namespaces).':'.$part;
+                $namespaces[] = end($namespaces) . ':' . $part;
             } else {
                 $namespaces[] = $part;
             }

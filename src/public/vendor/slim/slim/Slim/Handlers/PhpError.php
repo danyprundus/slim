@@ -24,9 +24,9 @@ class PhpError extends AbstractError
     /**
      * Invoke error handler
      *
-     * @param ServerRequestInterface $request   The most recent Request object
-     * @param ResponseInterface      $response  The most recent Response object
-     * @param \Throwable             $error     The caught Throwable object
+     * @param ServerRequestInterface $request The most recent Request object
+     * @param ResponseInterface $response The most recent Response object
+     * @param \Throwable $error The caught Throwable object
      *
      * @return ResponseInterface
      * @throws UnexpectedValueException
@@ -57,9 +57,9 @@ class PhpError extends AbstractError
         $body->write($output);
 
         return $response
-                ->withStatus(500)
-                ->withHeader('Content-type', $contentType)
-                ->withBody($body);
+            ->withStatus(500)
+            ->withHeader('Content-type', $contentType)
+            ->withBody($body);
     }
 
     /**

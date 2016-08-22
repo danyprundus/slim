@@ -56,7 +56,7 @@ class Headers extends Collection implements HeadersInterface
             $key = strtoupper($key);
             if (isset(static::$special[$key]) || strpos($key, 'HTTP_') === 0) {
                 if ($key !== 'HTTP_CONTENT_LENGTH') {
-                    $data[$key] =  $value;
+                    $data[$key] = $value;
                 }
             }
         }
@@ -112,7 +112,7 @@ class Headers extends Collection implements HeadersInterface
      * This method sets a header value. It replaces
      * any values that may already exist for the header name.
      *
-     * @param string $key   The case-insensitive header name
+     * @param string $key The case-insensitive header name
      * @param string $value The header value
      */
     public function set($key, $value)
@@ -129,8 +129,8 @@ class Headers extends Collection implements HeadersInterface
     /**
      * Get HTTP header value
      *
-     * @param  string  $key     The case-insensitive header name
-     * @param  mixed   $default The default value if key does not exist
+     * @param  string $key The case-insensitive header name
+     * @param  mixed $default The default value if key does not exist
      *
      * @return string[]
      */
@@ -146,8 +146,8 @@ class Headers extends Collection implements HeadersInterface
     /**
      * Get HTTP header key as originally specified
      *
-     * @param  string   $key     The case-insensitive header name
-     * @param  mixed    $default The default value if key does not exist
+     * @param  string $key The case-insensitive header name
+     * @param  mixed $default The default value if key does not exist
      *
      * @return string
      */
@@ -167,7 +167,7 @@ class Headers extends Collection implements HeadersInterface
      * this method _appends_ this new value to any values
      * that already exist for this header name.
      *
-     * @param string       $key   The case-insensitive header name
+     * @param string $key The case-insensitive header name
      * @param array|string $value The new header value(s)
      */
     public function add($key, $value)

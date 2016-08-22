@@ -29,8 +29,8 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$fixturesPath = __DIR__.'/../Fixtures/';
-        require_once self::$fixturesPath.'/TestCommand.php';
+        self::$fixturesPath = __DIR__ . '/../Fixtures/';
+        require_once self::$fixturesPath . '/TestCommand.php';
     }
 
     public function testConstructor()
@@ -234,7 +234,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
         $tester->execute(array(), array('interactive' => true));
 
-        $this->assertEquals('interact called'.PHP_EOL.'execute called'.PHP_EOL, $tester->getDisplay(), '->run() calls the interact() method if the input is interactive');
+        $this->assertEquals('interact called' . PHP_EOL . 'execute called' . PHP_EOL, $tester->getDisplay(), '->run() calls the interact() method if the input is interactive');
     }
 
     public function testRunNonInteractive()
@@ -243,7 +243,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
         $tester->execute(array(), array('interactive' => false));
 
-        $this->assertEquals('execute called'.PHP_EOL, $tester->getDisplay(), '->run() does not call the interact() method if the input is not interactive');
+        $this->assertEquals('execute called' . PHP_EOL, $tester->getDisplay(), '->run() does not call the interact() method if the input is not interactive');
     }
 
     /**
@@ -275,8 +275,8 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
         $command = $this->getMock('TestCommand', array('execute'));
         $command->expects($this->once())
-             ->method('execute')
-             ->will($this->returnValue('2.3'));
+            ->method('execute')
+            ->will($this->returnValue('2.3'));
         $exitCode = $command->run(new StringInput(''), new NullOutput());
         $this->assertSame(2, $exitCode, '->run() returns integer exit code (casts numeric to int)');
     }
@@ -306,7 +306,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($command, $ret, '->setCode() implements a fluent interface');
         $tester = new CommandTester($command);
         $tester->execute(array());
-        $this->assertEquals('interact called'.PHP_EOL.'from the code...'.PHP_EOL, $tester->getDisplay());
+        $this->assertEquals('interact called' . PHP_EOL . 'from the code...' . PHP_EOL, $tester->getDisplay());
     }
 
     public function getSetCodeBindToClosureTests()
@@ -331,7 +331,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $command->setCode($code);
         $tester = new CommandTester($command);
         $tester->execute(array());
-        $this->assertEquals('interact called'.PHP_EOL.$expected.PHP_EOL, $tester->getDisplay());
+        $this->assertEquals('interact called' . PHP_EOL . $expected . PHP_EOL, $tester->getDisplay());
     }
 
     public function testSetCodeWithNonClosureCallable()
@@ -341,7 +341,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($command, $ret, '->setCode() implements a fluent interface');
         $tester = new CommandTester($command);
         $tester->execute(array());
-        $this->assertEquals('interact called'.PHP_EOL.'from the code...'.PHP_EOL, $tester->getDisplay());
+        $this->assertEquals('interact called' . PHP_EOL . 'from the code...' . PHP_EOL, $tester->getDisplay());
     }
 
     public function callableMethodCommand(InputInterface $input, OutputInterface $output)

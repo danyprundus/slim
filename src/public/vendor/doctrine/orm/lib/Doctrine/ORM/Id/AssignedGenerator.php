@@ -42,14 +42,14 @@ class AssignedGenerator extends AbstractIdGenerator
      */
     public function generate(EntityManager $em, $entity)
     {
-        $class      = $em->getClassMetadata(get_class($entity));
-        $idFields   = $class->getIdentifierFieldNames();
+        $class = $em->getClassMetadata(get_class($entity));
+        $idFields = $class->getIdentifierFieldNames();
         $identifier = array();
 
         foreach ($idFields as $idField) {
             $value = $class->getFieldValue($entity, $idField);
 
-            if ( ! isset($value)) {
+            if (!isset($value)) {
                 throw ORMException::entityMissingAssignedIdForField($entity, $idField);
             }
 

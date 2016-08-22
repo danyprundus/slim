@@ -46,7 +46,7 @@ interface CachedCollectionPersister extends CachedPersister, CollectionPersister
     /**
      * Loads a collection from cache
      *
-     * @param \Doctrine\ORM\PersistentCollection     $collection
+     * @param \Doctrine\ORM\PersistentCollection $collection
      * @param \Doctrine\ORM\Cache\CollectionCacheKey $key
      *
      * @return \Doctrine\ORM\PersistentCollection|null
@@ -56,7 +56,7 @@ interface CachedCollectionPersister extends CachedPersister, CollectionPersister
     /**
      * Stores a collection into cache
      *
-     * @param \Doctrine\ORM\Cache\CollectionCacheKey        $key
+     * @param \Doctrine\ORM\Cache\CollectionCacheKey $key
      * @param array|\Doctrine\Common\Collections\Collection $elements
      *
      * @return void

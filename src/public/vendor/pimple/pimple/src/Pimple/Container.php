@@ -66,8 +66,8 @@ class Container implements \ArrayAccess
      * as function names (strings) are callable (creating a function with
      * the same name as an existing parameter would break your container).
      *
-     * @param string $id    The unique identifier for the parameter or object
-     * @param mixed  $value The value of the parameter or a closure to define an object
+     * @param string $id The unique identifier for the parameter or object
+     * @param mixed $value The value of the parameter or a closure to define an object
      *
      * @throws \RuntimeException Prevent override of a frozen service
      */
@@ -216,7 +216,7 @@ class Container implements \ArrayAccess
      * Useful when you want to extend an existing object definition,
      * without necessarily loading that object.
      *
-     * @param string   $id       The unique identifier for the object
+     * @param string $id The unique identifier for the object
      * @param callable $callable A service definition to extend the original
      *
      * @return callable The wrapped callable
@@ -265,7 +265,7 @@ class Container implements \ArrayAccess
      * Registers a service provider.
      *
      * @param ServiceProviderInterface $provider A ServiceProviderInterface instance
-     * @param array                    $values   An array of values that customizes the provider
+     * @param array $values An array of values that customizes the provider
      *
      * @return static
      */

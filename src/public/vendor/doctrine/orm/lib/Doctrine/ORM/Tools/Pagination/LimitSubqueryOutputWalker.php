@@ -101,9 +101,9 @@ class LimitSubqueryOutputWalker extends SqlWalker
      * because Doctrine\ORM\Query\SqlWalker keeps everything private without
      * accessors.
      *
-     * @param \Doctrine\ORM\Query              $query
+     * @param \Doctrine\ORM\Query $query
      * @param \Doctrine\ORM\Query\ParserResult $parserResult
-     * @param array                            $queryComponents
+     * @param array $queryComponents
      */
     public function __construct($query, $parserResult, array $queryComponents)
     {
@@ -116,8 +116,8 @@ class LimitSubqueryOutputWalker extends SqlWalker
         $this->maxResults = $query->getMaxResults();
         $query->setFirstResult(null)->setMaxResults(null);
 
-        $this->em               = $query->getEntityManager();
-        $this->quoteStrategy    = $this->em->getConfiguration()->getQuoteStrategy();
+        $this->em = $query->getEntityManager();
+        $this->quoteStrategy = $this->em->getConfiguration()->getQuoteStrategy();
 
         parent::__construct($query, $parserResult, $queryComponents);
     }
@@ -130,12 +130,12 @@ class LimitSubqueryOutputWalker extends SqlWalker
     private function platformSupportsRowNumber()
     {
         return $this->platform instanceof PostgreSqlPlatform
-            || $this->platform instanceof SQLServerPlatform
-            || $this->platform instanceof OraclePlatform
-            || $this->platform instanceof SQLAnywherePlatform
-            || $this->platform instanceof DB2Platform
-            || (method_exists($this->platform, 'supportsRowNumberFunction')
-                && $this->platform->supportsRowNumberFunction());
+        || $this->platform instanceof SQLServerPlatform
+        || $this->platform instanceof OraclePlatform
+        || $this->platform instanceof SQLAnywherePlatform
+        || $this->platform instanceof DB2Platform
+        || (method_exists($this->platform, 'supportsRowNumberFunction')
+            && $this->platform->supportsRowNumberFunction());
     }
 
     /**
@@ -357,10 +357,10 @@ class LimitSubqueryOutputWalker extends SqlWalker
     /**
      * Generates new SQL for statements with an order by clause
      *
-     * @param array           $sqlIdentifier
-     * @param string          $innerSql
-     * @param string          $sql
-     * @param OrderByClause   $orderByClause
+     * @param array $sqlIdentifier
+     * @param string $innerSql
+     * @param string $sql
+     * @param OrderByClause $orderByClause
      *
      * @return string
      */
@@ -368,7 +368,7 @@ class LimitSubqueryOutputWalker extends SqlWalker
     {
         // If the sql statement has an order by clause, we need to wrap it in a new select distinct
         // statement
-        if (! $orderByClause instanceof OrderByClause) {
+        if (!$orderByClause instanceof OrderByClause) {
             return $sql;
         }
 
@@ -404,7 +404,7 @@ class LimitSubqueryOutputWalker extends SqlWalker
             = [];
 
         // Generate DQL alias -> SQL table alias mapping
-        foreach(array_keys($this->rsm->aliasMap) as $dqlAlias) {
+        foreach (array_keys($this->rsm->aliasMap) as $dqlAlias) {
             $dqlAliasToClassMap[$dqlAlias] = $class = $this->queryComponents[$dqlAlias]['metadata'];
             $dqlAliasToSqlTableAliasMap[$dqlAlias] = $this->getSQLTableAlias($class->getTableName(), $dqlAlias);
         }
@@ -413,7 +413,7 @@ class LimitSubqueryOutputWalker extends SqlWalker
         $fieldSearchPattern = '/(?<![a-z0-9_])%s\.%s(?![a-z0-9_])/i';
 
         // Generate search patterns for each field's path expression in the order by clause
-        foreach($this->rsm->fieldMappings as $fieldAlias => $fieldName) {
+        foreach ($this->rsm->fieldMappings as $fieldAlias => $fieldName) {
             $dqlAliasForFieldAlias = $this->rsm->columnOwnerMap[$fieldAlias];
             $class = $dqlAliasToClassMap[$dqlAliasForFieldAlias];
 
@@ -440,7 +440,7 @@ class LimitSubqueryOutputWalker extends SqlWalker
                 $otherClassMetadata = $this->em->getClassMetadata($fieldMapping['declared']);
                 if (!$otherClassMetadata->isMappedSuperclass) {
                     $sqlTableAliasForFieldAlias = $this->getSQLTableAlias($otherClassMetadata->getTableName(), $dqlAliasForFieldAlias);
-                    
+
                 }
             }
 
@@ -449,7 +449,7 @@ class LimitSubqueryOutputWalker extends SqlWalker
             $replacements[] = $fieldAlias;
         }
 
-        foreach($orderByClause->orderByItems as $orderByItem) {
+        foreach ($orderByClause->orderByItems as $orderByItem) {
             // Walk order by item to get string representation of it
             $orderByItemString = $this->walkOrderByItem($orderByItem);
 
@@ -520,9 +520,9 @@ class LimitSubqueryOutputWalker extends SqlWalker
             throw new \RuntimeException('Cannot count query which selects two FROM components, cannot make distinction');
         }
 
-        $fromRoot       = reset($from);
-        $rootAlias      = $fromRoot->rangeVariableDeclaration->aliasIdentificationVariable;
-        $rootClass      = $this->queryComponents[$rootAlias]['metadata'];
+        $fromRoot = reset($from);
+        $rootAlias = $fromRoot->rangeVariableDeclaration->aliasIdentificationVariable;
+        $rootClass = $this->queryComponents[$rootAlias]['metadata'];
         $rootIdentifier = $rootClass->identifier;
 
         // For every identifier, find out the SQL alias by combing through the ResultSetMapping

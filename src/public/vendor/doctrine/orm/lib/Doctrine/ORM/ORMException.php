@@ -35,7 +35,7 @@ class ORMException extends Exception
      */
     public static function missingMappingDriverImpl()
     {
-        return new self("It's a requirement to specify a Metadata Driver and pass it ".
+        return new self("It's a requirement to specify a Metadata Driver and pass it " .
             "to Doctrine\\ORM\\Configuration::setMetadataDriverImpl().");
     }
 
@@ -85,7 +85,7 @@ class ORMException extends Exception
     public static function entityMissingAssignedIdForField($entity, $field)
     {
         return new self("Entity of type " . get_class($entity) . " is missing an assigned ID for field  '" . $field . "'. " .
-            "The identifier generation strategy for this entity requires the ID field to be populated before ".
+            "The identifier generation strategy for this entity requires the ID field to be populated before " .
             "EntityManager#persist() is called. If you want automatically generated identifiers instead " .
             "you need to adjust the metadata mapping accordingly."
         );
@@ -101,7 +101,7 @@ class ORMException extends Exception
         return new self("Unrecognized field: $field");
     }
 
-     /**
+    /**
      *
      * @param string $class
      * @param string $association
@@ -169,7 +169,7 @@ class ORMException extends Exception
      */
     public static function findByRequiresParameter($methodName)
     {
-        return new self("You need to pass a parameter to '".$methodName."'");
+        return new self("You need to pass a parameter to '" . $methodName . "'");
     }
 
     /**
@@ -182,8 +182,8 @@ class ORMException extends Exception
     public static function invalidFindByCall($entityName, $fieldName, $method)
     {
         return new self(
-            "Entity '".$entityName."' has no field '".$fieldName."'. ".
-            "You can therefore not call '".$method."' on the entities' repository"
+            "Entity '" . $entityName . "' has no field '" . $fieldName . "'. " .
+            "You can therefore not call '" . $method . "' on the entities' repository"
         );
     }
 
@@ -196,7 +196,7 @@ class ORMException extends Exception
     public static function invalidFindByInverseAssociation($entityName, $associationFieldName)
     {
         return new self(
-            "You cannot search for the association field '".$entityName."#".$associationFieldName."', ".
+            "You cannot search for the association field '" . $entityName . "#" . $associationFieldName . "', " .
             "because it is the inverse side of an association. Find methods only work on owning side associations."
         );
     }
@@ -280,7 +280,7 @@ class ORMException extends Exception
      */
     public static function invalidEntityRepository($className)
     {
-        return new self("Invalid repository class '".$className."'. It must be a Doctrine\Common\Persistence\ObjectRepository.");
+        return new self("Invalid repository class '" . $className . "'. It must be a Doctrine\Common\Persistence\ObjectRepository.");
     }
 
     /**

@@ -44,14 +44,14 @@ class ResultCommand extends Command
     protected function configure()
     {
         $this
-        ->setName('orm:clear-cache:result')
-        ->setDescription('Clear all result cache of the various cache drivers.')
-        ->setDefinition(array(
-            new InputOption(
-                'flush', null, InputOption::VALUE_NONE,
-                'If defined, cache entries will be flushed instead of deleted/invalidated.'
-            )
-        ));
+            ->setName('orm:clear-cache:result')
+            ->setDescription('Clear all result cache of the various cache drivers.')
+            ->setDefinition(array(
+                new InputOption(
+                    'flush', null, InputOption::VALUE_NONE,
+                    'If defined, cache entries will be flushed instead of deleted/invalidated.'
+                )
+            ));
 
         $this->setHelp(<<<EOT
 The <info>%command.name%</info> command is meant to clear the result cache of associated Entity Manager.
@@ -81,7 +81,7 @@ EOT
         $em = $this->getHelper('em')->getEntityManager();
         $cacheDriver = $em->getConfiguration()->getResultCacheImpl();
 
-        if ( ! $cacheDriver) {
+        if (!$cacheDriver) {
             throw new \InvalidArgumentException('No Result cache driver is configured on given EntityManager.');
         }
 
@@ -92,14 +92,14 @@ EOT
         if ($cacheDriver instanceof XcacheCache) {
             throw new \LogicException("Cannot clear XCache Cache from Console, its shared in the Webserver memory and not accessible from the CLI.");
         }
-        
+
         $output->writeln('Clearing ALL Result cache entries');
 
-        $result  = $cacheDriver->deleteAll();
+        $result = $cacheDriver->deleteAll();
         $message = ($result) ? 'Successfully deleted cache entries.' : 'No cache entries were deleted.';
 
         if (true === $input->getOption('flush')) {
-            $result  = $cacheDriver->flushAll();
+            $result = $cacheDriver->flushAll();
             $message = ($result) ? 'Successfully flushed cache entries.' : $message;
         }
 

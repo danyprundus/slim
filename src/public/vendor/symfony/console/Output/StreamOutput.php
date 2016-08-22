@@ -35,9 +35,9 @@ class StreamOutput extends Output
     /**
      * Constructor.
      *
-     * @param resource                      $stream    A stream resource
-     * @param int                           $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
-     * @param bool|null                     $decorated Whether to decorate messages (null for auto-guessing)
+     * @param resource $stream A stream resource
+     * @param int $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
+     * @param bool|null $decorated Whether to decorate messages (null for auto-guessing)
      * @param OutputFormatterInterface|null $formatter Output formatter instance (null to use default OutputFormatter)
      *
      * @throws InvalidArgumentException When first argument is not a real stream
@@ -94,7 +94,7 @@ class StreamOutput extends Output
     {
         if (DIRECTORY_SEPARATOR === '\\') {
             return
-                0 >= version_compare('10.0.10586', PHP_WINDOWS_VERSION_MAJOR.'.'.PHP_WINDOWS_VERSION_MINOR.'.'.PHP_WINDOWS_VERSION_BUILD)
+                0 >= version_compare('10.0.10586', PHP_WINDOWS_VERSION_MAJOR . '.' . PHP_WINDOWS_VERSION_MINOR . '.' . PHP_WINDOWS_VERSION_BUILD)
                 || false !== getenv('ANSICON')
                 || 'ON' === getenv('ConEmuANSI')
                 || 'xterm' === getenv('TERM');

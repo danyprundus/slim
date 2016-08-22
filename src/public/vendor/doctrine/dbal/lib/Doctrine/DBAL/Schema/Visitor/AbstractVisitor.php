@@ -53,7 +53,7 @@ class AbstractVisitor implements Visitor, NamespaceVisitor
     }
 
     /**
-     * @param \Doctrine\DBAL\Schema\Table  $table
+     * @param \Doctrine\DBAL\Schema\Table $table
      * @param \Doctrine\DBAL\Schema\Column $column
      */
     public function acceptColumn(Table $table, Column $column)
@@ -61,7 +61,7 @@ class AbstractVisitor implements Visitor, NamespaceVisitor
     }
 
     /**
-     * @param \Doctrine\DBAL\Schema\Table                $localTable
+     * @param \Doctrine\DBAL\Schema\Table $localTable
      * @param \Doctrine\DBAL\Schema\ForeignKeyConstraint $fkConstraint
      */
     public function acceptForeignKey(Table $localTable, ForeignKeyConstraint $fkConstraint)

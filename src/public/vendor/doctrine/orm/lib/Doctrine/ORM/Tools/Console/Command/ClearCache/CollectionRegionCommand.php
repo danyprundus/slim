@@ -41,13 +41,13 @@ class CollectionRegionCommand extends Command
     protected function configure()
     {
         $this
-        ->setName('orm:clear-cache:region:collection')
-        ->setDescription('Clear a second-level cache collection region.')
-        ->addArgument('owner-class', InputArgument::OPTIONAL, 'The owner entity name.')
-        ->addArgument('association', InputArgument::OPTIONAL, 'The association collection name.')
-        ->addArgument('owner-id', InputArgument::OPTIONAL, 'The owner identifier.')
-        ->addOption('all', null, InputOption::VALUE_NONE, 'If defined, all entity regions will be deleted/invalidated.')
-        ->addOption('flush', null, InputOption::VALUE_NONE,'If defined, all cache entries will be flushed.');
+            ->setName('orm:clear-cache:region:collection')
+            ->setDescription('Clear a second-level cache collection region.')
+            ->addArgument('owner-class', InputArgument::OPTIONAL, 'The owner entity name.')
+            ->addArgument('association', InputArgument::OPTIONAL, 'The association collection name.')
+            ->addArgument('owner-id', InputArgument::OPTIONAL, 'The owner identifier.')
+            ->addOption('all', null, InputOption::VALUE_NONE, 'If defined, all entity regions will be deleted/invalidated.')
+            ->addOption('flush', null, InputOption::VALUE_NONE, 'If defined, all cache entries will be flushed.');
 
 
         $this->setHelp(<<<EOT
@@ -82,24 +82,24 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em          = $this->getHelper('em')->getEntityManager();
-        $ownerClass  = $input->getArgument('owner-class');
-        $assoc       = $input->getArgument('association');
-        $ownerId     = $input->getArgument('owner-id');
-        $cache       = $em->getCache();
+        $em = $this->getHelper('em')->getEntityManager();
+        $ownerClass = $input->getArgument('owner-class');
+        $assoc = $input->getArgument('association');
+        $ownerId = $input->getArgument('owner-id');
+        $cache = $em->getCache();
 
-        if ( ! $cache instanceof Cache) {
+        if (!$cache instanceof Cache) {
             throw new \InvalidArgumentException('No second-level cache is configured on the given EntityManager.');
         }
 
-        if ( (! $ownerClass || ! $assoc) && ! $input->getOption('all')) {
+        if ((!$ownerClass || !$assoc) && !$input->getOption('all')) {
             throw new \InvalidArgumentException('Missing arguments "--owner-class" "--association"');
         }
 
         if ($input->getOption('flush')) {
-            $collectionRegion  = $cache->getCollectionCacheRegion($ownerClass, $assoc);
+            $collectionRegion = $cache->getCollectionCacheRegion($ownerClass, $assoc);
 
-            if ( ! $collectionRegion instanceof DefaultRegion) {
+            if (!$collectionRegion instanceof DefaultRegion) {
                 throw new \InvalidArgumentException(sprintf(
                     'The option "--flush" expects a "Doctrine\ORM\Cache\Region\DefaultRegion", but got "%s".',
                     is_object($collectionRegion) ? get_class($collectionRegion) : gettype($collectionRegion)

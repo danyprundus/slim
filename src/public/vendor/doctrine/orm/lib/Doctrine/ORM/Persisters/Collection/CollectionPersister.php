@@ -63,8 +63,8 @@ interface CollectionPersister
      * Slices elements.
      *
      * @param \Doctrine\ORM\PersistentCollection $collection
-     * @param integer                            $offset
-     * @param integer                            $length
+     * @param integer $offset
+     * @param integer $length
      *
      * @return  array
      */
@@ -74,7 +74,7 @@ interface CollectionPersister
      * Checks for existence of an element.
      *
      * @param \Doctrine\ORM\PersistentCollection $collection
-     * @param object                             $element
+     * @param object $element
      *
      * @return boolean
      */
@@ -84,7 +84,7 @@ interface CollectionPersister
      * Checks for existence of a key.
      *
      * @param \Doctrine\ORM\PersistentCollection $collection
-     * @param mixed                              $key
+     * @param mixed $key
      *
      * @return boolean
      */
@@ -94,7 +94,7 @@ interface CollectionPersister
      * Removes an element.
      *
      * @param \Doctrine\ORM\PersistentCollection $collection
-     * @param object                             $element
+     * @param object $element
      *
      * @return mixed
      */
@@ -104,7 +104,7 @@ interface CollectionPersister
      * Gets an element by key.
      *
      * @param \Doctrine\ORM\PersistentCollection $collection
-     * @param mixed                              $index
+     * @param mixed $index
      *
      * @return mixed
      */
@@ -113,7 +113,7 @@ interface CollectionPersister
     /**
      * Loads association entities matching the given Criteria object.
      *
-     * @param \Doctrine\ORM\PersistentCollection    $collection
+     * @param \Doctrine\ORM\PersistentCollection $collection
      * @param \Doctrine\Common\Collections\Criteria $criteria
      *
      * @return array

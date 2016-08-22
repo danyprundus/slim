@@ -4,13 +4,15 @@ namespace FastRoute\Dispatcher;
 
 use FastRoute\Dispatcher;
 
-abstract class RegexBasedAbstract implements Dispatcher {
+abstract class RegexBasedAbstract implements Dispatcher
+{
     protected $staticRouteMap;
     protected $variableRouteData;
 
     protected abstract function dispatchVariableRoute($routeData, $uri);
 
-    public function dispatch($httpMethod, $uri) {
+    public function dispatch($httpMethod, $uri)
+    {
         if (isset($this->staticRouteMap[$httpMethod][$uri])) {
             $handler = $this->staticRouteMap[$httpMethod][$uri];
             return [self::FOUND, $handler, []];

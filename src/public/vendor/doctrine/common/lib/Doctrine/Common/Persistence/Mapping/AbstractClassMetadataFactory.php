@@ -105,7 +105,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
      */
     public function getAllMetadata()
     {
-        if ( ! $this->initialized) {
+        if (!$this->initialized) {
             $this->initialize();
         }
 
@@ -146,7 +146,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
     /**
      * Wakes up reflection after ClassMetadata gets unserialized from cache.
      *
-     * @param ClassMetadata     $class
+     * @param ClassMetadata $class
      * @param ReflectionService $reflService
      *
      * @return void
@@ -156,7 +156,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
     /**
      * Initializes Reflection after ClassMetadata was constructed.
      *
-     * @param ClassMetadata     $class
+     * @param ClassMetadata $class
      * @param ReflectionService $reflService
      *
      * @return void
@@ -225,7 +225,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
                 $this->loadMetadata($realClassName);
             }
         } catch (MappingException $loadingException) {
-            if (! $fallbackMetadataResponse = $this->onNotFoundMetadata($realClassName)) {
+            if (!$fallbackMetadataResponse = $this->onNotFoundMetadata($realClassName)) {
                 throw $loadingException;
             }
 
@@ -257,7 +257,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
      *
      * NOTE: This is only useful in very special cases, like when generating proxy classes.
      *
-     * @param string        $className
+     * @param string $className
      * @param ClassMetadata $class
      *
      * @return void
@@ -279,7 +279,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
         // Collect parent classes, ignoring transient (not-mapped) classes.
         $parentClasses = [];
         foreach (array_reverse($this->getReflectionService()->getParentClasses($name)) as $parentClass) {
-            if ( ! $this->getDriver()->isTransient($parentClass)) {
+            if (!$this->getDriver()->isTransient($parentClass)) {
                 $parentClasses[] = $parentClass;
             }
         }
@@ -302,7 +302,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
      */
     protected function loadMetadata($name)
     {
-        if ( ! $this->initialized) {
+        if (!$this->initialized) {
             $this->initialize();
         }
 
@@ -365,10 +365,10 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
     /**
      * Actually loads the metadata from the underlying metadata.
      *
-     * @param ClassMetadata      $class
+     * @param ClassMetadata $class
      * @param ClassMetadata|null $parent
-     * @param bool               $rootEntityFound
-     * @param array              $nonSuperclassParents All parent class names
+     * @param bool $rootEntityFound
+     * @param array $nonSuperclassParents All parent class names
      *                                                 that are not marked as mapped superclasses.
      *
      * @return void
@@ -389,7 +389,7 @@ abstract class AbstractClassMetadataFactory implements ClassMetadataFactory
      */
     public function isTransient($class)
     {
-        if ( ! $this->initialized) {
+        if (!$this->initialized) {
             $this->initialize();
         }
 

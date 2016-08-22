@@ -49,7 +49,7 @@ class DeleteStatement extends StatementContainer
             trigger_error('No table is set for deletion', E_USER_ERROR);
         }
 
-        $sql = 'DELETE FROM '.$this->table;
+        $sql = 'DELETE FROM ' . $this->table;
         $sql .= $this->whereClause;
         $sql .= $this->orderClause;
         $sql .= $this->limitClause;

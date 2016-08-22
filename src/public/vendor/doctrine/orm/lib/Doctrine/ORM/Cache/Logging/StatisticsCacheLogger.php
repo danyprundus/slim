@@ -204,8 +204,8 @@ class StatisticsCacheLogger implements CacheLogger
      */
     public function clearRegionStats($regionName)
     {
-        $this->cachePutCountMap[$regionName]  = 0;
-        $this->cacheHitCountMap[$regionName]  = 0;
+        $this->cachePutCountMap[$regionName] = 0;
+        $this->cacheHitCountMap[$regionName] = 0;
         $this->cacheMissCountMap[$regionName] = 0;
     }
 
@@ -214,8 +214,8 @@ class StatisticsCacheLogger implements CacheLogger
      */
     public function clearStats()
     {
-        $this->cachePutCountMap  = array();
-        $this->cacheHitCountMap  = array();
+        $this->cachePutCountMap = array();
+        $this->cacheHitCountMap = array();
         $this->cacheMissCountMap = array();
     }
 

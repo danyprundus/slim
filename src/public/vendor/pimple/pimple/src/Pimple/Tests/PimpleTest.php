@@ -173,7 +173,9 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function testRaw()
     {
         $pimple = new Container();
-        $pimple['service'] = $definition = $pimple->factory(function () { return 'foo'; });
+        $pimple['service'] = $definition = $pimple->factory(function () {
+            return 'foo';
+        });
         $this->assertSame($definition, $pimple->raw('service'));
     }
 
@@ -237,8 +239,12 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
         }
         $pimple = new Container();
 
-        $pimple['foo'] = $pimple->factory(function () { return; });
-        $pimple['foo'] = $pimple->extend('foo', function ($foo, $pimple) { return; });
+        $pimple['foo'] = $pimple->factory(function () {
+            return;
+        });
+        $pimple['foo'] = $pimple->extend('foo', function ($foo, $pimple) {
+            return;
+        });
         unset($pimple['foo']);
 
         $p = new \ReflectionProperty($pimple, 'values');
@@ -257,7 +263,8 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function testExtendValidatesKeyIsPresent()
     {
         $pimple = new Container();
-        $pimple->extend('foo', function () {});
+        $pimple->extend('foo', function () {
+        });
     }
 
     public function testKeys()
@@ -318,7 +325,8 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     {
         $pimple = new Container();
         $pimple['foo'] = $service;
-        $pimple->extend('foo', function () {});
+        $pimple->extend('foo', function () {
+        });
     }
 
     /**
@@ -329,7 +337,8 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function testExtendFailsForInvalidServiceDefinitions($service)
     {
         $pimple = new Container();
-        $pimple['foo'] = function () {};
+        $pimple['foo'] = function () {
+        };
         $pimple->extend('foo', $service);
     }
 
@@ -339,8 +348,8 @@ class PimpleTest extends \PHPUnit_Framework_TestCase
     public function badServiceDefinitionProvider()
     {
         return array(
-          array(123),
-          array(new Fixtures\NonInvokable()),
+            array(123),
+            array(new Fixtures\NonInvokable()),
         );
     }
 

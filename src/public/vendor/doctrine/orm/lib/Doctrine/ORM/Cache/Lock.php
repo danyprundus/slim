@@ -39,13 +39,13 @@ class Lock
     public $time;
 
     /**
-     * @param string  $value
+     * @param string $value
      * @param integer $time
      */
     public function __construct($value, $time = null)
     {
         $this->value = $value;
-        $this->time  = $time ? : time();
+        $this->time = $time ?: time();
     }
 
     /**

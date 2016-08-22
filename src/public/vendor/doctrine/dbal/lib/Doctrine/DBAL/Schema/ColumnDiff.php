@@ -49,10 +49,10 @@ class ColumnDiff
     public $fromColumn;
 
     /**
-     * @param string   $oldColumnName
-     * @param Column   $column
+     * @param string $oldColumnName
+     * @param Column $column
      * @param string[] $changedProperties
-     * @param Column   $fromColumn
+     * @param Column $fromColumn
      */
     public function __construct($oldColumnName, Column $column, array $changedProperties = array(), Column $fromColumn = null)
     {

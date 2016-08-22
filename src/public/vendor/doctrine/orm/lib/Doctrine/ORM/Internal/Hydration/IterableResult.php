@@ -104,6 +104,6 @@ class IterableResult implements \Iterator
      */
     public function valid()
     {
-        return ($this->_current!=false);
+        return ($this->_current != false);
     }
 }

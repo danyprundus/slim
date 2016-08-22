@@ -40,10 +40,10 @@ class MysqliConnection implements Connection, PingableConnection, ServerInfoAwar
     private $_conn;
 
     /**
-     * @param array  $params
+     * @param array $params
      * @param string $username
      * @param string $password
-     * @param array  $driverOptions
+     * @param array $driverOptions
      *
      * @throws \Doctrine\DBAL\Driver\Mysqli\MysqliException
      */
@@ -52,7 +52,7 @@ class MysqliConnection implements Connection, PingableConnection, ServerInfoAwar
         $port = isset($params['port']) ? $params['port'] : ini_get('mysqli.default_port');
 
         // Fallback to default MySQL port if not given.
-        if ( ! $port) {
+        if (!$port) {
             $port = 3306;
         }
 
@@ -65,9 +65,10 @@ class MysqliConnection implements Connection, PingableConnection, ServerInfoAwar
 
         $this->setDriverOptions($driverOptions);
 
-        set_error_handler(function () {});
+        set_error_handler(function () {
+        });
 
-        if ( ! $this->_conn->real_connect($params['host'], $username, $password, $dbname, $port, $socket, $flags)) {
+        if (!$this->_conn->real_connect($params['host'], $username, $password, $dbname, $port, $socket, $flags)) {
             restore_error_handler();
 
             throw new MysqliException($this->_conn->connect_error, @$this->_conn->sqlstate ?: 'HY000', $this->_conn->connect_errno);
@@ -136,9 +137,9 @@ class MysqliConnection implements Connection, PingableConnection, ServerInfoAwar
     /**
      * {@inheritdoc}
      */
-    public function quote($input, $type=\PDO::PARAM_STR)
+    public function quote($input, $type = \PDO::PARAM_STR)
     {
-        return "'". $this->_conn->escape_string($input) ."'";
+        return "'" . $this->_conn->escape_string($input) . "'";
     }
 
     /**
@@ -243,7 +244,7 @@ class MysqliConnection implements Connection, PingableConnection, ServerInfoAwar
                 continue;
             }
 
-            $msg  = sprintf($exceptionMsg, 'Failed to set', $option, $value);
+            $msg = sprintf($exceptionMsg, 'Failed to set', $option, $value);
             $msg .= sprintf(', error: %s (%d)', mysqli_error($this->_conn), mysqli_errno($this->_conn));
 
             throw new MysqliException(

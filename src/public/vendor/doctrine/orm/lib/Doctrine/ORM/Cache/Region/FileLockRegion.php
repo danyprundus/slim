@@ -54,29 +54,29 @@ class FileLockRegion implements ConcurrentRegion
 
     /**
      * @param \Doctrine\ORM\Cache\Region $region
-     * @param string                     $directory
-     * @param string                     $lockLifetime
+     * @param string $directory
+     * @param string $lockLifetime
      *
      * @throws \InvalidArgumentException
      */
     public function __construct(Region $region, $directory, $lockLifetime)
     {
-        if ( ! is_dir($directory) && ! @mkdir($directory, 0775, true)) {
+        if (!is_dir($directory) && !@mkdir($directory, 0775, true)) {
             throw new \InvalidArgumentException(sprintf('The directory "%s" does not exist and could not be created.', $directory));
         }
 
-        if ( ! is_writable($directory)) {
+        if (!is_writable($directory)) {
             throw new \InvalidArgumentException(sprintf('The directory "%s" is not writable.', $directory));
         }
 
-        $this->region       = $region;
-        $this->directory    = $directory;
+        $this->region = $region;
+        $this->directory = $directory;
         $this->lockLifetime = $lockLifetime;
     }
 
     /**
      * @param \Doctrine\ORM\Cache\CacheKey $key
-     * @param \Doctrine\ORM\Cache\Lock     $lock
+     * @param \Doctrine\ORM\Cache\Lock $lock
      *
      * @return boolean
      */
@@ -84,14 +84,14 @@ class FileLockRegion implements ConcurrentRegion
     {
         $filename = $this->getLockFileName($key);
 
-        if ( ! is_file($filename)) {
+        if (!is_file($filename)) {
             return false;
         }
 
-        $time     = $this->getLockTime($filename);
-        $content  = $this->getLockContent($filename);
+        $time = $this->getLockTime($filename);
+        $content = $this->getLockContent($filename);
 
-        if ( ! $content || ! $time) {
+        if (!$content || !$time) {
             @unlink($filename);
 
             return false;
@@ -216,7 +216,7 @@ class FileLockRegion implements ConcurrentRegion
     {
         // The check below is necessary because on some platforms glob returns false
         // when nothing matched (even though no errors occurred)
-        $filenames = glob(sprintf("%s/*.%s" , $this->directory, self::LOCK_EXTENSION));
+        $filenames = glob(sprintf("%s/*.%s", $this->directory, self::LOCK_EXTENSION));
 
         if ($filenames) {
             foreach ($filenames as $filename) {
@@ -236,10 +236,10 @@ class FileLockRegion implements ConcurrentRegion
             return null;
         }
 
-        $lock     = Lock::createLockRead();
+        $lock = Lock::createLockRead();
         $filename = $this->getLockFileName($key);
 
-        if ( ! @file_put_contents($filename, $lock->value, LOCK_EX)) {
+        if (!@file_put_contents($filename, $lock->value, LOCK_EX)) {
             return null;
         }
         chmod($filename, 0664);
@@ -256,7 +256,7 @@ class FileLockRegion implements ConcurrentRegion
             return false;
         }
 
-        if ( ! @unlink($this->getLockFileName($key))) {
+        if (!@unlink($this->getLockFileName($key))) {
             return false;
         }
 

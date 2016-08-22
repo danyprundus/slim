@@ -37,6 +37,6 @@ class OffsetClause extends ClauseContainer
             return '';
         }
 
-        return ' OFFSET '.$this->offset;
+        return ' OFFSET ' . $this->offset;
     }
 }

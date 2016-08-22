@@ -43,13 +43,13 @@ class AssociationCacheEntry implements CacheEntry
     public $class;
 
     /**
-     * @param string $class       The entity class.
-     * @param array  $identifier  The entity identifier.
+     * @param string $class The entity class.
+     * @param array $identifier The entity identifier.
      */
     public function __construct($class, array $identifier)
     {
-        $this->class       = $class;
-        $this->identifier  = $identifier;
+        $this->class = $class;
+        $this->identifier = $identifier;
     }
 
     /**

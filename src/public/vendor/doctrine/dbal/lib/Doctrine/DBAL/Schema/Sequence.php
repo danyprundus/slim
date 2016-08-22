@@ -46,9 +46,9 @@ class Sequence extends AbstractAsset
     protected $cache = null;
 
     /**
-     * @param string       $name
-     * @param integer      $allocationSize
-     * @param integer      $initialValue
+     * @param string $name
+     * @param integer $allocationSize
+     * @param integer $initialValue
      * @param integer|null $cache
      */
     public function __construct($name, $allocationSize = 1, $initialValue = 1, $cache = null)
@@ -131,7 +131,7 @@ class Sequence extends AbstractAsset
      */
     public function isAutoIncrementsFor(Table $table)
     {
-        if ( ! $table->hasPrimaryKey()) {
+        if (!$table->hasPrimaryKey()) {
             return false;
         }
 
@@ -143,12 +143,12 @@ class Sequence extends AbstractAsset
 
         $column = $table->getColumn($pkColumns[0]);
 
-        if ( ! $column->getAutoincrement()) {
+        if (!$column->getAutoincrement()) {
             return false;
         }
 
-        $sequenceName      = $this->getShortestName($table->getNamespaceName());
-        $tableName         = $table->getShortestName($table->getNamespaceName());
+        $sequenceName = $this->getShortestName($table->getNamespaceName());
+        $tableName = $table->getShortestName($table->getNamespaceName());
         $tableSequenceName = sprintf('%s_%s_seq', $tableName, $pkColumns[0]);
 
         return $tableSequenceName === $sequenceName;

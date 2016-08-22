@@ -78,13 +78,13 @@ class ReservedKeywordsValidator implements Visitor
 
     /**
      * @param string $asset
-     * @param array  $violatedPlatforms
+     * @param array $violatedPlatforms
      *
      * @return void
      */
     private function addViolation($asset, $violatedPlatforms)
     {
-        if ( ! $violatedPlatforms) {
+        if (!$violatedPlatforms) {
             return;
         }
 

@@ -46,8 +46,8 @@ interface ResultStatement extends \Traversable
      * Sets the fetch mode to use while iterating this statement.
      *
      * @param integer $fetchMode The fetch mode must be one of the PDO::FETCH_* constants.
-     * @param mixed   $arg2
-     * @param mixed   $arg3
+     * @param mixed $arg2
+     * @param mixed $arg3
      *
      * @return boolean
      *

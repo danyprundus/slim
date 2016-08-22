@@ -45,8 +45,8 @@ class AssociationBuilder
 
     /**
      * @param ClassMetadataBuilder $builder
-     * @param array                $mapping
-     * @param int                  $type
+     * @param array $mapping
+     * @param int $type
      */
     public function __construct(ClassMetadataBuilder $builder, array $mapping, $type)
     {
@@ -161,10 +161,10 @@ class AssociationBuilder
     /**
      * Add Join Columns.
      *
-     * @param string      $columnName
-     * @param string      $referencedColumnName
-     * @param bool        $nullable
-     * @param bool        $unique
+     * @param string $columnName
+     * @param string $referencedColumnName
+     * @param bool $nullable
+     * @param bool $unique
      * @param string|null $onDelete
      * @param string|null $columnDef
      *

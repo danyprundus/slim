@@ -82,11 +82,11 @@ final class ReflectionPropertiesGetter
      */
     private function getHierarchyClasses($className)
     {
-        $classes         = [];
+        $classes = [];
         $parentClassName = $className;
 
         while ($parentClassName && $currentClass = $this->reflectionService->getClass($parentClassName)) {
-            $classes[]       = $currentClass;
+            $classes[] = $currentClass;
             $parentClassName = null;
 
             if ($parentClass = $currentClass->getParentClass()) {
@@ -125,7 +125,7 @@ final class ReflectionPropertiesGetter
      */
     private function isInstanceProperty(ReflectionProperty $reflectionProperty)
     {
-        return ! $reflectionProperty->isStatic();
+        return !$reflectionProperty->isStatic();
     }
 
     /**

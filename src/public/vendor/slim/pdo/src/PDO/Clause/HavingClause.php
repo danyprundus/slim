@@ -15,12 +15,12 @@ class HavingClause extends ClauseContainer
 {
     /**
      * @param $column
-     * @param null   $operator
+     * @param null $operator
      * @param string $chainType
      */
     public function having($column, $operator = null, $chainType = 'AND')
     {
-        $this->container[] = ' '.$chainType.' '.$column.' '.$operator.' ?';
+        $this->container[] = ' ' . $chainType . ' ' . $column . ' ' . $operator . ' ?';
     }
 
     /**
@@ -38,7 +38,7 @@ class HavingClause extends ClauseContainer
      */
     public function havingCount($column, $operator = null)
     {
-        $column = 'COUNT( '.$column.' )';
+        $column = 'COUNT( ' . $column . ' )';
 
         $this->having($column, $operator);
     }
@@ -49,7 +49,7 @@ class HavingClause extends ClauseContainer
      */
     public function havingMax($column, $operator = null)
     {
-        $column = 'MAX( '.$column.' )';
+        $column = 'MAX( ' . $column . ' )';
 
         $this->having($column, $operator);
     }
@@ -60,7 +60,7 @@ class HavingClause extends ClauseContainer
      */
     public function havingMin($column, $operator = null)
     {
-        $column = 'MIN( '.$column.' )';
+        $column = 'MIN( ' . $column . ' )';
 
         $this->having($column, $operator);
     }
@@ -71,7 +71,7 @@ class HavingClause extends ClauseContainer
      */
     public function havingAvg($column, $operator = null)
     {
-        $column = 'AVG( '.$column.' )';
+        $column = 'AVG( ' . $column . ' )';
 
         $this->having($column, $operator);
     }
@@ -82,7 +82,7 @@ class HavingClause extends ClauseContainer
      */
     public function havingSum($column, $operator = null)
     {
-        $column = 'SUM( '.$column.' )';
+        $column = 'SUM( ' . $column . ' )';
 
         $this->having($column, $operator);
     }
@@ -102,6 +102,6 @@ class HavingClause extends ClauseContainer
             $args[] = $having;
         }
 
-        return ' HAVING '.ltrim(implode('', $args), ' AND');
+        return ' HAVING ' . ltrim(implode('', $args), ' AND');
     }
 }

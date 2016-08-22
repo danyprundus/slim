@@ -53,15 +53,15 @@ class SchemaAlterTableChangeColumnEventArgs extends SchemaEventArgs
     private $_sql = array();
 
     /**
-     * @param \Doctrine\DBAL\Schema\ColumnDiff          $columnDiff
-     * @param \Doctrine\DBAL\Schema\TableDiff           $tableDiff
+     * @param \Doctrine\DBAL\Schema\ColumnDiff $columnDiff
+     * @param \Doctrine\DBAL\Schema\TableDiff $tableDiff
      * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
      */
     public function __construct(ColumnDiff $columnDiff, TableDiff $tableDiff, AbstractPlatform $platform)
     {
         $this->_columnDiff = $columnDiff;
-        $this->_tableDiff  = $tableDiff;
-        $this->_platform   = $platform;
+        $this->_tableDiff = $tableDiff;
+        $this->_platform = $platform;
     }
 
     /**

@@ -21,10 +21,10 @@ class RequestResponse implements InvocationStrategyInterface
      * Invoke a route callable with request, response, and all route parameters
      * as an array of arguments.
      *
-     * @param array|callable         $callable
+     * @param array|callable $callable
      * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param array                  $routeArguments
+     * @param ResponseInterface $response
+     * @param array $routeArguments
      *
      * @return mixed
      */
@@ -33,7 +33,8 @@ class RequestResponse implements InvocationStrategyInterface
         ServerRequestInterface $request,
         ResponseInterface $response,
         array $routeArguments
-    ) {
+    )
+    {
         foreach ($routeArguments as $k => $v) {
             $request = $request->withAttribute($k, $v);
         }

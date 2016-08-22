@@ -61,7 +61,7 @@ class Driver extends AbstractSQLServerDriver
         }
 
         if (isset($params['dbname'])) {
-            $dsn .= ';Database=' .  $params['dbname'];
+            $dsn .= ';Database=' . $params['dbname'];
         }
 
         if (isset($params['MultipleActiveResultSets'])) {

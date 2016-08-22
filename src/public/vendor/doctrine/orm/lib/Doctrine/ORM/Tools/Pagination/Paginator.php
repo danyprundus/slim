@@ -57,8 +57,8 @@ class Paginator implements \Countable, \IteratorAggregate
     /**
      * Constructor.
      *
-     * @param Query|QueryBuilder $query               A Doctrine ORM query or query builder.
-     * @param boolean            $fetchJoinCollection Whether the query joins a collection (true by default).
+     * @param Query|QueryBuilder $query A Doctrine ORM query or query builder.
+     * @param boolean $fetchJoinCollection Whether the query joins a collection (true by default).
      */
     public function __construct($query, $fetchJoinCollection = true)
     {
@@ -67,7 +67,7 @@ class Paginator implements \Countable, \IteratorAggregate
         }
 
         $this->query = $query;
-        $this->fetchJoinCollection = (Boolean) $fetchJoinCollection;
+        $this->fetchJoinCollection = (Boolean)$fetchJoinCollection;
     }
 
     /**
@@ -121,7 +121,7 @@ class Paginator implements \Countable, \IteratorAggregate
         if ($this->count === null) {
             try {
                 $this->count = array_sum(array_map('current', $this->getCountQuery()->getScalarResult()));
-            } catch(NoResultException $e) {
+            } catch (NoResultException $e) {
                 $this->count = 0;
             }
         }
@@ -168,8 +168,7 @@ class Paginator implements \Countable, \IteratorAggregate
                 ->setMaxResults($length)
                 ->setFirstResult($offset)
                 ->setCacheable($this->query->isCacheable())
-                ->getResult($this->query->getHydrationMode())
-            ;
+                ->getResult($this->query->getHydrationMode());
         }
 
         return new \ArrayIterator($result);
@@ -207,7 +206,7 @@ class Paginator implements \Countable, \IteratorAggregate
     private function useOutputWalker(Query $query)
     {
         if ($this->useOutputWalkers === null) {
-            return (Boolean) $query->getHint(Query::HINT_CUSTOM_OUTPUT_WALKER) == false;
+            return (Boolean)$query->getHint(Query::HINT_CUSTOM_OUTPUT_WALKER) == false;
         }
 
         return $this->useOutputWalkers;
@@ -241,7 +240,7 @@ class Paginator implements \Countable, \IteratorAggregate
         /* @var $countQuery Query */
         $countQuery = $this->cloneQuery($this->query);
 
-        if ( ! $countQuery->hasHint(CountWalker::HINT_DISTINCT)) {
+        if (!$countQuery->hasHint(CountWalker::HINT_DISTINCT)) {
             $countQuery->setHint(CountWalker::HINT_DISTINCT, true);
         }
 
@@ -259,15 +258,15 @@ class Paginator implements \Countable, \IteratorAggregate
 
         $countQuery->setFirstResult(null)->setMaxResults(null);
 
-        $parser            = new Parser($countQuery);
+        $parser = new Parser($countQuery);
         $parameterMappings = $parser->parse()->getParameterMappings();
         /* @var $parameters \Doctrine\Common\Collections\Collection|\Doctrine\ORM\Query\Parameter[] */
-        $parameters        = $countQuery->getParameters();
+        $parameters = $countQuery->getParameters();
 
         foreach ($parameters as $key => $parameter) {
             $parameterName = $parameter->getName();
 
-            if( ! (isset($parameterMappings[$parameterName]) || array_key_exists($parameterName, $parameterMappings))) {
+            if (!(isset($parameterMappings[$parameterName]) || array_key_exists($parameterName, $parameterMappings))) {
                 unset($parameters[$key]);
             }
         }

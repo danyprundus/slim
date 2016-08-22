@@ -54,14 +54,14 @@ class SchemaIndexDefinitionEventArgs extends SchemaEventArgs
     private $_connection;
 
     /**
-     * @param array                     $tableIndex
-     * @param string                    $table
+     * @param array $tableIndex
+     * @param string $table
      * @param \Doctrine\DBAL\Connection $connection
      */
     public function __construct(array $tableIndex, $table, Connection $connection)
     {
         $this->_tableIndex = $tableIndex;
-        $this->_table      = $table;
+        $this->_table = $table;
         $this->_connection = $connection;
     }
 

@@ -90,15 +90,15 @@ abstract class AbstractProxyFactory
     private $definitions = [];
 
     /**
-     * @param \Doctrine\Common\Proxy\ProxyGenerator                     $proxyGenerator
+     * @param \Doctrine\Common\Proxy\ProxyGenerator $proxyGenerator
      * @param \Doctrine\Common\Persistence\Mapping\ClassMetadataFactory $metadataFactory
-     * @param bool|int                                                  $autoGenerate
+     * @param bool|int $autoGenerate
      */
     public function __construct(ProxyGenerator $proxyGenerator, ClassMetadataFactory $metadataFactory, $autoGenerate)
     {
-        $this->proxyGenerator  = $proxyGenerator;
+        $this->proxyGenerator = $proxyGenerator;
         $this->metadataFactory = $metadataFactory;
-        $this->autoGenerate    = (int)$autoGenerate;
+        $this->autoGenerate = (int)$autoGenerate;
     }
 
     /**
@@ -106,7 +106,7 @@ abstract class AbstractProxyFactory
      * the given identifier.
      *
      * @param  string $className
-     * @param  array  $identifier
+     * @param  array $identifier
      *
      * @return \Doctrine\Common\Proxy\Proxy
      *
@@ -117,11 +117,11 @@ abstract class AbstractProxyFactory
         $definition = isset($this->definitions[$className])
             ? $this->definitions[$className]
             : $this->getProxyDefinition($className);
-        $fqcn       = $definition->proxyClassName;
-        $proxy      = new $fqcn($definition->initializer, $definition->cloner);
+        $fqcn = $definition->proxyClassName;
+        $proxy = new $fqcn($definition->initializer, $definition->cloner);
 
         foreach ($definition->identifierFields as $idField) {
-            if (! isset($identifier[$idField])) {
+            if (!isset($identifier[$idField])) {
                 throw OutOfBoundsException::missingPrimaryKeyValue($className, $idField);
             }
 
@@ -175,7 +175,7 @@ abstract class AbstractProxyFactory
             throw InvalidArgumentException::unitializedProxyExpected($proxy);
         }
 
-        $className  = ClassUtils::getClass($proxy);
+        $className = ClassUtils::getClass($proxy);
         $definition = isset($this->definitions[$className])
             ? $this->definitions[$className]
             : $this->getProxyDefinition($className);
@@ -196,13 +196,13 @@ abstract class AbstractProxyFactory
     private function getProxyDefinition($className)
     {
         $classMetadata = $this->metadataFactory->getMetadataFor($className);
-        $className     = $classMetadata->getName(); // aliases and case sensitivity
+        $className = $classMetadata->getName(); // aliases and case sensitivity
 
         $this->definitions[$className] = $this->createProxyDefinition($className);
-        $proxyClassName                = $this->definitions[$className]->proxyClassName;
+        $proxyClassName = $this->definitions[$className]->proxyClassName;
 
-        if ( ! class_exists($proxyClassName, false)) {
-            $fileName  = $this->proxyGenerator->getProxyFileName($className);
+        if (!class_exists($proxyClassName, false)) {
+            $fileName = $this->proxyGenerator->getProxyFileName($className);
 
             switch ($this->autoGenerate) {
                 case self::AUTOGENERATE_NEVER:
@@ -210,7 +210,7 @@ abstract class AbstractProxyFactory
                     break;
 
                 case self::AUTOGENERATE_FILE_NOT_EXISTS:
-                    if ( ! file_exists($fileName)) {
+                    if (!file_exists($fileName)) {
                         $this->proxyGenerator->generateProxyClass($classMetadata, $fileName);
                     }
                     require $fileName;

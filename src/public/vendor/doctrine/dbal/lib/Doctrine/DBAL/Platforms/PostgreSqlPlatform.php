@@ -76,7 +76,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function setUseBooleanTrueFalseStrings($flag)
     {
-        $this->useBooleanTrueFalseStrings = (bool) $flag;
+        $this->useBooleanTrueFalseStrings = (bool)$flag;
     }
 
     /**
@@ -115,10 +115,10 @@ class PostgreSqlPlatform extends AbstractPlatform
         if ($startPos !== false) {
             $str = $this->getSubstringExpression($str, $startPos);
 
-            return 'CASE WHEN (POSITION('.$substr.' IN '.$str.') = 0) THEN 0 ELSE (POSITION('.$substr.' IN '.$str.') + '.($startPos-1).') END';
+            return 'CASE WHEN (POSITION(' . $substr . ' IN ' . $str . ') = 0) THEN 0 ELSE (POSITION(' . $substr . ' IN ' . $str . ') + ' . ($startPos - 1) . ') END';
         }
 
-        return 'POSITION('.$substr.' IN '.$str.')';
+        return 'POSITION(' . $substr . ' IN ' . $str . ')';
     }
 
     /**
@@ -131,7 +131,7 @@ class PostgreSqlPlatform extends AbstractPlatform
             $unit = self::DATE_INTERVAL_UNIT_MONTH;
         }
 
-        return "(" . $date ." " . $operator . " (" . $interval . " || ' " . $unit . "')::interval)";
+        return "(" . $date . " " . $operator . " (" . $interval . " || ' " . $unit . "')::interval)";
     }
 
     /**
@@ -291,7 +291,7 @@ class PostgreSqlPlatform extends AbstractPlatform
                   (
                       SELECT c.oid
                       FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n
-                      WHERE " .$this->getTableWhereClause($table) ." AND n.oid = c.relnamespace
+                      WHERE " . $this->getTableWhereClause($table) . " AND n.oid = c.relnamespace
                   )
                   AND r.contype = 'f'";
     }
@@ -309,7 +309,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function getDropViewSQL($name)
     {
-        return 'DROP VIEW '. $name;
+        return 'DROP VIEW ' . $name;
     }
 
     /**
@@ -348,7 +348,7 @@ class PostgreSqlPlatform extends AbstractPlatform
                  WHERE oid IN (
                     SELECT indexrelid
                     FROM pg_index si, pg_class sc, pg_namespace sn
-                    WHERE " . $this->getTableWhereClause($table, 'sc', 'sn')." AND sc.oid=si.indrelid AND sc.relnamespace = sn.oid
+                    WHERE " . $this->getTableWhereClause($table, 'sc', 'sn') . " AND sc.oid=si.indrelid AND sc.relnamespace = sn.oid
                  ) AND pg_index.indexrelid = oid";
     }
 
@@ -361,7 +361,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     private function getTableWhereClause($table, $classAlias = 'c', $namespaceAlias = 'n')
     {
-        $whereClause = $namespaceAlias.".nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast') AND ";
+        $whereClause = $namespaceAlias . ".nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast') AND ";
         if (strpos($table, ".") !== false) {
             list($schema, $table) = explode(".", $table);
             $schema = "'" . $schema . "'";
@@ -404,7 +404,7 @@ class PostgreSqlPlatform extends AbstractPlatform
                         FROM pg_description WHERE pg_description.objoid = c.oid AND a.attnum = pg_description.objsubid
                     ) AS comment
                     FROM pg_attribute a, pg_class c, pg_type t, pg_namespace n
-                    WHERE ".$this->getTableWhereClause($table, 'c', 'n') ."
+                    WHERE " . $this->getTableWhereClause($table, 'c', 'n') . "
                         AND a.attnum > 0
                         AND a.attrelid = c.oid
                         AND a.atttypid = t.oid
@@ -592,7 +592,7 @@ class PostgreSqlPlatform extends AbstractPlatform
 
         $tableSql = array();
 
-        if ( ! $this->onSchemaAlterTable($diff, $tableSql)) {
+        if (!$this->onSchemaAlterTable($diff, $tableSql)) {
             $sql = array_merge($sql, $commentsSQL);
 
             if ($diff->newName !== false) {
@@ -627,7 +627,7 @@ class PostgreSqlPlatform extends AbstractPlatform
     {
         $columnType = $columnDiff->column->getType();
 
-        if ( ! $columnType instanceof BinaryType && ! $columnType instanceof BlobType) {
+        if (!$columnType instanceof BinaryType && !$columnType instanceof BlobType) {
             return false;
         }
 
@@ -636,7 +636,7 @@ class PostgreSqlPlatform extends AbstractPlatform
         if ($fromColumn) {
             $fromColumnType = $fromColumn->getType();
 
-            if ( ! $fromColumnType instanceof BinaryType && ! $fromColumnType instanceof BlobType) {
+            if (!$fromColumnType instanceof BinaryType && !$fromColumnType instanceof BlobType) {
                 return false;
             }
 
@@ -673,7 +673,7 @@ class PostgreSqlPlatform extends AbstractPlatform
         $comment = $comment === null ? 'NULL' : $this->quoteStringLiteral($comment);
 
         return "COMMENT ON COLUMN " . $tableName->getQuotedName($this) . "." . $columnName->getQuotedName($this) .
-            " IS $comment";
+        " IS $comment";
     }
 
     /**
@@ -682,10 +682,10 @@ class PostgreSqlPlatform extends AbstractPlatform
     public function getCreateSequenceSQL(Sequence $sequence)
     {
         return 'CREATE SEQUENCE ' . $sequence->getQuotedName($this) .
-               ' INCREMENT BY ' . $sequence->getAllocationSize() .
-               ' MINVALUE ' . $sequence->getInitialValue() .
-               ' START ' . $sequence->getInitialValue() .
-               $this->getSequenceCacheSQL($sequence);
+        ' INCREMENT BY ' . $sequence->getAllocationSize() .
+        ' MINVALUE ' . $sequence->getInitialValue() .
+        ' START ' . $sequence->getInitialValue() .
+        $this->getSequenceCacheSQL($sequence);
     }
 
     /**
@@ -694,8 +694,8 @@ class PostgreSqlPlatform extends AbstractPlatform
     public function getAlterSequenceSQL(Sequence $sequence)
     {
         return 'ALTER SEQUENCE ' . $sequence->getQuotedName($this) .
-               ' INCREMENT BY ' . $sequence->getAllocationSize() .
-               $this->getSequenceCacheSQL($sequence);
+        ' INCREMENT BY ' . $sequence->getAllocationSize() .
+        $this->getSequenceCacheSQL($sequence);
     }
 
     /**
@@ -749,7 +749,7 @@ class PostgreSqlPlatform extends AbstractPlatform
     {
         $queryFields = $this->getColumnDeclarationListSQL($columns);
 
-        if (isset($options['primary']) && ! empty($options['primary'])) {
+        if (isset($options['primary']) && !empty($options['primary'])) {
             $keyColumns = array_unique(array_values($options['primary']));
             $queryFields .= ', PRIMARY KEY(' . implode(', ', $keyColumns) . ')';
         }
@@ -758,14 +758,14 @@ class PostgreSqlPlatform extends AbstractPlatform
 
         $sql[] = $query;
 
-        if (isset($options['indexes']) && ! empty($options['indexes'])) {
+        if (isset($options['indexes']) && !empty($options['indexes'])) {
             foreach ($options['indexes'] as $index) {
                 $sql[] = $this->getCreateIndexSQL($index, $tableName);
             }
         }
 
         if (isset($options['foreignKeys'])) {
-            foreach ((array) $options['foreignKeys'] as $definition) {
+            foreach ((array)$options['foreignKeys'] as $definition) {
                 $sql[] = $this->getCreateForeignKeySQL($definition, $tableName);
             }
         }
@@ -780,7 +780,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      * and passes it to the given callback function to be reconverted
      * into any custom representation.
      *
-     * @param mixed    $value    The value to convert.
+     * @param mixed $value The value to convert.
      * @param callable $callback The callback function to use for converting the real boolean value.
      *
      * @return mixed
@@ -821,7 +821,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      * and passes them to the given callback function to be reconverted
      * into any custom representation.
      *
-     * @param mixed    $item     The value(s) to convert.
+     * @param mixed $item The value(s) to convert.
      * @param callable $callback The callback function to use for converting the real boolean value(s).
      *
      * @return mixed
@@ -846,7 +846,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function convertBooleans($item)
     {
-        if ( ! $this->useBooleanTrueFalseStrings) {
+        if (!$this->useBooleanTrueFalseStrings) {
             return parent::convertBooleans($item);
         }
 
@@ -867,14 +867,14 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function convertBooleansToDatabaseValue($item)
     {
-        if ( ! $this->useBooleanTrueFalseStrings) {
+        if (!$this->useBooleanTrueFalseStrings) {
             return parent::convertBooleansToDatabaseValue($item);
         }
 
         return $this->doConvertBooleans(
             $item,
             function ($boolean) {
-                return null === $boolean ? null : (int) $boolean;
+                return null === $boolean ? null : (int)$boolean;
             }
         );
     }
@@ -905,7 +905,7 @@ class PostgreSqlPlatform extends AbstractPlatform
     public function getSetTransactionIsolationSQL($level)
     {
         return 'SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL '
-                . $this->_getTransactionIsolationLevelSQL($level);
+        . $this->_getTransactionIsolationLevelSQL($level);
     }
 
     /**
@@ -921,7 +921,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function getIntegerTypeDeclarationSQL(array $field)
     {
-        if ( ! empty($field['autoincrement'])) {
+        if (!empty($field['autoincrement'])) {
             return 'SERIAL';
         }
 
@@ -933,7 +933,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function getBigIntTypeDeclarationSQL(array $field)
     {
-        if ( ! empty($field['autoincrement'])) {
+        if (!empty($field['autoincrement'])) {
             return 'BIGSERIAL';
         }
 
@@ -1010,7 +1010,7 @@ class PostgreSqlPlatform extends AbstractPlatform
     protected function getVarcharTypeDeclarationSQLSnippet($length, $fixed)
     {
         return $fixed ? ($length ? 'CHAR(' . $length . ')' : 'CHAR(255)')
-                : ($length ? 'VARCHAR(' . $length . ')' : 'VARCHAR(255)');
+            : ($length ? 'VARCHAR(' . $length . ')' : 'VARCHAR(255)');
     }
 
     /**
@@ -1068,7 +1068,7 @@ class PostgreSqlPlatform extends AbstractPlatform
      */
     public function getTruncateTableSQL($tableName, $cascade = false)
     {
-        return 'TRUNCATE '.$tableName.' '.(($cascade)?'CASCADE':'');
+        return 'TRUNCATE ' . $tableName . ' ' . (($cascade) ? 'CASCADE' : '');
     }
 
     /**
@@ -1085,44 +1085,44 @@ class PostgreSqlPlatform extends AbstractPlatform
     protected function initializeDoctrineTypeMappings()
     {
         $this->doctrineTypeMapping = array(
-            'smallint'      => 'smallint',
-            'int2'          => 'smallint',
-            'serial'        => 'integer',
-            'serial4'       => 'integer',
-            'int'           => 'integer',
-            'int4'          => 'integer',
-            'integer'       => 'integer',
-            'bigserial'     => 'bigint',
-            'serial8'       => 'bigint',
-            'bigint'        => 'bigint',
-            'int8'          => 'bigint',
-            'bool'          => 'boolean',
-            'boolean'       => 'boolean',
-            'text'          => 'text',
-            'varchar'       => 'string',
-            'interval'      => 'string',
-            '_varchar'      => 'string',
-            'char'          => 'string',
-            'bpchar'        => 'string',
-            'inet'          => 'string',
-            'date'          => 'date',
-            'datetime'      => 'datetime',
-            'timestamp'     => 'datetime',
-            'timestamptz'   => 'datetimetz',
-            'time'          => 'time',
-            'timetz'        => 'time',
-            'float'         => 'float',
-            'float4'        => 'float',
-            'float8'        => 'float',
-            'double'        => 'float',
+            'smallint' => 'smallint',
+            'int2' => 'smallint',
+            'serial' => 'integer',
+            'serial4' => 'integer',
+            'int' => 'integer',
+            'int4' => 'integer',
+            'integer' => 'integer',
+            'bigserial' => 'bigint',
+            'serial8' => 'bigint',
+            'bigint' => 'bigint',
+            'int8' => 'bigint',
+            'bool' => 'boolean',
+            'boolean' => 'boolean',
+            'text' => 'text',
+            'varchar' => 'string',
+            'interval' => 'string',
+            '_varchar' => 'string',
+            'char' => 'string',
+            'bpchar' => 'string',
+            'inet' => 'string',
+            'date' => 'date',
+            'datetime' => 'datetime',
+            'timestamp' => 'datetime',
+            'timestamptz' => 'datetimetz',
+            'time' => 'time',
+            'timetz' => 'time',
+            'float' => 'float',
+            'float4' => 'float',
+            'float8' => 'float',
+            'double' => 'float',
             'double precision' => 'float',
-            'real'          => 'float',
-            'decimal'       => 'decimal',
-            'money'         => 'decimal',
-            'numeric'       => 'decimal',
-            'year'          => 'date',
-            'uuid'          => 'guid',
-            'bytea'         => 'blob',
+            'real' => 'float',
+            'decimal' => 'decimal',
+            'money' => 'decimal',
+            'numeric' => 'decimal',
+            'year' => 'date',
+            'uuid' => 'guid',
+            'bytea' => 'blob',
         );
     }
 

@@ -80,11 +80,12 @@ abstract class AbstractSQLAnywhereDriver implements Driver, ExceptionConverterDr
      */
     public function createDatabasePlatformForVersion($version)
     {
-        if ( ! preg_match(
+        if (!preg_match(
             '/^(?P<major>\d+)(?:\.(?P<minor>\d+)(?:\.(?P<patch>\d+)(?:\.(?P<build>\d+))?)?)?/',
             $version,
             $versionParts
-        )) {
+        )
+        ) {
             throw DBALException::invalidPlatformVersionSpecified(
                 $version,
                 '<major_version>.<minor_version>.<patch_version>.<build_version>'
@@ -95,9 +96,9 @@ abstract class AbstractSQLAnywhereDriver implements Driver, ExceptionConverterDr
         $minorVersion = isset($versionParts['minor']) ? $versionParts['minor'] : 0;
         $patchVersion = isset($versionParts['patch']) ? $versionParts['patch'] : 0;
         $buildVersion = isset($versionParts['build']) ? $versionParts['build'] : 0;
-        $version      = $majorVersion . '.' . $minorVersion . '.' . $patchVersion . '.' . $buildVersion;
+        $version = $majorVersion . '.' . $minorVersion . '.' . $patchVersion . '.' . $buildVersion;
 
-        switch(true) {
+        switch (true) {
             case version_compare($version, '16', '>='):
                 return new SQLAnywhere16Platform();
             case version_compare($version, '12', '>='):

@@ -74,14 +74,14 @@ class WhereInWalker extends TreeWalkerAdapter
         $queryComponents = $this->_getQueryComponents();
         // Get the root entity and alias from the AST fromClause
         $from = $AST->fromClause->identificationVariableDeclarations;
-        
+
         if (count($from) > 1) {
             throw new \RuntimeException("Cannot count query which selects two FROM components, cannot make distinction");
         }
-       
-        $fromRoot            = reset($from);
-        $rootAlias           = $fromRoot->rangeVariableDeclaration->aliasIdentificationVariable;
-        $rootClass           = $queryComponents[$rootAlias]['metadata'];
+
+        $fromRoot = reset($from);
+        $rootAlias = $fromRoot->rangeVariableDeclaration->aliasIdentificationVariable;
+        $rootClass = $queryComponents[$rootAlias]['metadata'];
         $identifierFieldName = $rootClass->getSingleIdentifierFieldName();
 
         $pathType = PathExpression::TYPE_STATE_FIELD;
@@ -89,7 +89,7 @@ class WhereInWalker extends TreeWalkerAdapter
             $pathType = PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION;
         }
 
-        $pathExpression       = new PathExpression(PathExpression::TYPE_STATE_FIELD | PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION, $rootAlias, $identifierFieldName);
+        $pathExpression = new PathExpression(PathExpression::TYPE_STATE_FIELD | PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION, $rootAlias, $identifierFieldName);
         $pathExpression->type = $pathType;
 
         $count = $this->_getQuery()->getHint(self::HINT_PAGINATOR_ID_COUNT);

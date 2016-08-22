@@ -6,14 +6,16 @@
  * Time: 15:58
  */
 function dbConnect()
-{$dsn = 'mysql:host=localhost;dbname=playground_management';
+{
+    $dsn = 'mysql:host=localhost;dbname=playground_management';
     $username = 'root';
     $password = 'mysql';
     $pdo = new PDO($dsn, $username, $password);
     return $pdo;
 
 }
-function sqlExecute($pdo,$stmt)
+
+function sqlExecute($pdo, $stmt)
 {
 
     try {
@@ -21,10 +23,10 @@ function sqlExecute($pdo,$stmt)
 
         $stmt->execute();
         $pdo->commit();
-        $response=array("OK"=>'Yes');
-    } catch(PDOExecption $e) {
+        $response = array("OK" => 'Yes');
+    } catch (PDOExecption $e) {
         $pdo->rollback();
-        $response=array("OK"=>"No");
+        $response = array("OK" => "No");
     }
     return $response;
 

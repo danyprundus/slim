@@ -48,8 +48,8 @@ class PoolingShardManager implements ShardManager
      */
     public function __construct(PoolingShardConnection $conn)
     {
-        $params       = $conn->getParams();
-        $this->conn   = $conn;
+        $params = $conn->getParams();
+        $this->conn = $conn;
         $this->choser = $params['shardChoser'];
     }
 
@@ -99,8 +99,8 @@ class PoolingShardManager implements ShardManager
 
     /**
      * @param string $sql
-     * @param array  $params
-     * @param array  $types
+     * @param array $params
+     * @param array $types
      *
      * @return array
      *
