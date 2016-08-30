@@ -242,7 +242,7 @@ $app->get('/finance/params', function (Request $request, Response $response) {
             "id"=>"#",
             "name"=>"Nume",
             "barcodeID"=>"Barcode",
-            "owner"=>array(name=>"Categorie",fieldType=>"dropdown","params"=>"/finance/params/financeProductsOptions/owner"),
+            "owner"=>"Categorie",
             "qty"=>"Cantitate",
             "um"=>"Unitatea de Masura",
             "price"=>"Pret",
@@ -251,19 +251,5 @@ $app->get('/finance/params', function (Request $request, Response $response) {
 );
     return json_encode($response);
 });
-$app->get('/finance/params/{function}/{param}', function (Request $request, Response $response) {
- $function = $request->getAttribute('function');
- $param = $request->getAttribute('param');
 
-    $response=array(
-      "financeProductsOptions"=>array(
-          "owner"=>array(array(id=>1,name=>"Coca Cola"),
-              array(id=>2,name=>"Timbarc")
-              )
-      )
-    );
-
-
-    return json_encode($response);
-});
 $app->run();
