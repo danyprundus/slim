@@ -242,7 +242,7 @@ $app->get('/finance/params', function (Request $request, Response $response) {
             "id"=>"#",
             "name"=>"Nume",
             "barcodeID"=>"Barcode",
-            "owner"=>"Categorie",
+            "owner"=>array("name"=>"Categorie",field_type=>"dropdown",params=>array("1"=>"Coca Cola",'2'=>"Tymbarc")),
             "qty"=>"Cantitate",
             "um"=>"Unitatea de Masura",
             "price"=>"Pret",
