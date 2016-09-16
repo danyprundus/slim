@@ -49,19 +49,12 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 
     return $response;
 });
-$app->get('/finance/client/{clientID}/calculate', function (Request $request, Response $response) {
+$app->get('/finance/client/{playgroundID}/{clientID}/calculate', function (Request $request, Response $response) {
     $pdo=dbConnect();
-    $clientID = $request->getAttribute('clientID');
-    $sth = $pdo->prepare('SELECT *     FROM client     WHERE id= :clientID');
-    $sth->bindValue(':clientID', $clientID, PDO::PARAM_INT);
+    $clientID=$request->getAttribute('clientID');
+    $playgroundID=$request->getAttribute('playgroundID');
+    $sth = $pdo->prepare('update client set exitTime=CURRENT_TIMESTAMP,price= (TIMESTAMPDIFF (SECOND,time,CURRENT_TIMESTAMP)*10/3600+(SELECT sum(-qty*price) as price FROM `product_list`,products WHERE clientID='.$clientID.' and product_list.barcodeID=products.barcodeID and product_list.playgroundID='.$playgroundID.'))    WHERE client.id= '.$clientID);
     $sth->execute();
-    $result = $sth->fetchAll();
-    print_r($result);
-    $start=new DateTime($result[0]['time']);
-  //  echo date_diff($start,new dateTime);
-    $ymd = DateTime::createFromFormat('Y-m-d', '10-16-2003')->format('Y-m-d');
-
-
 
 });
 $app->any('/finance/monetar/data={data}/option={option}', function (Request $request, Response $response) {
@@ -169,7 +162,8 @@ $app->any('/finance/client/data={data}/option={option}', function (Request $requ
 $app->any('/finance/client/getall/plagroundID={playgroundID}', function (Request $request, Response $response) {
     $pdo=dbConnect();
     $playgroundID=$request->getAttribute('playgroundID');
-    $sth = $pdo->prepare('SELECT *     FROM client     WHERE playgroundID= :playground');
+    //(SELECT sum(-qty*price) as price FROM `product_list`,products WHERE clientID='.$clientID.' and product_list.barcodeID=products.barcodeID and product_list.playgroundID='.$playgroundID.')
+    $sth = $pdo->prepare('SELECT   id,barcodeID,name,data,DATE_FORMAT(time,\'%T\') AS time,DATE_FORMAT(exitTime,\'%T\') AS exitTime,TIMEDIFF(CURRENT_TIMESTAMP,time)  as price  ,IFNULL((SELECT sum(-qty*price) as price FROM `product_list`,products WHERE clientID=client.id and product_list.barcodeID=products.barcodeID and product_list.playgroundID=client.playgroundID),0) as cost  FROM client     WHERE playgroundID= 1 and client.time>CURDATE()');
     $sth->bindValue(':playground', $playgroundID, PDO::PARAM_INT);
     $sth->execute();
     $result = $sth->fetchAll();
