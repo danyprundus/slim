@@ -34,17 +34,40 @@ $app->any('/finance/monetar/getZetForMonth/{playgroundID}/{yearmonth}', function
 });
 
 
+$app->any('/finance/monetar/getMoneyForMonth/{playgroundID}/{yearmonth}/{option}', function (Request $request, Response $response) {
+    $pdo=dbConnect();
+    $return=array();
+    $playgroundID=$request->getAttribute('playgroundID');
+     $yearmonth=$request->getAttribute('yearmonth');
+     $option=$request->getAttribute('option');
+    $sth = $pdo->prepare("SELECT sum(total) as total,concat(EXTRACT( YEAR_MONTH FROM time ),@day:=EXTRACT(DAY FROM time )) as YearMonthDay FROM `monetar` where  EXTRACT( YEAR_MONTH FROM time )='$yearmonth' and playgroundID=$playgroundID and operatiune='".$option."' GROUP BY EXTRACT(DAY FROM time )");
+    $sth->execute();
+    $results = $sth->fetchAll(PDO::FETCH_NAMED);
+    foreach ($results as $result)
+    {
+        $return[$result['YearMonthDay']]=$result['total'];
+    }
+    print json_encode($return);
+});
+
+
 $app->any('/finance/monetar/getCountForMonth/{playgroundID}/{yearmonth}', function (Request $request, Response $response) {
     $pdo=dbConnect();
     $return=array();
     $playgroundID=$request->getAttribute('playgroundID');
      $yearmonth=$request->getAttribute('yearmonth');
-    $sth = $pdo->prepare("SELECT max(total) as max_total,min(total) as min_total,concat(EXTRACT( YEAR_MONTH FROM time ),@day:=EXTRACT(DAY FROM time )) as YearMonthDay FROM `monetar` where  EXTRACT( YEAR_MONTH FROM time )='$yearmonth' and playgroundID=$playgroundID and operatiune='seara' GROUP BY EXTRACT(DAY FROM time )");
+    $sth = $pdo->prepare("SELECT operatiune,max(total) as max_total,min(total) as min_total,concat(EXTRACT( YEAR_MONTH FROM time ),@day:=EXTRACT(DAY FROM time )) as YearMonthDay FROM `monetar` where  EXTRACT( YEAR_MONTH FROM time )='$yearmonth' and playgroundID=$playgroundID and operatiune in ('seara','dimineata') GROUP BY EXTRACT(DAY FROM time )");
     $sth->execute();
     $results = $sth->fetchAll(PDO::FETCH_NAMED);
     foreach ($results as $result)
     {
-        $return[$result['YearMonthDay']]=array("max"=>$result['max_total'],'min'=>$result['min_total']);
+        $return[$result['YearMonthDay']]= array(
+            $result[operatiune]=>array(
+                "max"=>$result['max_total'],
+                'min'=>$result['min_total']
+            ),
+
+        );
     }
     print json_encode($return);
 });
@@ -75,10 +98,10 @@ $app->any('/finance/monetar/data={data}/option={option}', function (Request $req
     $jsonMonetar=json_encode($data);
     $userID=1;
     $playgroundID=1;
-    $timestamp=time();
     $operatiune=  $request->getAttribute('option');
 
     switch ($operatiune){
+        case    'bon':
         case    'factura':
         case    'zet':
         case    'retragere':
@@ -117,9 +140,7 @@ $app->any('/finance/monetar/data={data}/option={option}', function (Request $req
 
 
     try {
-        $pdo->beginTransaction();
         $stmt->execute();
-        $pdo->commit();
         $response=array("OK"=>'Yes');
     } catch(PDOExecption $e) {
         $pdo->rollback();

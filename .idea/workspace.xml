@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$USER_HOME$/IntacctRO/main/app/source/common/backend_util.inc" description="$dbInfo = getRandomDatabase();" line="741" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f468dfe7-98fa-4d26-bdcc-9e3bc6d180ed" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/public/app/config/config.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/public/app/routes/client.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/public/app/routes/inventory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/public/app/routes/monetar.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/public/app/routes/params.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/public/index.php" afterPath="$PROJECT_DIR$/src/public/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/public/app/routes/client.php" afterPath="$PROJECT_DIR$/src/public/app/routes/client.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/public/app/routes/inventory.php" afterPath="$PROJECT_DIR$/src/public/app/routes/inventory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/public/app/routes/monetar.php" afterPath="$PROJECT_DIR$/src/public/app/routes/monetar.php" />
     </list>
     <ignored path="slim.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +42,8 @@
       <file leaf-file-name="params.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/app/routes/params.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+            <state relative-caret-position="210">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
                 <element signature="e#6#62#0#PHP" expanded="true" />
               </folding>
@@ -51,20 +51,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventory.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inventory.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/public/app/routes/inventory.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+            <state relative-caret-position="320">
+              <caret line="75" column="301" selection-start-line="75" selection-start-column="301" selection-end-line="75" selection-end-column="301" />
               <folding>
                 <element signature="e#6#62#0#PHP" expanded="true" />
-                <marker date="1474359786000" expanded="true" signature="424:528" ph="SELECT barco... products" />
-                <marker date="1474359786000" expanded="true" signature="963:1059" ph="SELECT barco... products" />
-                <marker date="1474359786000" expanded="true" signature="1729:1830" ph="SELECT sum(q... product_list" />
-                <marker date="1474359786000" expanded="true" signature="2635:2879" ph="SELECT name,... product_list" />
-                <marker date="1474359786000" expanded="true" signature="3569:3705" ph="insert into product_list" />
-                <marker date="1474359786000" expanded="true" signature="4615:4742" ph="insert into products" />
-                <marker date="1474359786000" expanded="true" signature="4969:5072" ph="insert into product_list" />
+                <marker date="1475500723000" expanded="true" signature="424:543" ph="SELECT barco... products" />
+                <marker date="1475500723000" expanded="true" signature="978:1074" ph="SELECT barco... products" />
+                <marker date="1475500723000" expanded="true" signature="1744:1845" ph="SELECT sum(q... product_list" />
+                <marker date="1475500723000" expanded="true" signature="2639:2911" ph="SELECT name,... product_list" />
+                <marker date="1475500723000" expanded="true" signature="3599:3735" ph="insert into product_list" />
+                <marker date="1475500723000" expanded="true" signature="4630:4795" ph="insert into products" />
+                <marker date="1475500723000" expanded="true" signature="4825:4905" ph="insert into products" />
+                <marker date="1475500723000" expanded="true" signature="4825:4973" ph="insert into products" />
+                <marker date="1475500723000" expanded="true" signature="4825:4976" ph="insert into products" />
+                <marker date="1475500723000" expanded="true" signature="4825:4990" ph="insert into products" />
+                <marker date="1475500723000" expanded="true" signature="5052:5155" ph="insert into product_list" />
               </folding>
             </state>
           </provider>
@@ -73,44 +77,53 @@
       <file leaf-file-name="client.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/app/routes/client.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="75" column="1033" selection-start-line="75" selection-start-column="1033" selection-end-line="75" selection-end-column="1033" />
+            <state relative-caret-position="450">
+              <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
               <folding>
                 <element signature="e#6#62#0#PHP" expanded="true" />
-                <marker date="1474547319000" expanded="true" signature="470:523" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="470:940" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="470:958" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="573:649" ph="SELECT price... money_table" />
-                <marker date="1474547319000" expanded="true" signature="655:731" ph="SELECT price... money_table" />
-                <marker date="1474547319000" expanded="true" signature="734:810" ph="SELECT price... money_table" />
-                <marker date="1474547319000" expanded="true" signature="859:935" ph="SELECT price... money_table" />
-                <marker date="1474547319000" expanded="true" signature="1416:1439" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="1416:1480" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="1416:1518" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="1416:1530" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="1851:1993" ph="INSERT INTO client... " />
-                <marker date="1474547319000" expanded="true" signature="2925:2979" ph="update clien... " />
-                <marker date="1474547319000" expanded="true" signature="6194:7323" ph="SELECT id,ba... " />
-                <marker date="1474547319000" expanded="true" signature="6225:6367" ph="SELECT GROUP... product_list" />
+                <marker date="1475497400000" expanded="true" signature="470:523" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="470:940" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="470:958" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="573:649" ph="SELECT price... money_table" />
+                <marker date="1475497400000" expanded="true" signature="655:731" ph="SELECT price... money_table" />
+                <marker date="1475497400000" expanded="true" signature="734:810" ph="SELECT price... money_table" />
+                <marker date="1475497400000" expanded="true" signature="859:935" ph="SELECT price... money_table" />
+                <marker date="1475497400000" expanded="true" signature="1507:1868" ph="SELECT sum(p... client" />
+                <marker date="1475497400000" expanded="true" signature="1507:1936" ph="SELECT sum(p... client" />
+                <marker date="1475497400000" expanded="true" signature="1507:1937" ph="SELECT sum(p... client" />
+                <marker date="1475497400000" expanded="true" signature="1542:1716" ph="SELECT sum(-... product_list" />
+                <marker date="1475497400000" expanded="true" signature="1996:2367" ph="SELECT sum(p... client" />
+                <marker date="1475497400000" expanded="true" signature="2032:2206" ph="SELECT sum(-... product_list" />
+                <marker date="1475497400000" expanded="true" signature="2428:2801" ph="SELECT sum(p... client" />
+                <marker date="1475497400000" expanded="true" signature="2463:2637" ph="SELECT sum(-... product_list" />
+                <marker date="1475497400000" expanded="true" signature="3407:3430" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="3407:3471" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="3407:3509" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="3407:3521" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="3842:3984" ph="INSERT INTO client... " />
+                <marker date="1475497400000" expanded="true" signature="4916:4970" ph="update clien... " />
+                <marker date="1475497400000" expanded="true" signature="8185:9397" ph="SELECT id,ba... " />
+                <marker date="1475497400000" expanded="true" signature="8216:8358" ph="SELECT GROUP... product_list" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="monetar.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="monetar.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/app/routes/monetar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="36" column="71" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="71" />
+            <state relative-caret-position="98">
+              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding>
                 <element signature="e#6#62#0#PHP" expanded="true" />
-                <element signature="e#3180#4081#0#PHP" expanded="false" />
-                <marker date="1474551269000" expanded="true" signature="457:548" ph="SELECT *,DAT... monetar" />
-                <marker date="1474551269000" expanded="true" signature="457:566" ph="SELECT *,DAT... monetar" />
-                <marker date="1474551269000" expanded="true" signature="1042:1069" ph="SELECT * FRO... monetar" />
-                <marker date="1474551269000" expanded="true" signature="1042:1306" ph="SELECT sum(t... monetar" />
-                <marker date="1474551269000" expanded="true" signature="1827:2121" ph="SELECT sum(t... monetar" />
-                <marker date="1474551269000" expanded="true" signature="2698:2933" ph="INSERT INTO monetar... " />
+                <marker date="1475407125000" expanded="true" signature="457:548" ph="SELECT *,DAT... monetar" />
+                <marker date="1475407125000" expanded="true" signature="457:566" ph="SELECT *,DAT... monetar" />
+                <marker date="1475407125000" expanded="true" signature="1042:1069" ph="SELECT * FRO... monetar" />
+                <marker date="1475407125000" expanded="true" signature="1042:1306" ph="SELECT sum(t... monetar" />
+                <marker date="1475407125000" expanded="true" signature="1883:2110" ph="SELECT sum(t... monetar" />
+                <marker date="1475407125000" expanded="true" signature="1883:2155" ph="SELECT sum(t... monetar" />
+                <marker date="1475407125000" expanded="true" signature="2676:2998" ph="SELECT sum(t... monetar" />
+                <marker date="1475407125000" expanded="true" signature="3675:3910" ph="INSERT INTO monetar... " />
               </folding>
             </state>
           </provider>
@@ -136,10 +149,10 @@
       <list>
         <option value="$PROJECT_DIR$/src/public/index.php" />
         <option value="$PROJECT_DIR$/src/public/app/routes/params.php" />
-        <option value="$PROJECT_DIR$/src/public/app/routes/inventory.php" />
         <option value="$PROJECT_DIR$/src/public/app/config/config.php" />
-        <option value="$PROJECT_DIR$/src/public/app/routes/client.php" />
         <option value="$PROJECT_DIR$/src/public/app/routes/monetar.php" />
+        <option value="$PROJECT_DIR$/src/public/app/routes/client.php" />
+        <option value="$PROJECT_DIR$/src/public/app/routes/inventory.php" />
       </list>
     </option>
   </component>
@@ -154,7 +167,6 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
     <option name="y" value="23" />
     <option name="width" value="1276" />
     <option name="height" value="777" />
@@ -184,6 +196,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -278,8 +292,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,15 +362,16 @@
       <updated>1471348769968</updated>
       <workItem from="1471348772161" duration="16801000" />
       <workItem from="1472566165485" duration="12730000" />
-      <workItem from="1473927184225" duration="60043000" />
+      <workItem from="1473927184225" duration="90983000" />
+      <workItem from="1475478070327" duration="6129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89574000" />
+    <option name="totallyTimeSpent" value="126643000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="23" width="1276" height="777" extended-state="0" />
+    <frame x="0" y="23" width="1276" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2460815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -419,6 +432,104 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/params.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/inventory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="75" column="285" selection-start-line="75" selection-start-column="285" selection-end-line="75" selection-end-column="285" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+            <marker date="1475500723000" expanded="true" signature="424:543" ph="SELECT barco... products" />
+            <marker date="1475500723000" expanded="true" signature="978:1074" ph="SELECT barco... products" />
+            <marker date="1475500723000" expanded="true" signature="1744:1845" ph="SELECT sum(q... product_list" />
+            <marker date="1475500723000" expanded="true" signature="2639:2911" ph="SELECT name,... product_list" />
+            <marker date="1475500723000" expanded="true" signature="3599:3735" ph="insert into product_list" />
+            <marker date="1475500723000" expanded="true" signature="4630:4795" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4905" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4973" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4976" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4990" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="5052:5155" ph="insert into product_list" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/client.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="75" column="179" selection-start-line="75" selection-start-column="179" selection-end-line="75" selection-end-column="179" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+            <marker date="1475497400000" expanded="true" signature="470:523" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="470:940" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="470:958" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="573:649" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="655:731" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="734:810" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="859:935" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="1507:1868" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="1507:1936" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="1507:1937" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="1542:1716" ph="SELECT sum(-... product_list" />
+            <marker date="1475497400000" expanded="true" signature="1996:2367" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="2032:2206" ph="SELECT sum(-... product_list" />
+            <marker date="1475497400000" expanded="true" signature="2428:2801" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="2463:2637" ph="SELECT sum(-... product_list" />
+            <marker date="1475497400000" expanded="true" signature="3407:3430" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3407:3471" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3407:3509" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3407:3521" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3842:3984" ph="INSERT INTO client... " />
+            <marker date="1475497400000" expanded="true" signature="4916:4970" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="8185:9397" ph="SELECT id,ba... " />
+            <marker date="1475497400000" expanded="true" signature="8216:8358" ph="SELECT GROUP... product_list" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/monetar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+            <marker date="1475407125000" expanded="true" signature="457:548" ph="SELECT *,DAT... monetar" />
+            <marker date="1475407125000" expanded="true" signature="457:566" ph="SELECT *,DAT... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1042:1069" ph="SELECT * FRO... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1042:1306" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1883:2110" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1883:2155" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="2676:2998" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="3675:3910" ph="INSERT INTO monetar... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/app/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -449,71 +560,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/app/routes/params.php">
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/monetar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+        <state relative-caret-position="98">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
+            <marker date="1475407125000" expanded="true" signature="457:548" ph="SELECT *,DAT... monetar" />
+            <marker date="1475407125000" expanded="true" signature="457:566" ph="SELECT *,DAT... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1042:1069" ph="SELECT * FRO... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1042:1306" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1883:2110" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="1883:2155" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="2676:2998" ph="SELECT sum(t... monetar" />
+            <marker date="1475407125000" expanded="true" signature="3675:3910" ph="INSERT INTO monetar... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/app/routes/inventory.php">
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/params.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+        <state relative-caret-position="210">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <marker date="1474359786000" expanded="true" signature="424:528" ph="SELECT barco... products" />
-            <marker date="1474359786000" expanded="true" signature="963:1059" ph="SELECT barco... products" />
-            <marker date="1474359786000" expanded="true" signature="1729:1830" ph="SELECT sum(q... product_list" />
-            <marker date="1474359786000" expanded="true" signature="2635:2879" ph="SELECT name,... product_list" />
-            <marker date="1474359786000" expanded="true" signature="3569:3705" ph="insert into product_list" />
-            <marker date="1474359786000" expanded="true" signature="4615:4742" ph="insert into products" />
-            <marker date="1474359786000" expanded="true" signature="4969:5072" ph="insert into product_list" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/app/routes/client.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="75" column="1033" selection-start-line="75" selection-start-column="1033" selection-end-line="75" selection-end-column="1033" />
+        <state relative-caret-position="450">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <marker date="1474547319000" expanded="true" signature="470:523" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="470:940" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="470:958" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="573:649" ph="SELECT price... money_table" />
-            <marker date="1474547319000" expanded="true" signature="655:731" ph="SELECT price... money_table" />
-            <marker date="1474547319000" expanded="true" signature="734:810" ph="SELECT price... money_table" />
-            <marker date="1474547319000" expanded="true" signature="859:935" ph="SELECT price... money_table" />
-            <marker date="1474547319000" expanded="true" signature="1416:1439" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="1416:1480" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="1416:1518" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="1416:1530" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="1851:1993" ph="INSERT INTO client... " />
-            <marker date="1474547319000" expanded="true" signature="2925:2979" ph="update clien... " />
-            <marker date="1474547319000" expanded="true" signature="6194:7323" ph="SELECT id,ba... " />
-            <marker date="1474547319000" expanded="true" signature="6225:6367" ph="SELECT GROUP... product_list" />
+            <marker date="1475497400000" expanded="true" signature="470:523" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="470:940" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="470:958" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="573:649" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="655:731" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="734:810" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="859:935" ph="SELECT price... money_table" />
+            <marker date="1475497400000" expanded="true" signature="1507:1868" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="1507:1936" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="1507:1937" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="1542:1716" ph="SELECT sum(-... product_list" />
+            <marker date="1475497400000" expanded="true" signature="1996:2367" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="2032:2206" ph="SELECT sum(-... product_list" />
+            <marker date="1475497400000" expanded="true" signature="2428:2801" ph="SELECT sum(p... client" />
+            <marker date="1475497400000" expanded="true" signature="2463:2637" ph="SELECT sum(-... product_list" />
+            <marker date="1475497400000" expanded="true" signature="3407:3430" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3407:3471" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3407:3509" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3407:3521" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="3842:3984" ph="INSERT INTO client... " />
+            <marker date="1475497400000" expanded="true" signature="4916:4970" ph="update clien... " />
+            <marker date="1475497400000" expanded="true" signature="8185:9397" ph="SELECT id,ba... " />
+            <marker date="1475497400000" expanded="true" signature="8216:8358" ph="SELECT GROUP... product_list" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/app/routes/monetar.php">
+    <entry file="file://$PROJECT_DIR$/src/public/app/routes/inventory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="36" column="71" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="71" />
+        <state relative-caret-position="320">
+          <caret line="75" column="301" selection-start-line="75" selection-start-column="301" selection-end-line="75" selection-end-column="301" />
           <folding>
             <element signature="e#6#62#0#PHP" expanded="true" />
-            <element signature="e#3180#4081#0#PHP" expanded="false" />
-            <marker date="1474551269000" expanded="true" signature="457:548" ph="SELECT *,DAT... monetar" />
-            <marker date="1474551269000" expanded="true" signature="457:566" ph="SELECT *,DAT... monetar" />
-            <marker date="1474551269000" expanded="true" signature="1042:1069" ph="SELECT * FRO... monetar" />
-            <marker date="1474551269000" expanded="true" signature="1042:1306" ph="SELECT sum(t... monetar" />
-            <marker date="1474551269000" expanded="true" signature="1827:2121" ph="SELECT sum(t... monetar" />
-            <marker date="1474551269000" expanded="true" signature="2698:2933" ph="INSERT INTO monetar... " />
+            <marker date="1475500723000" expanded="true" signature="424:543" ph="SELECT barco... products" />
+            <marker date="1475500723000" expanded="true" signature="978:1074" ph="SELECT barco... products" />
+            <marker date="1475500723000" expanded="true" signature="1744:1845" ph="SELECT sum(q... product_list" />
+            <marker date="1475500723000" expanded="true" signature="2639:2911" ph="SELECT name,... product_list" />
+            <marker date="1475500723000" expanded="true" signature="3599:3735" ph="insert into product_list" />
+            <marker date="1475500723000" expanded="true" signature="4630:4795" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4905" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4973" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4976" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="4825:4990" ph="insert into products" />
+            <marker date="1475500723000" expanded="true" signature="5052:5155" ph="insert into product_list" />
           </folding>
         </state>
       </provider>

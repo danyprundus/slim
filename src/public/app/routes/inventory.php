@@ -13,7 +13,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app->any('/finance/inventory/getall/plagroundID={playgroundID}', function (Request $request, Response $response) {
     $pdo=dbConnect();
     $playgroundID=$request->getAttribute('playgroundID');
-    $sth = $pdo->prepare('SELECT  barcodeID,name,barcodeID,owner,qty,um,price    FROM products     WHERE playgroundID= :playground');
+    $sth = $pdo->prepare('SELECT  barcodeID,name,barcodeID,owner,qty,um,price    FROM products     WHERE playgroundID= :playground  order by name');
     $sth->bindValue(':playground', $playgroundID, PDO::PARAM_INT);
     $sth->execute();
     $result = $sth->fetchAll();
@@ -69,11 +69,11 @@ $app->any('/finance/inventory/totalProduct/{playgroundID}/{barcode}', function (
 });
 $app->any('/finance/inventory/totalsForProducts/{playgroundID}[/{tip}]', function (Request $request, Response $response) {
     $pdo=dbConnect();
-    $where=" AND qty>=0";
+    $where="";
     if($request->getAttribute('tip')=='vanzari'){
         $where="AND product_list.addedDate>=CURRENT_DATE and product_list.addedDate<CURDATE() + INTERVAL 1 day  AND qty<0";
     }
-    $sth = $pdo->prepare('SELECT name,sum(qty) as qty,price ,sum(price*qty) as totalPrice , products.barcodeID FROM product_list , products WHERE product_list.barcodeID=products.barcodeID AND  product_list.playgroundID= :playground '.$where.' GROUP BY products.barcodeID  ');
+    $sth = $pdo->prepare('SELECT name,sum(qty) as qty,price ,sum(price*qty) as totalPrice , products.barcodeID FROM product_list , products WHERE product_list.barcodeID=products.barcodeID AND  product_list.playgroundID= :playground '.$where.' GROUP BY products.barcodeID  order by provider,name,qty');
     if( $sth->execute(array(
         "playground" => $request->getAttribute('playgroundID'),
     ))){
@@ -123,15 +123,12 @@ $app->any('/finance/inventory/createProduct/{playgroundID}/{barcode}/{addedBy}/{
     $barcode=$request->getAttribute('barcode');
     $addedBy=$request->getAttribute('addedBy');
     $name=$request->getAttribute('name');
-    $price=$request->getAttribute('price');
-    $sth = $pdo->prepare('insert into  products (barcodeID,playgroundID,addedby,name,price) values (:barcode , :playground  , :addedBy , :name , :price ) ');
-    if( $sth->execute(array(
-        "barcode" => $barcode,
-        "playground" => $playgroundID,
-        "addedBy" => $addedBy,
-        "name" => $name,
-        "price" => $price,
-    ))) {
+     $price=$request->getAttribute('price');
+    echo 'insert into  products (barcodeID,playgroundID,addedby,name,price) 
+    values ("'.$barcode.'" , "'.$playgroundID.'" , "'.$addedBy.'" , "'.$name.'" , \''.$price.'\' ) ';
+    $sth = $pdo->prepare('insert into  products (barcodeID,playgroundID,addedby,name,price) 
+    values ("'.$barcode.'" , "'.$playgroundID.'" , "'.$addedBy.'" , "'.$name.'" , \''.$price.'\' ) ');
+    if( $sth->execute() ){
         $sth = $pdo->prepare('insert into  product_list (barcodeID,playgroundID,addedby) values (:barcode , :playground  , :addedBy ) ');
 
 
@@ -143,11 +140,11 @@ $app->any('/finance/inventory/createProduct/{playgroundID}/{barcode}/{addedBy}/{
         )))
             $return=array("operation"=>"ok");
         else
-            $return=array("operation"=>"failed");
+            $return=array("operation"=>"failed 1");
 
     }
     else
-        $return=array("operation"=>"failed");
+        $return=array("operation"=>"failed 2");
 
     print json_encode($return);
 });
