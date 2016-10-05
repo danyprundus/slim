@@ -118,9 +118,9 @@ $app->any('/finance/monetar/data={data}/option={option}', function (Request $req
                     case "cincizeci" : $total+=$val*50;break;
                     case "zece" : $total+=$val*10;break;
                     case "cinci" : $total+=$val*5;break;
-                    case "unleu" : $total+=$val;break;
+                    case "unleu" : $total+=$val*1;break;
                     case "bani50" : $total+=$val*0.5;break;
-                    case "bani10" : $total+=$val*0.5;break;
+                    case "bani10" : $total+=$val*0.1;break;
 
                 }
 

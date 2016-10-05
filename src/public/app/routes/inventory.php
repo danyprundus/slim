@@ -124,8 +124,6 @@ $app->any('/finance/inventory/createProduct/{playgroundID}/{barcode}/{addedBy}/{
     $addedBy=$request->getAttribute('addedBy');
     $name=$request->getAttribute('name');
      $price=$request->getAttribute('price');
-    echo 'insert into  products (barcodeID,playgroundID,addedby,name,price) 
-    values ("'.$barcode.'" , "'.$playgroundID.'" , "'.$addedBy.'" , "'.$name.'" , \''.$price.'\' ) ';
     $sth = $pdo->prepare('insert into  products (barcodeID,playgroundID,addedby,name,price) 
     values ("'.$barcode.'" , "'.$playgroundID.'" , "'.$addedBy.'" , "'.$name.'" , \''.$price.'\' ) ');
     if( $sth->execute() ){
